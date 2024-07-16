@@ -1,4 +1,4 @@
 package basic;
 
-public record Edge(Node n1, Node n2) {
+public record Edge <T extends Node> (T n1, T n2) {
 }

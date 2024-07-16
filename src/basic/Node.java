@@ -94,4 +94,8 @@ public class Node {
       return sb.append("]").toString();
     }
 
+    public int getIndex() {
+        return index;
+    }
+
 }
