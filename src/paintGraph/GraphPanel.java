@@ -13,6 +13,8 @@ class GraphPanel extends JPanel {
     private final int pointDim = 10;
     private final List<Node2D> nodes = new ArrayList<>();
     private final List<Edge<Node2D>> edges = new ArrayList<>();
+    private final int letterYOff = -2, letterXOff = 2;
+    protected LetterGenerator letterGenerator = new LetterGenerator();
 
     /**
      * initialize a graphpanel with all the nodes and the edges
@@ -58,9 +60,12 @@ class GraphPanel extends JPanel {
 
     protected void drawNodes(Graphics g){
         g.setColor(Color.BLUE);
-        for (Node2D n : nodes) 
-            g.fillOval(originX + n.getX() - pointDim / 2, originY - n.getY() - pointDim / 2, 10, 10);
-        
+        for (Node2D n : nodes) {
+            int x = originX + n.getX() - pointDim / 2;
+            int y = originY - n.getY() - pointDim / 2;
+            g.drawString(letterGenerator.getNext(), x - letterXOff, y + letterYOff);
+            g.fillOval( x, y, 10, 10);
+        }
     }
 
     protected void drawEdges (Graphics g){
