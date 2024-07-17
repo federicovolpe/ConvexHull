@@ -3,6 +3,7 @@ package basic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -85,7 +86,7 @@ public class Node {
     @Override
     public String toString(){
       StringBuilder sb = new StringBuilder();
-      sb.append("Node: " + index + "[");
+      sb.append("Node: ").append(index).append("[");
 
       for (int i = 0; i < dim; i++)
         sb.append(coordinates.get(i)).append(", ");
@@ -98,4 +99,16 @@ public class Node {
         return index;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return Objects.equals(coordinates, node.coordinates);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(coordinates);
+    }
 }

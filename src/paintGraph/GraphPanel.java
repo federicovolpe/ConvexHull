@@ -19,28 +19,27 @@ class GraphPanel extends JPanel {
      * @param nodes nodes of the graph
      * @param edges edges of the graph
      */
-    public GraphPanel(List<Node2D> nodes, List<Edge<Node2D>> edges) {
+    public GraphPanel(final List<Node2D> nodes, final List<Edge<Node2D>> edges) {
         int biggestD = 0;
         for (Node2D n : nodes) {
             biggestD = (Math.abs(n.getY()) > biggestD) ? Math.abs(n.getX()) : biggestD;
             biggestD = (Math.abs(n.getY()) > biggestD) ? Math.abs(n.getY()) : biggestD;
         }
 
-        int scale = (int) (400 / biggestD) - 1;
+        float scale = biggestD / 400.0f;
         initNodesAndEdges(nodes, edges, scale);
-
-        System.out.println("scale: " + scale);
+        System.out.println("scale: 400/" + biggestD +" = "+scale);
     }
 
-    private void initNodesAndEdges (List<Node2D> nodes, List<Edge<Node2D>> edges, int scale){
+    private void initNodesAndEdges (List<Node2D> nodes, List<Edge<Node2D>> edges, float scale){
         for (Node2D n : nodes)
             this.nodes.add(scaleNode(n, scale));
         for (Edge<Node2D> e : edges)
             this.edges.add(new Edge<>(scaleNode(e.n1(), scale), scaleNode(e.n2(), scale)));
     }
 
-    private Node2D scaleNode(Node2D n, int scale) {
-        return new Node2D(n.getIndex(), n.getX() * scale, n.getY() * scale);
+    private Node2D scaleNode(Node2D n, float scale) {
+        return new Node2D(n.getIndex(), (int)(n.getX() * scale), (int)(n.getY() * scale));
     }
 
     @Override
@@ -66,10 +65,12 @@ class GraphPanel extends JPanel {
 
     protected void drawEdges (Graphics g){
         g.setColor(Color.RED);
-        for (Edge<Node2D> e : edges) 
-            g.drawLine(e.n1().getY() + originX,
+        for (Edge<Node2D> e : edges) {
+            System.out.println("drawing line : " + e);
+            g.drawLine(e.n1().getX() + originX,
                     originY - e.n1().getY(),
                     e.n2().getX() + originX,
                     originY - e.n2().getY());
+            }
     }
 }
