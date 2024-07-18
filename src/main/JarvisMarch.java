@@ -27,14 +27,14 @@ public class JarvisMarch {
                     }
             }
             System.out.println("best successor to " + current + " : " + best + " with angle: " + bestAngle);
-            convexHull.add(new Edge(current, best));
+            convexHull.add(new Edge<>(current, best));
             previous = current;
             current = best;
             best = previous;
         } while (!current.equals(lowest));
 
         System.out.println("completed convex hull : ");
-        for (Edge edge : convexHull) {
+        for (Edge<Node2D> edge : convexHull) {
             System.out.println(edge);
         }
         return convexHull;
