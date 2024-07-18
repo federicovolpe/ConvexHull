@@ -1,8 +1,10 @@
 package heuristics;
 
-import basic.Node;
+import basic.Edge;
+import basic.Node2D;
+
 import java.util.List;
 
 public interface Heuristic {
-    public Node GetHeuristic(List<Node> nodes);
+    Node2D GetHeuristic(List<Edge<Node2D>> nodes);
 }
