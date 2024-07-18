@@ -83,6 +83,10 @@ public class Node {
       return this.dim == other.dim;
     }
 
+    public int getCoor(int index){
+      return coordinates.get(index);
+    }
+
     @Override
     public String toString(){
       StringBuilder sb = new StringBuilder();
@@ -110,5 +114,9 @@ public class Node {
     @Override
     public int hashCode() {
       return Objects.hash(coordinates);
+    }
+
+    public int getDim() {
+        return dim;
     }
 }
