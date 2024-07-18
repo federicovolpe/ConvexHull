@@ -1,18 +1,13 @@
-## Getting Started
+# Gusci Convessi - Sperimentazioni
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Questo repository contiene le mie sperimentazioni sui gusci convessi utilizzando diversi strumenti e linguaggi di programmazione, tra cui Java, Jupyter Notebook e Polymake.
 
-## Folder Structure
+## Contenuto del Repository
 
-The workspace contains two folders by default, where:
+- **Java**: 
+  - Implementazioni di algoritmi per la costruzione e manipolazione di gusci convessi.
+  
+  - ricerca di euristiche che potrebbero aiutare alla ricerca di un guscio convesso con n lati(in 2 dimensioni per lo stato attuale)
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- **Jupyter Notebook**: Analisi e visualizzazione interattiva dei risultati delle sperimentazioni.
+affiancato a librerie opportune per l'utilizzo di  **Polymake** per la manipolazione e l'analisi di poliedri e complessi poliedrali.
