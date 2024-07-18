@@ -9,5 +9,6 @@ Questo repository contiene le mie sperimentazioni sui gusci convessi utilizzando
   
   - ricerca di euristiche che potrebbero aiutare alla ricerca di un guscio convesso con n lati(in 2 dimensioni per lo stato attuale)
 
-- **Jupyter Notebook**: Analisi e visualizzazione interattiva dei risultati delle sperimentazioni.
+- **Jupyter Notebook**: 
+  - Analisi e visualizzazione interattiva dei risultati delle sperimentazioni.
 affiancato a librerie opportune per l'utilizzo di  **Polymake** per la manipolazione e l'analisi di poliedri e complessi poliedrali.
