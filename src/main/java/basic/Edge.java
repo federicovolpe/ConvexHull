@@ -35,26 +35,29 @@ public class Edge {
    * @return an array containing the parameters of the line corrisponding to this segment
    */
   public int[] getLineParameters() {
-    int a = n2.getY() - n1.getY();
-    int b = n1.getX() - n2.getX();
-    int c = n1.getX()*(n2.getY() - n1.getY()) - n1.getY() * (n2.getX() - n1.getX());
+    int a = n1.getY() - n2.getY();
+    int b = -(n1.getX() - n2.getX());
+    int c = n1.getX()* n2.getY() - n1.getY() * n2.getX();
     return new int[]{a, b, c};
   }
 
   /**
    * generic mathematical formula for finding an intersection between two lines
-   * @return
+   * @return the point of intersection of the tqo lines
    */
   public Node2D calcIntersectionWithLine(int a2, int b2, int c2){
     int[] param = getLineParameters();
     int a1 = param[0];
     int b1 = param[1];
     int c1 = param[2];
-    int denominator = a1 * b2 - a2 * b1;
-    int x = (b1 * c2 - b2 * c1) / denominator;
-    int y = (a2 * c1 - a1 * c2) / denominator;
+    System.out.println("parametri 1 : "+a1+" "+b1+" "+c1);
+    System.out.println("parametri 1 : "+a2+" "+b2+" "+c2);
+    double denominator = a1 * b2 - a2 * b1;
+    double x = (b1 * c2 - b2 * c1) / denominator;
+    double y = (a2 * c1 - a1 * c2) / denominator;
 
-    return new Node2D(-1, x, y);
+    System.out.println("coordinate di intersezione: x "+x+" y "+y);
+    return new Node2D(-1, (int)x, (int)y);
   }
 
   /**

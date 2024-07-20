@@ -41,8 +41,20 @@ class EdgeTest {
     assert(new Node2D(-1, expectedx, expectedy).equals(Sut.getCenterOfMass(e)));
   }
 
-  @Test
-  void calcIntersectionWithLine() {
+  @ParameterizedTest
+  @CsvSource({
+      "1, 1 , 1, 1, 2, 0",
+      "-1, -1, -1,-1, 2, -2"
+  })
+  void calcIntersectionWithLine(int expectedx, int expectedy, int x1, int y1, int x2, int y2) {
+    Edge Sut = new Edge(new Node2D(0,0,0), new Node2D(1, 100,100));
+
+    Edge e = new Edge(new Node2D(1,x1,y1), new Node2D(2, x2, y2));
+
+    assertEquals(new Node2D(-1, expectedx, expectedy),
+        Sut.calcIntersectionWithLine(e.getLineParameters()[0],
+            e.getLineParameters()[1],
+            e.getLineParameters()[2]));
   }
 
   @Test
