@@ -16,9 +16,9 @@ Una seconda ipotesi per l'approssimazione del guscio convesso con un numero limi
 implementata in [CuttingNodes](../../../tesi2/ConvexHull/src/heuristics/CuttingNodes.java). Questo algoritmo prevede la classificazione 
 e lo scarto dei vertici che creano gli angoli interni più acuti nel poliedro.
 <div style="display: flex; justify-content: space-between;">
-    <img src="media/cuttingNodes/10-5.png" alt="Image 1" width="30%">
-    <img src="media/cuttingNodes/30-5.png" alt="Image 2" width="30%">
-    <img src="media/cuttingNodes/50-5.png" alt="Image 3" width="30%">
+    <img src="resources/10-5.png" alt="Image 1" width="30%">
+    <img src="resources/30-5.png" alt="Image 2" width="30%">
+    <img src="resources/50-5.png" alt="Image 3" width="30%">
 </div>
 
 ## Ipotesi di Algoritmo (3)
