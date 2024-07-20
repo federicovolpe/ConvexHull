@@ -50,19 +50,16 @@ class NodeTest {
     assertFalse(Sut.sameDimension(n));
   }
 
-  @Test
-  void getIndex() {
+  @ParameterizedTest
+  @CsvSource({
+      "true, 1, 1, 1, 0",
+      "false, 1, 1, 1, 1",
+      "false, 1, 1, 0, 1",
+      "false, 11, 1, 1, 0"
+  })
+  void testEquals(boolean expected, int x, int y, int z, int index) {
+    Node n = new Node(List.of(x,y,z), index);
+    assertEquals(expected, Sut.equals(n));
   }
 
-  @Test
-  void testEquals() {
-  }
-
-  @Test
-  void testHashCode() {
-  }
-
-  @Test
-  void getDim() {
-  }
 }
