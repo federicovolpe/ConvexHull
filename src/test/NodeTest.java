@@ -27,8 +27,15 @@ class NodeTest {
     assertEquals(expected, Sut.calcDistance(n));
   }
 
-  @Test
-  void samePos() {
+  @ParameterizedTest
+  @CsvSource({
+      "true, 1, 1, 1",
+      "false, 1, 1, 0",
+      "false, 11, 1, 1"
+  })
+  void samePos(boolean expected, int x, int y, int  z) {
+    Node n = new Node(List.of(x,y,z), 0);
+    assertEquals(expected, Sut.samePos(n));
   }
 
   @Test

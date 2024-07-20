@@ -73,7 +73,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NodeTest.calcDistance_sameDimension (1)">
+  <component name="RunManager" selected="JUnit.NodeTest.samePos">
     <configuration name="NodeTest.calcDistance_notSameDimension" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConvexHull" />
       <option name="PACKAGE_NAME" value="" />
@@ -104,8 +104,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NodeTest.samePos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConvexHull" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="NodeTest" />
+      <option name="METHOD_NAME" value="samePos(boolean,int,int,int)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.NodeTest.samePos" />
         <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension (1)" />
         <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension" />
         <item itemvalue="JUnit.NodeTest.calcDistance_notSameDimension" />
