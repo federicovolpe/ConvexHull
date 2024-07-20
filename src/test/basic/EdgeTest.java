@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class EdgeTest {
   Edge Sut = new Edge(new Node2D(0,0,0), new Node2D(1, 1,1));
 
@@ -26,12 +27,18 @@ class EdgeTest {
     assertEquals(expected, 0.01 ,Sut.calcAngle(e));
   }
 
-  @Test
-  void getCenterOfMass() {
-  }
+  @ParameterizedTest
+  @CsvSource({
+      "33, 33 , 0, 0",
+      "33, 66, 0, 100",
+      "66, 33, 100, 0"
+  })
+  void getCenterOfMass(int expectedx, int expectedy, int x, int y) {
+    Edge Sut = new Edge(new Node2D(0,0,0), new Node2D(1, 100,100));
 
-  @Test
-  void getLineParameters() {
+    Edge e = new Edge(new Node2D(1,100,100), new Node2D(2, x, y));
+
+    assert(new Node2D(-1, expectedx, expectedy).equals(Sut.getCenterOfMass(e)));
   }
 
   @Test
@@ -40,21 +47,5 @@ class EdgeTest {
 
   @Test
   void traslate() {
-  }
-
-  @Test
-  void n1() {
-  }
-
-  @Test
-  void n2() {
-  }
-
-  @Test
-  void setn1() {
-  }
-
-  @Test
-  void setn2() {
   }
 }

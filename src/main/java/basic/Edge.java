@@ -15,7 +15,7 @@ public class Edge {
    * @return the angle
    */
   public double calcAngle(Edge other){
-    if(!other.n1.equals(n2)) throw new IllegalArgumentException("edges are not successors n2 "+n2+" != "+other.n1);
+    if(!isConsecutive(other)) throw new IllegalArgumentException("edges are not successors n2 "+n2+" != "+other.n1);
     return n2.angleBetweenNodes(n1, other.n2);
   }
 
@@ -25,7 +25,7 @@ public class Edge {
    * @return the center of mass
    */
   public Node2D getCenterOfMass(Edge other){
-    if(!other.n1.equals(n2)) throw new IllegalArgumentException("edges are not successors n2 "+n2+" != "+other.n1);
+    if(!isConsecutive(other)) throw new IllegalArgumentException("edges are not successors n2 "+n2+" != "+other.n1);
     return new Node2D(-1,
         (n1.getX() + n2.getX() + other.n2.getX())/3,
         (n1.getY() + n2.getY() + other.n2.getY())/3);
@@ -69,15 +69,15 @@ public class Edge {
     n1 = new Node2D(n1.index, n1.getX() + offsetX, n1.getY() + offsetY);
     n2 = new Node2D(n2.index, n2.getX() + offsetX, n2.getY() + offsetY);
   }
-
   public Node2D n1() {
     return n1;
   }
-
   public Node2D n2() {
     return n2;
   }
-
+  private boolean isConsecutive(Edge other){
+    return other.n1.equals(n2);
+  }
   public void setn1(Node2D n1) {
     this.n1 = n1;
   }
