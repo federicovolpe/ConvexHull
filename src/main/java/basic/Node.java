@@ -37,9 +37,11 @@ public class Node {
       if(dim < 1) throw new IllegalArgumentException("dimension of random node should be >= 1");
       rnd = new Random();
       this.dim = dim;
+      this.index = index;
+
       coordinates = new ArrayList<>();
       for (int i = 0; i < dim; i++) {
-        coordinates.add(rnd.nextInt());
+        coordinates.add(rnd.nextInt(-bound, bound));
       }
     }
 
@@ -52,8 +54,8 @@ public class Node {
       if(! sameDimension(other)) throw new IllegalArgumentException("points should be of the same dimension "+this.dim+" != " +other.dim );
       double sum = 0;
 
-      for (int i = 0; i < dim; i++) 
-        sum += Math.pow(coordinates.get(i), 2) - Math.pow(other.coordinates.get(i), 2);
+      for (int i = 0; i < dim; i++)
+        sum += Math.abs(Math.pow(coordinates.get(i) - other.coordinates.get(i), 2));
 
       return Math.sqrt(sum);
     }

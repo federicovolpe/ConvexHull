@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="upgrading to a maven project">
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="GREEN: node.calcDistance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/NodeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +18,11 @@
     <option name="done" value="true" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -66,7 +73,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.NodeTest.calcDistance_sameDimension (1)">
     <configuration name="NodeTest.calcDistance_notSameDimension" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConvexHull" />
       <option name="PACKAGE_NAME" value="" />
@@ -77,8 +84,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NodeTest.calcDistance_sameDimension (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConvexHull" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="NodeTest" />
+      <option name="METHOD_NAME" value="calcDistance_sameDimension(double,int,int,int)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NodeTest.calcDistance_sameDimension" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConvexHull" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="NodeTest" />
+      <option name="METHOD_NAME" value="calcDistance_sameDimension" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension (1)" />
+        <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension" />
         <item itemvalue="JUnit.NodeTest.calcDistance_notSameDimension" />
       </list>
     </recent_temporary>
@@ -99,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721493957888</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updating images">
+      <created>1721495610288</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721495610288</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,6 +151,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="upgrading to a maven project" />
-    <option name="LAST_COMMIT_MESSAGE" value="upgrading to a maven project" />
+    <MESSAGE value="updating images" />
+    <MESSAGE value="GREEN: node.calcDistance" />
+    <option name="LAST_COMMIT_MESSAGE" value="GREEN: node.calcDistance" />
   </component>
 </project>
