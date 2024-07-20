@@ -18,7 +18,7 @@ public class Node {
 
     /**
      * given a list of coordinates initializes the point
-     * @param coordinates
+     * @param coordinates of the desired node
      */
     public Node (final List<Integer> coordinates, int index){
       this.coordinates = new ArrayList<>(coordinates);
@@ -74,19 +74,11 @@ public class Node {
       return true;
     }
 
-    public boolean equalsIndex(Node other) {
-        return this.index == other.index;
-      }
-
     /**
      * if this node has the same dimension as another one
      */
     public boolean sameDimension(Node other){
       return this.dim == other.dim;
-    }
-
-    public int getCoor(int index){
-      return coordinates.get(index);
     }
 
     @Override
@@ -116,9 +108,5 @@ public class Node {
     @Override
     public int hashCode() {
       return Objects.hash(coordinates);
-    }
-
-    public int getDim() {
-        return dim;
     }
 }

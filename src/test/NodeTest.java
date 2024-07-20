@@ -39,19 +39,15 @@ class NodeTest {
   }
 
   @Test
-  void equalsIndex() {
-  }
-
-  @Test
   void sameDimension() {
-  }
+    Node n = new Node(List.of(1,1,1), 0);
+    assertTrue(Sut.sameDimension(n));
 
-  @Test
-  void getCoor() {
-  }
+    n = new Node(List.of(1,1,1,1), 0);
+    assertFalse(Sut.sameDimension(n));
 
-  @Test
-  void testToString() {
+    n = new Node(List.of(1), 0);
+    assertFalse(Sut.sameDimension(n));
   }
 
   @Test
