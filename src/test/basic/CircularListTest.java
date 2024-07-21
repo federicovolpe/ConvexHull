@@ -19,11 +19,11 @@ class CircularListTest {
   }
 
   @Test
-  void getPrevious() {
-  }
-
-  @Test
   void get() {
+    assertEquals(1, Sut.get(0));
+    assertEquals(5, Sut.get(4));
+    assertEquals(2, Sut.get(6));
+    assertEquals(1, Sut.get(10));
   }
 
   @Test

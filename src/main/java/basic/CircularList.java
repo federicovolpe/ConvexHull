@@ -19,15 +19,6 @@ public class CircularList<E> extends LinkedList<E> {
     return this.get(nextIndex);
   }
 
-  public E getPrevious(E current) {
-    int index = this.indexOf(current);
-    if (index == -1) {
-      throw new IllegalArgumentException("Element not found in the list.");
-    }
-    int prevIndex = (index - 1 + this.size()) % this.size();
-    return this.get(prevIndex);
-  }
-
   @Override
   public E get(int index) {
     return super.get(index % size());
