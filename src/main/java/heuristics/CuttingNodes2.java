@@ -11,7 +11,7 @@ import static utils.Constants.GraphConstants.*;
 
 public class CuttingNodes2 implements Heuristic{
   private final CircularList<Edge> convexHull;
-  private List<Node2D> whithinBorders;
+  private final List<Node2D> whithinBorders;
 
   /**
    * constructor which instanciates all the computation
@@ -24,11 +24,11 @@ public class CuttingNodes2 implements Heuristic{
     this.convexHull = new CircularList<>(convexHull);
     this.whithinBorders = nodes;
 
-
     while(this.convexHull.size() > n){
+    System.out.println("copy : "+ this.convexHull);
+    System.out.println("applying cut");
         applyCut();
-        System.out.println("applying cut");
-      }
+    }
   }
 
   /**
@@ -38,19 +38,15 @@ public class CuttingNodes2 implements Heuristic{
     Edge lowestA = null, lowestB = null; // edges formed by the nodes a-b-c
     int indexToModify = -1;   // indice del lato da modificare
     double angle = Double.MAX_VALUE;
-    List<Edge> chPlusOne = new ArrayList<>(convexHull);
-    chPlusOne.add(convexHull.getFirst());
 
-    for (int i = 0; i < chPlusOne.size()-1; i++) {
-      if(chPlusOne.get(i).calcAngle(chPlusOne.get(i+1)) < angle){
-        angle = chPlusOne.get(i).calcAngle(chPlusOne.get(i+1));
+    for (int i = 0; i < convexHull.size(); i++) {
+      if(convexHull.get(i).calcAngle(convexHull.get(i+1)) < angle){
+        angle = convexHull.get(i).calcAngle(convexHull.get(i+1));
         indexToModify = i;
-        lowestA = chPlusOne.get(i);
-        lowestB = chPlusOne.get(i+1);
+        lowestA = convexHull.get(i);
+        lowestB = convexHull.get(i+1);
       }
     }
-    //System.out.println("lowest angle formed by "+lowestA.n1()+"-"+lowestA.n2()+"-"+lowestB.n2()+" with angle "+angle);
-
 
     Node2D centerOfMass = lowestA.getCenterOfMass(lowestB);
 
@@ -58,14 +54,28 @@ public class CuttingNodes2 implements Heuristic{
     convexHull.set(indexToModify, new Edge(lowestA.n1(), lowestB.n2()));
     convexHull.remove(lowestB);
 
+    // traslating the new edge
+    System.out.println("traslating "+ convexHull.get(indexToModify));
+    convexHull.get(indexToModify).traslate(centerOfMass);
+
     // extending the edges according tho the center of mass
-    extendEdges(convexHull.get(indexToModify -1), convexHull.get(indexToModify), convexHull.get(indexToModify+2), centerOfMass);
+    extendEdges(convexHull.get(indexToModify -1), convexHull.get(indexToModify), convexHull.get(indexToModify+1));
   }
 
-  private void extendEdges (Edge previous, Edge toExtend, Edge successor, Node2D centerOfMass){
-    System.out.println("traslating "+toExtend);
-    toExtend.traslate(centerOfMass);
+  private void extendEdges (Edge prev, Edge toExtend, Edge succ){
+    System.out.println("extending "+ prev);
+    Node2D intersectionPrev = toExtend.calcIntersectionWithLine(prev.getLineParameters()[0],
+        prev.getLineParameters()[1],
+        prev.getLineParameters()[2]);
+    prev.setn2(intersectionPrev);
+    toExtend.setn1(intersectionPrev);
 
+    System.out.println("extending "+ succ);
+    Node2D intersectionSucc = toExtend.calcIntersectionWithLine(succ.getLineParameters()[0],
+        succ.getLineParameters()[1],
+        succ.getLineParameters()[2]);
+    succ.setn1(intersectionSucc);
+    toExtend.setn2(intersectionSucc);
   }
 
   @Override
@@ -77,6 +87,16 @@ public class CuttingNodes2 implements Heuristic{
           ORIGIN_Y - e.n1().getY(),
           e.n2().getX() + ORIGIN_X,
           ORIGIN_Y - e.n2().getY());
+    }
+    drawNewNodes(g);
+  }
+
+  public void drawNewNodes(Graphics g) {
+    g.setColor(Color.GREEN);
+    for (Edge e : convexHull) {
+      int x = ORIGIN_X + e.n1().getX() - (int)(POINT_DIM * .3);
+      int y = ORIGIN_Y - e.n1().getY() - (int)(POINT_DIM * .3);
+      g.fillOval(x, y, (int) (POINT_DIM * .7), (int) (POINT_DIM * .7));
     }
   }
 }

@@ -18,7 +18,7 @@ public class Node {
 
     /**
      * given a list of coordinates initializes the point
-     * @param coordinates
+     * @param coordinates list of coordinates of the node
      */
     public Node (final List<Integer> coordinates, int index){
       this.coordinates = new ArrayList<>(coordinates);
@@ -71,10 +71,6 @@ public class Node {
 
       return true;
     }
-
-    public boolean equalsIndex(Node other) {
-        return this.index == other.index;
-      }
 
     /**
      * if this node has the same dimension as another one
