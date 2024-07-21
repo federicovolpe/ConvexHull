@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="GREEN: node.calcDistance">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/basic/CircularListTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/basic/Node2DTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/basic/NodeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/CircularList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/CircularList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Edge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/NodeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Node2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/CuttingNodes2Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/NodeTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,19 +54,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_directory_selection": "/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test",
-    "last_opened_file_path": "/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java",
-    "project.structure.last.edited": "Facets",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "shared-indexes"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;shared-indexes&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
@@ -165,5 +173,8 @@
     <MESSAGE value="updating images" />
     <MESSAGE value="GREEN: node.calcDistance" />
     <option name="LAST_COMMIT_MESSAGE" value="GREEN: node.calcDistance" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

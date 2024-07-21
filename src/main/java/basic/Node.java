@@ -37,13 +37,15 @@ public class Node {
       if(dim < 1) throw new IllegalArgumentException("dimension of random node should be >= 1");
       rnd = new Random();
       this.dim = dim;
+      this.index = index;
+
       coordinates = new ArrayList<>();
       for (int i = 0; i < dim; i++) {
-        coordinates.add(rnd.nextInt());
+        coordinates.add(rnd.nextInt(-bound, bound));
       }
     }
 
-    /**
+  /**
      * calculate the distance between two nodes
      * @param other should be of the same dimension as this one
      * @return the distance between the two
@@ -52,8 +54,8 @@ public class Node {
       if(! sameDimension(other)) throw new IllegalArgumentException("points should be of the same dimension "+this.dim+" != " +other.dim );
       double sum = 0;
 
-      for (int i = 0; i < dim; i++) 
-        sum += Math.pow(coordinates.get(i), 2) - Math.pow(other.coordinates.get(i), 2);
+      for (int i = 0; i < dim; i++)
+        sum += Math.abs(Math.pow(coordinates.get(i) - other.coordinates.get(i), 2));
 
       return Math.sqrt(sum);
     }
@@ -79,10 +81,6 @@ public class Node {
       return this.dim == other.dim;
     }
 
-    public int getCoor(int index){
-      return coordinates.get(index);
-    }
-
     @Override
     public String toString(){
       StringBuilder sb = new StringBuilder();
@@ -104,15 +102,11 @@ public class Node {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Node node = (Node) o;
-        return Objects.equals(coordinates, node.coordinates);
+        return Objects.equals(coordinates, node.coordinates) && (index == node.index);
     }
 
     @Override
     public int hashCode() {
       return Objects.hash(coordinates);
-    }
-
-    public int getDim() {
-        return dim;
     }
 }
