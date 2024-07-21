@@ -28,5 +28,12 @@ class CircularListTest {
 
   @Test
   void remove() {
+    Sut.remove(1);
+    assertEquals(3, Sut.getNext(1));
+
+    Sut.remove(1);
+    Sut.remove(1);
+    Sut.remove(1);
+    assertEquals(1, Sut.getNext(1));
   }
 }
