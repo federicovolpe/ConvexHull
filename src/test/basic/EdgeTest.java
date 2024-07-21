@@ -57,7 +57,18 @@ class EdgeTest {
             e.getLineParameters()[2]));
   }
 
-  @Test
-  void traslate() {
+  @ParameterizedTest
+  @CsvSource({
+      "-50, -50, 50, 50, 0, 0",
+      "-50, 50, 50, 150, 0, 100",
+      "-100, -100,0,0, -50, -50"
+  })
+  void traslate(int expX1, int expY1, int expX2, int expY2, int x, int y) {
+    Edge Sut = new Edge(new Node2D(0,0,0), new Node2D(1, 100,100));
+    Sut.traslate(new Node2D(-1, x, y));
+    assertEquals(expX1, Sut.n1().getX());
+    assertEquals(expY1, Sut.n1().getY());
+    assertEquals(expX2, Sut.n2().getX());
+    assertEquals(expY2, Sut.n2().getY());
   }
 }

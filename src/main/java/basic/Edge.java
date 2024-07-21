@@ -62,6 +62,8 @@ public class Edge {
 
   /**
    * traslate the edge in the direction of a point
+   * the new center of the edges becomes the input node
+   * the orientation remains the same
    * @param offsetNode the node to which traslate the edge
    */
   public void traslate (Node2D offsetNode){
