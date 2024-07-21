@@ -45,7 +45,7 @@ public class Node {
       }
     }
 
-    /**
+  /**
      * calculate the distance between two nodes
      * @param other should be of the same dimension as this one
      * @return the distance between the two

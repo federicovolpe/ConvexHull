@@ -1,6 +1,8 @@
 package basic;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -18,12 +20,16 @@ class CircularListTest {
     assertEquals(1, Sut.getNext(5));
   }
 
-  @Test
-  void get() {
-    assertEquals(1, Sut.get(0));
-    assertEquals(5, Sut.get(4));
-    assertEquals(2, Sut.get(6));
-    assertEquals(1, Sut.get(10));
+  @ParameterizedTest
+  @CsvSource({
+      "1, 0",
+      "5, 4",
+      "2, 6",
+      "5, -1",
+      "3, -3"
+  })
+  void get(int expected, int index) {
+    assertEquals(expected, Sut.get(index));
   }
 
   @Test
