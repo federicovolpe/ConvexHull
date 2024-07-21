@@ -13,7 +13,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         
-        List<Node2D> nodes = utilMethods.rndNodesGenerator2D(15);
+        List<Node2D> nodes = utilMethods.rndNodesGenerator2D(50);
         
         System.out.println("generated:");
         System.out.println(nodes);
