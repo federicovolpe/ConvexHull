@@ -1,4 +1,0 @@
-
-class CuttingNodes2Test {
-
-}
