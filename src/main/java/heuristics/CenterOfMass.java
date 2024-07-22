@@ -15,7 +15,7 @@ import static utils.Constants.GraphConstants.*;
  * given a convex hull and a set of nodes this heuristic based algorithm tries to find an approximation of the
  * convex hull of n edges by selecting the most outer nodes of the convex hull from the center of mass
  */
-public class CenterOfMass implements Heuristic{
+public class CenterOfMass{
     Node2D centerOfMass;
 
     /**
@@ -60,10 +60,11 @@ public class CenterOfMass implements Heuristic{
     }
 
     // about drawing the heuristic
-    @Override
     public void draw(Graphics g) {
         drawCenterOfMass(g);
     }
+
+
 
     //TODO: complete with drawing the polytope
     private void drawCenterOfMass(Graphics g) {
@@ -74,4 +75,7 @@ public class CenterOfMass implements Heuristic{
             POINT_DIM);
     }
 
+    public List<Edge> getHull() {
+        return null;
+    }
 }
