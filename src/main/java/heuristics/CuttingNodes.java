@@ -5,6 +5,7 @@ import basic.Edge;
 import basic.Node2D;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static utils.Constants.GraphConstants.*;
@@ -86,6 +87,14 @@ public class CuttingNodes implements Heuristic {
       int y = ORIGIN_Y - e.n1().getY() - (int)(POINT_DIM * .3);
       g.fillOval(x, y, (int) (POINT_DIM * .7), (int) (POINT_DIM * .7));
     }
+  }
+
+  @Override
+  public List<Node2D> getHullNodes() {
+    List<Node2D> nodes = new ArrayList<>();
+    for (Edge e : convexHull)
+      nodes.add(e.n1());
+    return nodes;
   }
 
 }
