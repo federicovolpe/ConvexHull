@@ -37,7 +37,7 @@ dallo stesso.
 
 l'esatto opposto del precedente scelgo gli angoli piu grandi
 <div style="display: flex; justify-content: space-between;">
-    <img src="resources/CuttingNodes2/10-5.png" alt="Image 1" width="30%">
-    <img src="resources/CuttingNodes2/30-5.png" alt="Image 2" width="30%">
-    <img src="resources/CuttingNodes2/50-5.png" alt="Image 3" width="30%">
+    <img src="resources/CuttingNodes3/10-5.png" alt="Image 1" width="30%">
+    <img src="resources/CuttingNodes3/30-5.png" alt="Image 2" width="30%">
+    <img src="resources/CuttingNodes3/50-5.png" alt="Image 3" width="30%">
 </div>
