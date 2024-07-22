@@ -1,14 +1,14 @@
 package heuristics;
 
+import basic.CircularList;
 import basic.Edge;
 import basic.Node2D;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
 
-import static utils.Constants.GraphConstants.ORIGIN_X;
-import static utils.Constants.GraphConstants.ORIGIN_Y;
+import static utils.Constants.GraphConstants.*;
+import static utils.Constants.GraphConstants.POINT_DIM;
 
 /**
  * this strategy, starting from the convex hull tries to find an approximation by cutting the
@@ -19,8 +19,8 @@ import static utils.Constants.GraphConstants.ORIGIN_Y;
  * resulting hull tends to be a bad approximation of the starting one
  */
 public class CuttingNodes implements Heuristic {
-  private final List<Edge> convexHull;
-  private List<Node2D> whithinBorders;
+  protected final List<Edge> convexHull;
+  protected List<Node2D> whithinBorders;
 
   /**
    * constructor which instanciates all the computation
@@ -30,38 +30,40 @@ public class CuttingNodes implements Heuristic {
    */
   public CuttingNodes (int n, final List<Edge> convexHull, final List<Node2D> nodes) {
     if(n < 3) throw new IllegalArgumentException("number of edges must be greater than 3: "+ n);
-    this.convexHull = new ArrayList<>(convexHull);
+    this.convexHull = new CircularList<>(convexHull);
     this.whithinBorders = nodes;
 
 
-    while(true){System.out.println("convexHull : "+ this.convexHull.size() +" > "+n+" ?");
-    if(this.convexHull.size() > n) {
-      applyCut();
+    while(this.convexHull.size() > n){
       System.out.println("applying cut");
-    }else break;}
+      applyCut();
+    }
   }
 
   /**
    * from all the nodes in the convex hull remove the one with the most acute angle
    */
-  private void applyCut(){
-    Edge lowestA = null, lowestB = null; // edges formed by the nodes a-b-c
+  protected void applyCut(){
+    int selected = selectAngle();
+    Edge lowestA  = convexHull.get(selected);
+    Edge lowestB = convexHull.get(selected+1);
+
+    convexHull.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
+    convexHull.remove(lowestB);
+  }
+
+  protected int selectAngle() {
     int indexToModify = -1;   // indice del lato da modificare
     double angle = Double.MAX_VALUE;
-    List<Edge> chPlusOne = new ArrayList<>(convexHull);
-    chPlusOne.add(convexHull.get(0));
 
-    for (int i = 0; i < chPlusOne.size()-1; i++) {
-      if(chPlusOne.get(i).calcAngle(chPlusOne.get(i+1)) < angle){
-        angle = chPlusOne.get(i).calcAngle(chPlusOne.get(i+1));
+    for (int i = 0; i < convexHull.size(); i++) {
+      if(convexHull.get(i).calcAngle(convexHull.get(i+1)) < angle){
+        angle = convexHull.get(i).calcAngle(convexHull.get(i+1));
         indexToModify = i;
-        lowestA = chPlusOne.get(i);
-        lowestB = chPlusOne.get(i+1);
       }
     }
-    //System.out.println("lowest angle formed by "+lowestA.n1()+"-"+lowestA.n2()+"-"+lowestB.n2()+" with angle "+angle);
-    convexHull.set(indexToModify, new Edge(lowestA.n1(), lowestB.n2()));
-    convexHull.remove(lowestB);
+
+    return indexToModify;
   }
 
   @Override
@@ -74,5 +76,16 @@ public class CuttingNodes implements Heuristic {
           e.n2().getX() + ORIGIN_X,
           ORIGIN_Y - e.n2().getY());
     }
+    drawNewNodes(g);
   }
+
+  public void drawNewNodes(Graphics g) {
+    g.setColor(Color.GREEN);
+    for (Edge e : convexHull) {
+      int x = ORIGIN_X + e.n1().getX() - (int)(POINT_DIM * .3);
+      int y = ORIGIN_Y - e.n1().getY() - (int)(POINT_DIM * .3);
+      g.fillOval(x, y, (int) (POINT_DIM * .7), (int) (POINT_DIM * .7));
+    }
+  }
+
 }

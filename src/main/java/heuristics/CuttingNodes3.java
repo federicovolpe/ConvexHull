@@ -4,7 +4,7 @@ import basic.Edge;
 import basic.Node2D;
 import java.util.List;
 
-public class CuttingNodes2 extends CuttingNodes{
+public class CuttingNodes3 extends CuttingNodes2 {
 
   /**
    * constructor which instanciates all the computation
@@ -12,7 +12,7 @@ public class CuttingNodes2 extends CuttingNodes{
    * @param convexHull official convex hull
    * @param nodes all of the nodes
    */
-  public CuttingNodes2 (int n, final List<Edge> convexHull, final List<Node2D> nodes) {
+  public CuttingNodes3 (int n, final List<Edge> convexHull, final List<Node2D> nodes) {
     super(n, convexHull, nodes);
   }
 
@@ -24,34 +24,33 @@ public class CuttingNodes2 extends CuttingNodes{
     Edge lowestA  = convexHull.get(selected);
     Edge lowestB = convexHull.get(selected+1);
 
+
+    Node2D centerOfMass = lowestA.getCenterOfMass(lowestB);
+
     //cutting the node
     convexHull.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
     convexHull.remove(lowestB);
 
     // traslating the new edge
-    Node2D centerOfMass = lowestA.getCenterOfMass(lowestB);
-     System.out.println("traslating "+ convexHull.get(selected));
+    System.out.println("traslating "+ convexHull.get(selected));
     convexHull.get(selected).traslate(centerOfMass);
 
     // extending the edges according tho the center of mass
     extendEdges(convexHull.get(selected -1), convexHull.get(selected), convexHull.get(selected+1));
   }
 
+  @Override
+  protected int selectAngle() {
+    int indexToModify = -1;   // indice del lato da modificare
+    double angle = 0;
 
-  protected void extendEdges (Edge prev, Edge toExtend, Edge succ){
-    // System.out.println("extending "+ prev);
-    Node2D intersectionPrev = toExtend.calcIntersectionWithLine(prev.getLineParameters()[0],
-        prev.getLineParameters()[1],
-        prev.getLineParameters()[2]);
-    prev.setn2(intersectionPrev);
-    toExtend.setn1(intersectionPrev);
+    for (int i = 0; i < convexHull.size(); i++) {
+      if(convexHull.get(i).calcAngle(convexHull.get(i+1)) > angle){
+        angle = convexHull.get(i).calcAngle(convexHull.get(i+1));
+        indexToModify = i;
+      }
+    }
 
-    // System.out.println("extending "+ succ);
-    Node2D intersectionSucc = toExtend.calcIntersectionWithLine(succ.getLineParameters()[0],
-        succ.getLineParameters()[1],
-        succ.getLineParameters()[2]);
-    succ.setn1(intersectionSucc);
-    toExtend.setn2(intersectionSucc);
+    return indexToModify;
   }
-
 }

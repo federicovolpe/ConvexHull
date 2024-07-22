@@ -56,8 +56,7 @@ public class utilMethods {
         List<Node2D> nodes = new ArrayList<>();
 
         while (nodes.size() < n) {
-            Node2D node = new Node2D(nodes.size(), rnd.nextInt(- GRAPH_BOUND, GRAPH_BOUND), rnd.nextInt(- GRAPH_BOUND, GRAPH_BOUND));
-
+            Node2D node = new Node2D(nodes.size(), GRAPH_BOUND);
             if (!nodes.contains(node))
                 nodes.add(node);
         }
