@@ -8,11 +8,7 @@ import java.util.List;
 
 import heuristics.*;
 import heuristics.Heuristic;
-import paintGraph.GraphPanel;
-import paintGraph.GraphWithPoints;
 import utils.utilMethods;
-
-import javax.swing.*;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
@@ -22,28 +18,31 @@ import org.locationtech.jts.geom.Polygon;
 public class Main {
   public static void main(String[] args) {
 
-    List<Node2D> nodes = utilMethods.rndNodesGenerator2D(50);
+    double jaccard = 0;
+    for(int i = 0; i < 10; i ++) {
+      List<Node2D> nodes = utilMethods.rndNodesGenerator2D(20);
 
-    System.out.println("generated:");
-    System.out.println(nodes);
+      // System.out.println("generated:");
+      // System.out.println(nodes);
 
-    JarvisMarch jm = new JarvisMarch(nodes);
-    List<Edge> convexHull = jm.getHullEdges();
+      JarvisMarch jm = new JarvisMarch(nodes);
+      List<Edge> convexHull = jm.getHullEdges();
 
-    // Heuristic h = new CenterOfMass(convexHull);
-    // Heuristic h = new CuttingNodes(5, convexHull, nodes);
-     Heuristic h = new CuttingNodes2(5, convexHull, nodes);
-    //Heuristic h = new CuttingNodes3(5, convexHull, nodes);
-    GraphPanel graph = new GraphPanel(nodes, convexHull, h);
-    JFrame frame = new GraphWithPoints(graph);
-    frame.setVisible(true);
+      Heuristic h = new CuttingNodes(5, convexHull, nodes);
+      // Heuristic h = new CuttingNodes2(5, convexHull, nodes);
+      // Heuristic h = new CuttingNodes3(5, convexHull, nodes);
+      //GraphPanel graph = new GraphPanel(nodes, convexHull, h);
+      //JFrame frame = new GraphWithPoints(graph);
+      //frame.setVisible(true);
 
-    double nonOverlappingArea = calcNonOverlappingArea(jm.getHullNodes(), h.getHullNodes());
-    System.out.println("Area of the non-overlapping region: " + nonOverlappingArea);
+      jaccard += jaccardIndex(jm.getHullNodes(), h.getHullNodes());
+    }
+
+    System.out.println("jaccardIndex: " + jaccard / 10);
   }
 
 
-  public static double calcNonOverlappingArea(List<Node2D> hullA, List<Node2D> hullB) {
+  public static double jaccardIndex(List<Node2D> hullA, List<Node2D> hullB) {
     GeometryFactory geometryFactory = new GeometryFactory();
 
     System.out.println("hullA: " +hullA);
@@ -66,7 +65,7 @@ public class Main {
     Polygon polygonB = geometryFactory.createPolygon(pb);
 
     // Compute the symmetric difference
-    Geometry symmetricDifference = polygonA.symDifference(polygonB);
+    //Geometry symmetricDifference = polygonA.symDifference(polygonB);
 
     Geometry intersection = polygonA.intersection(polygonB);
     Geometry union = polygonA.union(polygonB);
@@ -74,10 +73,7 @@ public class Main {
     double unionArea = union.getArea();
 
     // Calcola l'indice di Jaccard
-    double jaccardIndex = intersectionArea / unionArea;
-    System.out.println("jaccard index: " + jaccardIndex);
-    // Get the area of the non-overlapping region
-    return symmetricDifference.getArea();
+    return intersectionArea / unionArea;
   }
 
 }
