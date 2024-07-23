@@ -19,21 +19,17 @@ import static utils.Constants.GraphConstants.POINT_DIM;
  * when there is a lot of difference between the number of desired edges and the actual edges the
  * resulting hull tends to be a bad approximation of the starting one
  */
-public class CuttingNodes implements Heuristic {
+public class CuttingNodes extends Heuristic {
   protected final List<Edge> convexHull;
-  protected List<Node2D> whithinBorders;
 
   /**
    * constructor which instanciates all the computation
    * @param n number of desired edges
    * @param convexHull official convex hull
-   * @param nodes all of the nodes
    */
-  public CuttingNodes (int n, final List<Edge> convexHull, final List<Node2D> nodes) {
+  public CuttingNodes (int n, final List<Edge> convexHull) {
     if(n < 3) throw new IllegalArgumentException("number of edges must be greater than 3: "+ n);
     this.convexHull = new CircularList<>(convexHull);
-    this.whithinBorders = nodes;
-
 
     while(this.convexHull.size() > n){
       System.out.println("applying cut");

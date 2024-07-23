@@ -10,10 +10,9 @@ public class CuttingNodes3 extends CuttingNodes2 {
    * constructor which instanciates all the computation
    * @param n number of desired edges
    * @param convexHull official convex hull
-   * @param nodes all of the nodes
    */
-  public CuttingNodes3 (int n, final List<Edge> convexHull, final List<Node2D> nodes) {
-    super(n, convexHull, nodes);
+  public CuttingNodes3 (int n, final List<Edge> convexHull) {
+    super(n, convexHull);
   }
 
   /**
