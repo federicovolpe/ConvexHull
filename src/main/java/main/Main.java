@@ -21,25 +21,24 @@ import javax.swing.*;
 
 public class Main {
   public static void main(String[] args) {
-    int iterations = 10;
-    List<Node2D> nodes = utilMethods.rndNodesGenerator2D(20);
-
-    // System.out.println("generated:");
-    // System.out.println(nodes);
-
+    List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);
     JarvisMarch jm = new JarvisMarch(nodes);
     List<Edge> convexHull = jm.getHullEdges();
 
-    //Heuristic h = new CuttingNodes(5, convexHull);
+    // Heuristic h = new CuttingNodes(5, convexHull);
     // Heuristic h = new CuttingNodes2(5, convexHull);
-     Heuristic h = new CuttingNodes3(5, convexHull);
-    // Heuristic h = new DistanceFromG(5, jm.getHullNodes(), nodes);
+    // Heuristic h = new CuttingNodes3(5, convexHull);
+    Heuristic h = new DistanceFromG(5, jm.getHullNodes(), nodes);
     GraphPanel graph = new GraphPanel(nodes, convexHull, h);
     JFrame frame = new GraphWithPoints(graph);
     frame.setVisible(true);
 
+    int iterations = 10;
     double jaccard = 0;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < iterations; i++) {
+      nodes = utilMethods.rndNodesGenerator2D(10);
+      jm = new JarvisMarch(nodes);
+      h = new DistanceFromG(5, jm.getHullNodes(), nodes);
       jaccard += jaccardIndex(jm.getHullNodes(), h.getHullNodes());
     }
     System.out.println("jaccardIndex over " + iterations + " iterations: " + jaccard/ iterations);
