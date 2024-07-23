@@ -98,4 +98,5 @@ public class Edge {
   public String toString() {
     return "edge: "+n1+" - "+n2;
   }
+
 }

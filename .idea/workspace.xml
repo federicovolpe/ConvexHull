@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="heuristic as an abstract class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CenterOfMass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" afterDir="false" />
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="main rearranged for statistics">
+      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/CircularList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/CircularList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Node2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CenterOfMass.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/basic/Node2DTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/Node2DTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,13 +26,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="iteration" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,19 +59,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;shared-indexes&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_directory_selection": "/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test",
+    "last_opened_file_path": "/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "shared-indexes"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
@@ -77,8 +85,14 @@
       <recent name="$PROJECT_DIR$/src/main" />
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="heuristics" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -95,11 +109,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NodeTest.calcDistance_notSameDimension" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Node2DTest.isContained (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConvexHull" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="NodeTest" />
-      <option name="METHOD_NAME" value="calcDistance_notSameDimension" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="basic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="basic" />
+      <option name="MAIN_CLASS_NAME" value="basic.Node2DTest" />
+      <option name="METHOD_NAME" value="isContained(boolean,int,int,int,int,int,int,int)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Node2DTest.isContained" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConvexHull" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="basic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="basic" />
+      <option name="MAIN_CLASS_NAME" value="basic.Node2DTest" />
+      <option name="METHOD_NAME" value="isContained(boolean,int,int,int,int,int,int)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -110,16 +146,6 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="NodeTest" />
       <option name="METHOD_NAME" value="calcDistance_sameDimension(double,int,int,int)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NodeTest.calcDistance_sameDimension" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ConvexHull" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="NodeTest" />
-      <option name="METHOD_NAME" value="calcDistance_sameDimension" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -138,10 +164,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.Node2DTest.isContained (1)" />
+        <item itemvalue="JUnit.Node2DTest.isContained" />
         <item itemvalue="JUnit.NodeTest.samePos" />
         <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension (1)" />
-        <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension" />
-        <item itemvalue="JUnit.NodeTest.calcDistance_notSameDimension" />
       </list>
     </recent_temporary>
   </component>
@@ -217,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721720052867</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="main rearranged for statistics">
+      <created>1721720319943</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1721720319943</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,7 +275,8 @@
     <MESSAGE value="detaching ceterOfMass from heuristic" />
     <MESSAGE value="updating README.md" />
     <MESSAGE value="heuristic as an abstract class" />
-    <option name="LAST_COMMIT_MESSAGE" value="heuristic as an abstract class" />
+    <MESSAGE value="main rearranged for statistics" />
+    <option name="LAST_COMMIT_MESSAGE" value="main rearranged for statistics" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

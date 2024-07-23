@@ -5,6 +5,8 @@ import java.util.List;
 
 public class CircularList<E> extends LinkedList<E> {
 
+  public CircularList() {}
+
   // Constructor that takes a List
   public CircularList(List<E> list) {
     for (E element : list) {
@@ -43,4 +45,5 @@ public class CircularList<E> extends LinkedList<E> {
       sb.append(e).append("\n");
     return sb.toString();
   }
+
 }

@@ -32,6 +32,24 @@ public class Node2D extends Node {
     return Math.acos((Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2)) / (2 * a * b));
   }
 
+  // if the node is contained between a triangle
+  // if this is one of the vertex is not considered insides
+  public boolean isContained(Node2D A, Node2D B, Node2D C){
+    if(this.equals(A) || this.equals(B) || this.equals(C)) return false;
+    double areaABC = triangleArea(A, B, C);
+    double areaABP = triangleArea(A, B, this);
+    double areaBCP = triangleArea(B, C, this);
+    double areaCAP = triangleArea(C, A, this);
+
+    return (areaABC == (areaABP + areaBCP + areaCAP));
+  }
+
+  private double triangleArea(Node2D A, Node2D B, Node2D C) {
+    return Math.abs(A.getX() * (B.getY() - C.getY()) +
+        B.getX() * (C.getY() - A.getY()) +
+        C.getX() * (A.getY() - B.getY())) / 2.0;
+  }
+
   public int getX() {
     return coordinates.get(0);
   }
