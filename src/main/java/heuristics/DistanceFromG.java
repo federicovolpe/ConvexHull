@@ -29,6 +29,7 @@ public class DistanceFromG extends Heuristic{
 
         int i = 0;
         while (chosenNodes.size() < n){
+            if(i >= allNodes.size()) return chosenNodes;
             if(chosenNodes.size() > 2 ){
                 if(!isNodeContained(allNodes.get(i), chosenNodes)) {
                     chosenNodes.add(allNodes.get(i));
