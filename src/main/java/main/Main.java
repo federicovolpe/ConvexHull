@@ -21,7 +21,7 @@ import javax.swing.*;
 
 public class Main {
   public static void main(String[] args) {
-    List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);
+    List<Node2D> nodes = utilMethods.rndNodesGenerator2D(50);
     JarvisMarch jm = new JarvisMarch(nodes);
     List<Edge> convexHull = jm.getHullEdges();
 
@@ -33,7 +33,7 @@ public class Main {
     JFrame frame = new GraphWithPoints(graph);
     frame.setVisible(true);
 
-    int iterations = 10;
+    int iterations = 50;
     double jaccard = 0;
     for (int i = 0; i < iterations; i++) {
       nodes = utilMethods.rndNodesGenerator2D(10);

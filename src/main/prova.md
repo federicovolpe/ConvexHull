@@ -6,9 +6,7 @@ Questa repository contiene sperimentazioni per la ricerca del guscio convesso e 
 
 Per la ricerca del guscio convesso dato un set di punti, è stato implementato l'algoritmo di ricerca noto come **Jarvis March** (o Gift Wrapping). Il guscio convesso trovato viene poi utilizzato per trovare diverse euristiche che consentiranno agli algoritmi di ricerca di trovare un poligono di n lati che possa approssimare con maggiore accuratezza possibile il guscio convesso.
 
-## Algoritmi con euristica completa del guscio convesso
-questi algoritmi presumono la completa conoscenza del guscio convesso,
-procedono per semplificazione di questo tramite approssimazioni iterative.
+### Algoritmi per l'Approssimazione del Guscio Convesso
 
 #### 1. Ipotesi di Algoritmo (Cutting Nodes)
 
