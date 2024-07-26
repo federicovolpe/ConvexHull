@@ -44,17 +44,8 @@ public class CuttingLargerAngle2 extends CuttingLargerAngle {
 
 
   protected void extendEdges (Edge prev, Edge toExtend, Edge succ){
-    Node2D intersectionPrev = toExtend.calcIntersectionWithLine(prev.getLineParameters()[0],
-        prev.getLineParameters()[1],
-        prev.getLineParameters()[2]);
-    prev.setn2(intersectionPrev);
-    toExtend.setn1(intersectionPrev);
-
-    Node2D intersectionSucc = toExtend.calcIntersectionWithLine(succ.getLineParameters()[0],
-        succ.getLineParameters()[1],
-        succ.getLineParameters()[2]);
-    succ.setn1(intersectionSucc);
-    toExtend.setn2(intersectionSucc);
+    prev.extendEdgeN2(toExtend);
+    succ.extendEdgeN1(toExtend);
   }
 
 }

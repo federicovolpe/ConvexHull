@@ -11,23 +11,10 @@ import java.util.List;
 import static utils.Constants.GraphConstants.*;
 import static utils.Constants.GraphConstants.POINT_DIM;
 
-/**
- * this strategy, starting from the convex hull tries to find an approximation by cutting the
- * nodes which generate the most acute internal angle
- *
- * for each cut the resulting convex hull is always smaller than the previous one
- * when there is a lot of difference between the number of desired edges and the actual edges the
- * resulting hull tends to be a bad approximation of the starting one
- */
-public class CuttingNodes extends Heuristic {
+public abstract class CuttingNodes implements Heuristic{
   protected final List<Edge> convexHull;
 
-  /**
-   * constructor which instanciates all the computation
-   * @param n number of desired edges
-   * @param convexHull official convex hull
-   */
-  public CuttingNodes (int n, final List<Edge> convexHull) {
+  protected CuttingNodes(int n, final List<Edge> convexHull) {
     if(n < 3) throw new IllegalArgumentException("number of edges must be greater than 3: "+ n);
     this.convexHull = new CircularList<>(convexHull);
 
@@ -37,31 +24,8 @@ public class CuttingNodes extends Heuristic {
     }
   }
 
-  /**
-   * from all the nodes in the convex hull remove the one with the most acute angle
-   */
-  protected void applyCut(){
-    int selected = selectAngle();
-    Edge lowestA  = convexHull.get(selected);
-    Edge lowestB = convexHull.get(selected+1);
-
-    convexHull.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
-    convexHull.remove(lowestB);
-  }
-
-  protected int selectAngle() {
-    int indexToModify = -1;   // indice del lato da modificare
-    double angle = Double.MAX_VALUE;
-
-    for (int i = 0; i < convexHull.size(); i++) {
-      if(convexHull.get(i).calcAngle(convexHull.get(i+1)) < angle){
-        angle = convexHull.get(i).calcAngle(convexHull.get(i+1));
-        indexToModify = i;
-      }
-    }
-
-    return indexToModify;
-  }
+  protected abstract void applyCut();
+  protected abstract int selectAngle();
 
   @Override
   public void draw(Graphics g) {
@@ -81,6 +45,7 @@ public class CuttingNodes extends Heuristic {
     for (Edge e : convexHull) {
       int x = ORIGIN_X + e.n1().getX() - (int)(POINT_DIM * .3);
       int y = ORIGIN_Y - e.n1().getY() - (int)(POINT_DIM * .3);
+      g.drawString(e.n1().getIndex()+"", x - 2, y - 2);
       g.fillOval(x, y, (int) (POINT_DIM * .7), (int) (POINT_DIM * .7));
     }
   }
@@ -92,5 +57,4 @@ public class CuttingNodes extends Heuristic {
       nodes.add(e.n1());
     return nodes;
   }
-
 }

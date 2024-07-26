@@ -94,6 +94,21 @@ public class Edge {
     this.n2 = n2;
   }
 
+  public void extendEdgeN1(Edge toWhichExtend){
+    Node2D intersectionSucc = toWhichExtend.calcIntersectionWithLine(getLineParameters()[0],
+        getLineParameters()[1],
+        getLineParameters()[2]);
+    n1 = intersectionSucc;
+    toWhichExtend.n2 = intersectionSucc;
+  }
+  public void extendEdgeN2(Edge toWhichExtend){
+    Node2D intersectionPrev = toWhichExtend.calcIntersectionWithLine(getLineParameters()[0],
+        getLineParameters()[1],
+        getLineParameters()[2]);
+    n2 = intersectionPrev;
+    toWhichExtend.n1 = intersectionPrev;
+  }
+
   @Override
   public String toString() {
     return "edge: "+n1+" - "+n2;

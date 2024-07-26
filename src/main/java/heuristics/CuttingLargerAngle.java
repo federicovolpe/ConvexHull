@@ -4,7 +4,7 @@ import basic.Edge;
 
 import java.util.List;
 
-public class CuttingLargerAngle extends CuttingSmallerAngle {
+public class CuttingLargerAngle extends CuttingNodes {
 
   /**
    * constructor which instanciates all the computation
@@ -16,7 +16,15 @@ public class CuttingLargerAngle extends CuttingSmallerAngle {
     super(n, convexHull);
   }
 
-  @Override
+  protected void applyCut(){
+    int selected = selectAngle();
+    Edge lowestA  = convexHull.get(selected);
+    Edge lowestB = convexHull.get(selected+1);
+
+    convexHull.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
+    convexHull.remove(lowestB);
+  }
+
   protected int selectAngle() {
     int indexToModify = -1;   // indice del lato da modificare
     double angle = 0;

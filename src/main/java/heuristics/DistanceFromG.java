@@ -13,7 +13,7 @@ import static utils.Constants.GraphConstants.*;
  * given a convex hull and a set of nodes this heuristic based algorithm tries to find an approximation of the
  * convex hull of n edges by selecting the most outer nodes of the convex hull from the center of mass
  */
-public class DistanceFromG extends Heuristic{
+public class DistanceFromG implements Heuristic{
     private final Node2D centerOfMass;
     private final List<Node2D> convexHull ;
 
