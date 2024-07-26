@@ -21,27 +21,58 @@ import javax.swing.*;
 
 public class Main {
   public static void main(String[] args) {
-    List<Node2D> nodes = utilMethods.rndNodesGenerator2D(50);
+    List<Node2D> nodes = utilMethods.rndNodesGenerator2D(25);
     JarvisMarch jm = new JarvisMarch(nodes);
     List<Edge> convexHull = jm.getHullEdges();
 
-    // Heuristic h = new CuttingNodes(5, convexHull);
-    // Heuristic h = new CuttingNodes2(5, convexHull);
-    // Heuristic h = new CuttingNodes3(5, convexHull);
-    Heuristic h = new DistanceFromG(5, jm.getHullNodes(), nodes);
+    // Heuristic h = new CuttingSmallerAngle(5, convexHull);
+    // Heuristic h = new CuttingLargerAngle(5, convexHull);
+    // Heuristic h = new CuttingLargerAngle2(5, convexHull);
+    Heuristic h = new CuttingSmallerAngle2(5, convexHull);
+    //Heuristic h = new DistanceFromG(5, jm.getHullNodes(), nodes);
     GraphPanel graph = new GraphPanel(nodes, convexHull, h);
     JFrame frame = new GraphWithPoints(graph);
     frame.setVisible(true);
 
-    int iterations = 50;
-    double jaccard = 0;
+    iterationStatistics();
+  }
+
+  public static void iterationStatistics(){
+    int iterations = 100;
+    double nodesAmount = 20;
+
+    double[] jaccardIndexes = new double[5]; // numero di euristiche
+
     for (int i = 0; i < iterations; i++) {
-      nodes = utilMethods.rndNodesGenerator2D(10);
-      jm = new JarvisMarch(nodes);
-      h = new DistanceFromG(5, jm.getHullNodes(), nodes);
-      jaccard += jaccardIndex(jm.getHullNodes(), h.getHullNodes());
+      System.out.println("-------------- iteration : " + i);
+      List<Node2D> nodes = utilMethods.rndNodesGenerator2D(20);
+      JarvisMarch jm = new JarvisMarch(nodes);
+      List<Edge> convexHull = jm.getHullEdges();
+
+      List<Heuristic> heuristics = List.of(
+          new CuttingSmallerAngle(5, convexHull),
+          new CuttingSmallerAngle2(5, convexHull),
+          new CuttingLargerAngle(5, convexHull),
+          new CuttingLargerAngle2(5, convexHull),
+          new DistanceFromG(5, jm.getHullNodes(), nodes));
+
+      for (int h = 0; h < heuristics.size(); h++ ) {
+        try {
+          jaccardIndexes[h] += jaccardIndex(jm.getHullNodes(), heuristics.get(h).getHullNodes());
+
+        } catch (Exception e) {
+          GraphPanel problemGraph = new GraphPanel(nodes, convexHull, heuristics.get(h));
+          JFrame problemFrame = new GraphWithPoints(problemGraph);
+          problemFrame.setVisible(true);
+          e.printStackTrace();
+          break;
+        }
+      }
     }
-    System.out.println("jaccardIndex over " + iterations + " iterations: " + jaccard/ iterations);
+    System.out.println("jaccardIndex over " + iterations + " iterations with "+ nodesAmount +" nodes: ");
+    for (int i = 0; i < jaccardIndexes.length; i++) {
+      System.out.println(i +" "+ jaccardIndexes[i]/ iterations);
+    }
   }
 
 

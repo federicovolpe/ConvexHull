@@ -25,20 +25,20 @@ public class CuttingLargerAngle2 extends CuttingLargerAngle {
     Edge lowestB = convexHull.get(selected+1);
 
     //cutting the node
-    System.out.println("selected node: " + convexHull.get(selected).n2());
+    // System.out.println("selected node: " + convexHull.get(selected).n2());
     convexHull.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
     Edge selectedEdge = convexHull.get(selected);
-    System.out.println("new edge : "+ selectedEdge);
+    // System.out.println("new edge : "+ selectedEdge);
 
     convexHull.remove(lowestB);
     int selectedEdgeIndex = convexHull.indexOf(selectedEdge);
 
     // traslating the new edge
-    System.out.println("traslating "+ selectedEdge);
+    // System.out.println("traslating "+ selectedEdge);
     selectedEdge.traslate(cuttedNode);
 
     // extending the edges according tho the center of mass
-    System.out.println("extending edges: "+ convexHull.get(selectedEdgeIndex-1) +" "+convexHull.get(selectedEdgeIndex+1));
+    // System.out.println("extending edges: "+ convexHull.get(selectedEdgeIndex-1) +" "+convexHull.get(selectedEdgeIndex+1));
     extendEdges(convexHull.get(selectedEdgeIndex-1), convexHull.get(selectedEdgeIndex), convexHull.get(selectedEdgeIndex+1));
   }
 

@@ -5,15 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="cuttingLargerAngle2 readapted and tested">
-      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Edge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,10 +158,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.Node2DTest.isContained (1)" />
-        <item itemvalue="JUnit.Node2DTest.isContained" />
         <item itemvalue="JUnit.NodeTest.samePos" />
         <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension (1)" />
+        <item itemvalue="JUnit.Node2DTest.isContained (1)" />
+        <item itemvalue="JUnit.Node2DTest.isContained" />
       </list>
     </recent_temporary>
   </component>
