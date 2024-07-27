@@ -12,7 +12,7 @@ import static utils.Constants.GraphConstants.*;
 public class GraphPanel extends JPanel {
   private final List<Node2D> nodes;
   private final List<Edge> edges ;
-  private final Heuristic heuristic ;
+  private final List<Heuristic> heuristics ;
   private final int letterYOff = -2, letterXOff = 2;
   protected LetterGenerator letterGenerator = new LetterGenerator();
 
@@ -22,8 +22,8 @@ public class GraphPanel extends JPanel {
    * @param nodes nodes of the graph
    * @param edges edges of the graph
    */
-  public GraphPanel(final List<Node2D> nodes, final List<Edge> edges, Heuristic heuristic) {
-    this.heuristic = heuristic;
+  public GraphPanel(final List<Node2D> nodes, final List<Edge> edges, List<Heuristic> heuristics) {
+    this.heuristics = heuristics;
     this.nodes = nodes;
     this.edges = edges;
     int biggestD = 0;
@@ -46,7 +46,10 @@ public class GraphPanel extends JPanel {
 
     drawNodes(g);
     drawEdges(g);
-    heuristic.draw(g);
+    for (Heuristic h : heuristics) {
+      h.draw(g);
+    }
+
   }
 
   protected void drawNodes(Graphics g) {

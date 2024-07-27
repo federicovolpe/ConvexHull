@@ -11,10 +11,11 @@ import java.util.List;
 import static utils.Constants.GraphConstants.*;
 import static utils.Constants.GraphConstants.POINT_DIM;
 
-public abstract class CuttingNodes implements Heuristic{
+public abstract class CuttingNodes extends Heuristic{
   protected final List<Edge> convexHull;
 
-  protected CuttingNodes(int n, final List<Edge> convexHull) {
+  protected CuttingNodes(int n, final List<Edge> convexHull, Color c) {
+    super(c);
     if(n < 3) throw new IllegalArgumentException("number of edges must be greater than 3: "+ n);
     this.convexHull = new CircularList<>(convexHull);
 
@@ -29,7 +30,7 @@ public abstract class CuttingNodes implements Heuristic{
 
   @Override
   public void draw(Graphics g) {
-    g.setColor(Color.GREEN);
+    g.setColor(c);
     for (Edge e : convexHull) {
       //System.out.println("drawing line : " + e);
       g.drawLine(e.n1().getX() + ORIGIN_X,
@@ -41,11 +42,11 @@ public abstract class CuttingNodes implements Heuristic{
   }
 
   public void drawNewNodes(Graphics g) {
-    g.setColor(Color.GREEN);
+    g.setColor(c);
     for (Edge e : convexHull) {
       int x = ORIGIN_X + e.n1().getX() - (int)(POINT_DIM * .3);
       int y = ORIGIN_Y - e.n1().getY() - (int)(POINT_DIM * .3);
-      g.drawString(e.n1().getIndex()+"", x - 2, y - 2);
+      // g.drawString(e.n1().getIndex()+"", x - 2, y - 2);
       g.fillOval(x, y, (int) (POINT_DIM * .7), (int) (POINT_DIM * .7));
     }
   }

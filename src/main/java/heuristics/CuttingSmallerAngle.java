@@ -1,6 +1,8 @@
 package heuristics;
 
 import basic.Edge;
+
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -19,8 +21,8 @@ public class CuttingSmallerAngle extends CuttingNodes {
    * @param n number of desired edges
    * @param convexHull official convex hull
    */
-  public CuttingSmallerAngle(int n, final List<Edge> convexHull) {
-    super(n, convexHull);
+  public CuttingSmallerAngle(int n, final List<Edge> convexHull, Color c) {
+    super(n, convexHull, c);
   }
 
   /**

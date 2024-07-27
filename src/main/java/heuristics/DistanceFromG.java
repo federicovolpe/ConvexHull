@@ -13,11 +13,12 @@ import static utils.Constants.GraphConstants.*;
  * given a convex hull and a set of nodes this heuristic based algorithm tries to find an approximation of the
  * convex hull of n edges by selecting the most outer nodes of the convex hull from the center of mass
  */
-public class DistanceFromG implements Heuristic{
+public class DistanceFromG extends Heuristic{
     private final Node2D centerOfMass;
     private final List<Node2D> convexHull ;
 
-    public DistanceFromG(int n, List<Node2D> convexHull, List<Node2D> allNodes){
+    public DistanceFromG(int n, List<Node2D> convexHull, List<Node2D> allNodes, Color c){
+        super(c);
         centerOfMass = getG(convexHull);
         List<Node2D> chosenNodes = selectNodes(n, allNodes);
         this.convexHull = new CircularList<>(new JarvisMarch(chosenNodes).getHullNodes());
@@ -88,7 +89,7 @@ public class DistanceFromG implements Heuristic{
 
     // about drawing the heuristic
     public void draw(Graphics g) {
-        g.setColor(Color.GREEN);
+        g.setColor(c);
         for (Node2D n : convexHull) {
             int x = ORIGIN_X + n.getX() - (int)(POINT_DIM * .3);
             int y = ORIGIN_Y - n.getY() - (int)(POINT_DIM * .3);
@@ -103,7 +104,7 @@ public class DistanceFromG implements Heuristic{
 
     protected void drawEdges(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;  // Cast to Graphics2D
-        g2.setColor(Color.GREEN);
+        g2.setColor(c);
 
         for (Node2D n : convexHull) {
             //System.out.println("drawing line : " + e);
