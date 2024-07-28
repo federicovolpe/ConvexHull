@@ -1,0 +1,19 @@
+Index: src/main/java/main/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main;\n\nimport basic.Edge;\nimport basic.Node2D;\nimport java.util.List;\nimport heuristics.CuttingNodes2;\nimport heuristics.Heuristic;\nimport paintGraph.GraphPanel;\nimport paintGraph.GraphWithPoints;\nimport utils.utilMethods;\nimport javax.swing.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        \n        List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);\n        \n        System.out.println(\"generated:\");\n        System.out.println(nodes);\n\n        List<Edge> edges = JarvisMarch.calcConvexHull(nodes);\n\n        //Heuristic h = new CenterOfMass(edges);\n        //Heuristic h = new CuttingNodes(5, edges, nodes);\n        Heuristic h = new CuttingNodes2(5, edges, nodes);\n        GraphPanel graph = new GraphPanel(nodes, edges, h);\n        JFrame frame = new GraphWithPoints(graph);\n        frame.setVisible(true);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/main/Main.java b/src/main/java/main/Main.java
+--- a/src/main/java/main/Main.java	(revision e756eff9b91ae7f7543abdde8b078fc5d920f04a)
++++ b/src/main/java/main/Main.java	(date 1721579015934)
+@@ -13,7 +13,7 @@
+ public class Main {
+     public static void main(String[] args) {
+         
+-        List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);
++        List<Node2D> nodes = utilMethods.rndNodesGenerator2D(15);
+         
+         System.out.println("generated:");
+         System.out.println(nodes);

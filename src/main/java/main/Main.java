@@ -1,39 +1,78 @@
 package main;
 
-import basic.Edge;
-import basic.Node2D;
+import static java.awt.Color.BLUE;
+import static java.awt.Color.GREEN;
+import static java.awt.Color.ORANGE;
+import static java.awt.Color.RED;
+import static java.awt.Color.YELLOW;
 import java.util.ArrayList;
 import java.util.List;
-import heuristics.*;
-import heuristics.Heuristic;
-import paintGraph.GraphPanel;
-import paintGraph.GraphWithPoints;
-import utils.utilMethods;
+
+import javax.swing.JFrame;
+
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Polygon;
 
-import javax.swing.*;
-
-import static java.awt.Color.*;
+import basic.Edge;
+import basic.Node2D;
+import heuristics.CuttingLargerAngle;
+import heuristics.CuttingLargerAngle2;
+import heuristics.CuttingSmallerAngle;
+import heuristics.CuttingSmallerAngle2;
+import heuristics.DistanceFromG;
+import heuristics.Heuristic;
+import paintGraph.GraphPanel;
+import paintGraph.GraphWithPoints;
+import utils.utilMethods;
 
 public class Main {
   public static void main(String[] args) {
-    List<Node2D> nodes = utilMethods.rndNodesGenerator2D(25);
+    /*List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);
     JarvisMarch jm = new JarvisMarch(nodes);
     List<Edge> convexHull = jm.getHullEdges();
 
     List<Heuristic> heuristics = List.of(
-        new CuttingSmallerAngle(5, convexHull, GREEN),
-        new CuttingSmallerAngle2(5, convexHull, BLUE),
-        new CuttingLargerAngle(5, convexHull, RED),
-        new CuttingLargerAngle2(5, convexHull, YELLOW),
-        new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
+      // new CuttingSmallerAngle(5, convexHull, GREEN),
+      // new CuttingSmallerAngle2(5, convexHull, BLUE),
+      //new CuttingLargerAngle(5, convexHull, RED),
+      new CuttingLargerAngle2(5, convexHull, GREEN));
+      //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
 
     GraphPanel graph = new GraphPanel(nodes, convexHull, heuristics);
     JFrame frame = new GraphWithPoints(graph);
     frame.setVisible(true);
+
+    nodes = utilMethods.rndNodesGenerator2D(30);
+    jm = new JarvisMarch(nodes);
+    convexHull = jm.getHullEdges();
+
+    heuristics = List.of(
+      // new CuttingSmallerAngle(5, convexHull, GREEN),
+      // new CuttingSmallerAngle2(5, convexHull, BLUE),
+      //new CuttingLargerAngle(5, convexHull, RED),
+      new CuttingLargerAngle2(5, convexHull, GREEN));
+      //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
+
+    graph = new GraphPanel(nodes, convexHull, heuristics);
+    frame = new GraphWithPoints(graph);
+    frame.setVisible(true);
+
+    nodes = utilMethods.rndNodesGenerator2D(50);
+    jm = new JarvisMarch(nodes);
+    convexHull = jm.getHullEdges();
+
+    heuristics = List.of(
+    // new CuttingSmallerAngle(5, convexHull, GREEN),
+    // new CuttingSmallerAngle2(5, convexHull, BLUE),
+    //new CuttingLargerAngle(5, convexHull, RED),
+    new CuttingLargerAngle2(5, convexHull, GREEN));
+    //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
+
+    graph = new GraphPanel(nodes, convexHull, heuristics);
+    frame = new GraphWithPoints(graph);
+    frame.setVisible(true);*/
 
     iterationStatistics();
   }

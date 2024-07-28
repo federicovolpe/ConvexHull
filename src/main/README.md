@@ -10,47 +10,62 @@ Per la ricerca del guscio convesso dato un set di punti, è stato implementato l
 questi algoritmi presumono la completa conoscenza del guscio convesso,
 procedono per semplificazione di questo tramite approssimazioni iterative.
 
-#### 1. Ipotesi di Algoritmo (Cutting Nodes)
+#### 1. Ipotesi di Algoritmo Cutting Smaller Angles (CSA)
 
-Una prima ipotesi per l'approssimazione del guscio convesso con un numero limitato di lati è implementata in [CuttingNodes](../../../tesi2/ConvexHull/src/heuristics/CuttingNodes.java). Questo algoritmo prevede la classificazione e lo scarto dei vertici che creano gli angoli interni più acuti nel poliedro. Si presume che gli angoli più acuti possano essere formati dai vertici che possono essere considerati outlier.
+Una prima ipotesi per l'approssimazione del guscio convesso con un numero limitato di lati è implementata in [CuttingSmallerAngles](../../../tesi2/ConvexHull/src/heuristics/CuttingSmallerAngles.java). Questo algoritmo prevede la classificazione e lo scarto dei vertici che creano gli angoli interni al poliedro che siano più acuti. Si presume che gli angoli più acuti possano essere formati dai vertici che possono essere considerati outlier.
 
 <div style="display: flex; justify-content: space-between;">
-    <img src="resources/CuttingNodes/10-5.png" alt="Image 1" width="30%">
-    <img src="resources/CuttingNodes/30-5.png" alt="Image 2" width="30%">
-    <img src="resources/CuttingNodes/50-5.png" alt="Image 3" width="30%">
+    <img src="resources/CuttingSmallerAngles/10-5.png" alt="Image 1" width="30%">
+    <img src="resources/CuttingSmallerAngles/30-5.png" alt="Image 2" width="30%">
+    <img src="resources/CuttingSmallerAngles/50-5.png" alt="Image 3" width="30%">
 </div>
 
-Questa strategia si rivela affidabile, ma a partire dal guscio convesso si può solo ottenere un'approssimazione per difetto.
+Questa strategia si rivela affidabile e facilmente prevedibile, ma a partire dal guscio convesso si può solo ottenere un'approssimazione per difetto.
 
 > **Indice di Jaccard**: ≈ 0.4
 
-#### 2. Ipotesi di Algoritmo (Cutting Nodes 2)
+#### 2. Ipotesi di Algoritmo Cutting Smaller Angles 2 (CSA2)
 
-Una seconda ipotesi per l'approssimazione del guscio convesso con un numero limitato di lati è un'evoluzione della precedente. Si considera che il primo algoritmo produce un guscio convesso sicuramente minore dell'originale. Il miglioramento prevede quindi il prolungamento dei lati vicini al nodo rimosso, tenendo conto del baricentro del triangolo creato dallo stesso.
-
-<div style="display: flex; justify-content: space-between;">
-    <img src="resources/CuttingNodes2/10-5.png" alt="Image 1" width="30%">
-    <img src="resources/CuttingNodes2/30-5.png" alt="Image 2" width="30%">
-    <img src="resources/CuttingNodes2/50-5.png" alt="Image 3" width="30%">
-</div>
-
-Questo approccio si rivela migliore del precedente, ma non significativamente.
-
-> **Indice di Jaccard**: ≈ 0.6
-
-#### 3. Ipotesi di Algoritmo (Cutting Nodes 3)
-
-Un miglioramento del precedente algoritmo prevede di cambiare l'ipotesi secondo la quale gli spigoli più esterni sarebbero quelli da considerare come outlier. Al contrario, si ipotizza che gli angoli interni con ampiezza maggiore siano i candidati migliori per essere approssimati con un segmento.
+Evolvendo la precedente ipotesi e consentendo all'algoritmo di poter includere i nodi esclusi traslando il taglio creato, si può cosi creare un guscio che oltre a essere convesso e rispettare l'inclusione necessaria di tutti i punti ammissibili.
 
 <div style="display: flex; justify-content: space-between;">
-    <img src="resources/CuttingNodes3/10-5.png" alt="Image 1" width="30%">
-    <img src="resources/CuttingNodes3/30-5.png" alt="Image 2" width="30%">
-    <img src="resources/CuttingNodes3/50-5.png" alt="Image 3" width="30%">
+    <img src="resources/CuttingSmallerAngles2/10-5.png" alt="Image 1" width="30%">
+    <img src="resources/CuttingSmallerAngles2/30-5.png" alt="Image 2" width="30%">
+    <img src="resources/CuttingSmallerAngles2/50-5.png" alt="Image 3" width="30%">
 </div>
 
-Questo nuovo approccio risulta di gran lunga migliore dei precedenti, producendo un indice quasi pari alla perfezione.
+Questo approccio si rivela migliore del precedente, e il poliedro creato rispetta moldo di più la forma del guscio convesso ideale(dall'indice di Jaccard).
 
-> **Indice di Jaccard**: ≈ 0.95
+> **Indice di Jaccard**: ≈ 0.93
+
+#### 3. Ipotesi di Algoritmo Cutting Larger Angles (CLA)
+
+Applicando un cambio di ragionamento all'algoritmo CSA si potrebbe ipotizzare che gli angoli interni con ampiezza maggiore siano i candidati migliori per essere approssimati con un segmento, questo poichè la perdita di area applicando il taglio sarebbe minima.
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="resources/CuttingLargerAngles/10-5.png" alt="Image 1" width="30%">
+    <img src="resources/CuttingLargerAngles/30-5.png" alt="Image 2" width="30%">
+    <img src="resources/CuttingLargerAngles/50-5.png" alt="Image 3" width="30%">
+</div>
+
+Si rivela un approccio vincente e in termini di somiglianza con l'area del guscio convesso può essere paragonato al precedente CSA2, risulta però non includere come in CSA i nodi che vengono tagliati, rendendolo così inaccettabile.
+
+> **Indice di Jaccard**: ≈ 0.91
+
+#### 4. Ipotesi di Algoritmo Cutting Larger Angles 2 (CLA2)
+
+Applicando la medesima trasformazione fatta nell'algoritmo CSA, si consente al precedente algoritmo di includere tutti i punti ammissibili, rendendo di fatto il precedente algoritmo accettabile.
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="resources/CuttingLargerAngles2/10-5.png" alt="Image 1" width="30%">
+    <img src="resources/CuttingLargerAngles2/30-5.png" alt="Image 2" width="30%">
+    <img src="resources/CuttingLargerAngles2/50-5.png" alt="Image 3" width="30%">
+</div>
+
+Il risultato ottenuto in termini di somiglianza delle aree con il guscio convesso è del tutto simile a CSA2,
+e dall'indice fornito risulta essere una opzione più che valida per l'approssimazione del guscio convesso.
+
+> **Indice di Jaccard**: ≈ 0.93
 
 ## Algoritmi su Euristica Puntiforme
 

@@ -1,0 +1,19 @@
+<changelist name="Changes3" date="1721597906299" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Changes3/shelved.patch" />
+  <option name="DESCRIPTION" value="Changes" />
+  <binary>
+    <option name="BEFORE_PATH" value="src/main/resources/10-5.png" />
+    <option name="AFTER_PATH" value="src/main/resources/CuttingNodes/10-5.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes3/10-5.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/main/resources/30-5.png" />
+    <option name="AFTER_PATH" value="src/main/resources/CuttingNodes/30-5.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes3/30-5.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/main/resources/50-5.png" />
+    <option name="AFTER_PATH" value="src/main/resources/CuttingNodes/50-5.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes3/50-5.png" />
+  </binary>
+</changelist>

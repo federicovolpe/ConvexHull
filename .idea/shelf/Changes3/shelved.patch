@@ -1,0 +1,196 @@
+Index: src/main/java/basic/Node.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package basic;\n\n\nimport java.util.ArrayList;\nimport java.util.List;\nimport java.util.Objects;\nimport java.util.Random;\n\n/**\n * generic node class for a node in n dimension\n * depending by the dimension given in its constructor\n */\npublic class Node {\n    \n    protected int dim, index;\n    protected List<Integer> coordinates ;\n    protected Random rnd;\n\n    /**\n     * given a list of coordinates initializes the point\n     * @param coordinates list of coordinates of the node\n     */\n    public Node (final List<Integer> coordinates, int index){\n      this.coordinates = new ArrayList<>(coordinates);\n      dim = coordinates.size();\n      this.index = index;\n    }\n\n    /**\n     * new node with random coordinates in a dim-n space\n     * @param dim dimension of the node\n     * @param bound upper bound for the coordinates of the point\n     * @param index of the node\n     * @throws IllegalArgumentException if the dimension is < 1\n     */\n    public Node (int dim, int bound, int index) throws IllegalArgumentException {\n      if(dim < 1) throw new IllegalArgumentException(\"dimension of random node should be >= 1\");\n      rnd = new Random();\n      this.dim = dim;\n      coordinates = new ArrayList<>();\n      for (int i = 0; i < dim; i++) {\n        coordinates.add(rnd.nextInt());\n      }\n    }\n\n    /**\n     * calculate the distance between two nodes\n     * @param other should be of the same dimension as this one\n     * @return the distance between the two\n     */\n    public double calcDistance(Node other) throws IllegalArgumentException{\n      if(! sameDimension(other)) throw new IllegalArgumentException(\"points should be of the same dimension \"+this.dim+\" != \" +other.dim );\n      double sum = 0;\n\n      for (int i = 0; i < dim; i++) \n        sum += Math.pow(coordinates.get(i), 2) - Math.pow(other.coordinates.get(i), 2);\n\n      return Math.sqrt(sum);\n    }\n    \n    /**\n     * if two nodes have the same position\n     * @param other other node to compare\n     * @throws IllegalArgumentException if thw two nodes dont have the same dimension\n     */\n    public boolean samePos(Node other) throws IllegalArgumentException {\n      if(! sameDimension(other)) throw new IllegalArgumentException(\"points should be of the same dimension \"+this.dim+\" != \" +other.dim );\n\n      for (int i = 0; i < dim; i++) \n        if( ! coordinates.get(i).equals(other.coordinates.get(i))) return false;\n\n      return true;\n    }\n\n    /**\n     * if this node has the same dimension as another one\n     */\n    public boolean sameDimension(Node other){\n      return this.dim == other.dim;\n    }\n\n    public int getCoor(int index){\n      return coordinates.get(index);\n    }\n\n    @Override\n    public String toString(){\n      StringBuilder sb = new StringBuilder();\n      sb.append(\"Node: \").append(index).append(\"[\");\n\n      for (int i = 0; i < dim; i++)\n        sb.append(coordinates.get(i)).append(\", \");\n\n      sb.delete(sb.length()-2, sb.length());\n      return sb.append(\"]\").toString();\n    }\n\n    public int getIndex() {\n        return index;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) return true;\n        if (o == null || getClass() != o.getClass()) return false;\n        Node node = (Node) o;\n        return Objects.equals(coordinates, node.coordinates);\n    }\n\n    @Override\n    public int hashCode() {\n      return Objects.hash(coordinates);\n    }\n\n    public int getDim() {\n        return dim;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/basic/Node.java b/src/main/java/basic/Node.java
+--- a/src/main/java/basic/Node.java	(revision d77e9c7efeb5ac9c577e4999b7bc926716f278aa)
++++ b/src/main/java/basic/Node.java	(date 1721597072305)
+@@ -79,10 +79,6 @@
+       return this.dim == other.dim;
+     }
+ 
+-    public int getCoor(int index){
+-      return coordinates.get(index);
+-    }
+-
+     @Override
+     public String toString(){
+       StringBuilder sb = new StringBuilder();
+@@ -111,8 +107,4 @@
+     public int hashCode() {
+       return Objects.hash(coordinates);
+     }
+-
+-    public int getDim() {
+-        return dim;
+-    }
+ }
+Index: src/main/java/main/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main;\n\nimport basic.Edge;\nimport basic.Node2D;\nimport java.util.List;\nimport heuristics.CuttingNodes2;\nimport heuristics.Heuristic;\nimport paintGraph.GraphPanel;\nimport paintGraph.GraphWithPoints;\nimport utils.utilMethods;\nimport javax.swing.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        \n        List<Node2D> nodes = utilMethods.rndNodesGenerator2D(15);\n        \n        System.out.println(\"generated:\");\n        System.out.println(nodes);\n\n        List<Edge> edges = JarvisMarch.calcConvexHull(nodes);\n\n        //Heuristic h = new CenterOfMass(edges);\n        //Heuristic h = new CuttingNodes(5, edges, nodes);\n        Heuristic h = new CuttingNodes2(5, edges, nodes);\n        GraphPanel graph = new GraphPanel(nodes, edges, h);\n        JFrame frame = new GraphWithPoints(graph);\n        frame.setVisible(true);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/main/Main.java b/src/main/java/main/Main.java
+--- a/src/main/java/main/Main.java	(revision d77e9c7efeb5ac9c577e4999b7bc926716f278aa)
++++ b/src/main/java/main/Main.java	(date 1721597723240)
+@@ -13,7 +13,7 @@
+ public class Main {
+     public static void main(String[] args) {
+         
+-        List<Node2D> nodes = utilMethods.rndNodesGenerator2D(15);
++        List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);
+         
+         System.out.println("generated:");
+         System.out.println(nodes);
+@@ -23,6 +23,7 @@
+         //Heuristic h = new CenterOfMass(edges);
+         //Heuristic h = new CuttingNodes(5, edges, nodes);
+         Heuristic h = new CuttingNodes2(5, edges, nodes);
++
+         GraphPanel graph = new GraphPanel(nodes, edges, h);
+         JFrame frame = new GraphWithPoints(graph);
+         frame.setVisible(true);
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"aeba7314-39d6-4d5a-b9d0-99883d0d6670\" name=\"Changes\" comment=\"GREEN: node.calcDistance\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/basic/Node.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/basic/Node.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/test/NodeTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/NodeTest.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"CodeStyleSettingsInfer\">\n    <option name=\"done\" value=\"true\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"useMavenConfig\" value=\"true\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"ProjectCodeStyleSettingsMigration\">\n    <option name=\"version\" value=\"2\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2jW3p0Nu96BRPpIxBWzJX7FumJ0\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"last_directory_selection\": \"/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test\",\n    \"last_opened_file_path\": \"/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java\",\n    \"project.structure.last.edited\": \"Facets\",\n    \"project.structure.proportion\": \"0.15\",\n    \"project.structure.side.proportion\": \"0.2\",\n    \"settings.editor.selected.configurable\": \"shared-indexes\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/main/java\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/main\" />\n      <recent name=\"$PROJECT_DIR$\" />\n      <recent name=\"$PROJECT_DIR$/src/test\" />\n      <recent name=\"$PROJECT_DIR$/src/main/resources\" />\n    </key>\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\n      <recent name=\"\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"JUnit.NodeTest.samePos\">\n    <configuration name=\"NodeTest.calcDistance_notSameDimension\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ConvexHull\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"NodeTest\" />\n      <option name=\"METHOD_NAME\" value=\"calcDistance_notSameDimension\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"NodeTest.calcDistance_sameDimension (1)\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ConvexHull\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"NodeTest\" />\n      <option name=\"METHOD_NAME\" value=\"calcDistance_sameDimension(double,int,int,int)\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"NodeTest.calcDistance_sameDimension\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ConvexHull\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"NodeTest\" />\n      <option name=\"METHOD_NAME\" value=\"calcDistance_sameDimension\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"NodeTest.samePos\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ConvexHull\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"NodeTest\" />\n      <option name=\"METHOD_NAME\" value=\"samePos(boolean,int,int,int)\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"JUnit.NodeTest.samePos\" />\n        <item itemvalue=\"JUnit.NodeTest.calcDistance_sameDimension (1)\" />\n        <item itemvalue=\"JUnit.NodeTest.calcDistance_sameDimension\" />\n        <item itemvalue=\"JUnit.NodeTest.calcDistance_notSameDimension\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"aeba7314-39d6-4d5a-b9d0-99883d0d6670\" name=\"Changes\" comment=\"\" />\n      <created>1721489184867</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1721489184867</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upgrading to a maven project\">\n      <created>1721493957888</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721493957888</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"updating images\">\n      <created>1721495610288</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721495610288</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"3\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upgrading to a maven project\" />\n    <MESSAGE value=\"updating images\" />\n    <MESSAGE value=\"GREEN: node.calcDistance\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"GREEN: node.calcDistance\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d77e9c7efeb5ac9c577e4999b7bc926716f278aa)
++++ b/.idea/workspace.xml	(date 1721597404621)
+@@ -4,10 +4,13 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="GREEN: node.calcDistance">
++    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="CuttingNodes2 working as expected">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Node.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/NodeTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/10-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CuttingNodes/10-5.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/30-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CuttingNodes/30-5.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/50-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CuttingNodes/50-5.png" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -20,7 +23,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
++        <entry key="$PROJECT_DIR$" value="testing" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -46,24 +49,25 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "last_directory_selection": "/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test",
+-    "last_opened_file_path": "/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java",
+-    "project.structure.last.edited": "Facets",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.2",
+-    "settings.editor.selected.configurable": "shared-indexes"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;last_directory_selection&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;shared-indexes&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/src/main/java" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/src/main/resources/CuttingNodes" />
+       <recent name="$PROJECT_DIR$/src/main" />
+       <recent name="$PROJECT_DIR$" />
+       <recent name="$PROJECT_DIR$/src/test" />
+@@ -73,7 +77,20 @@
+       <recent name="" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="JUnit.NodeTest.samePos">
++  <component name="RunManager" selected="Application.Main">
++    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="main.Main" />
++      <module name="ConvexHull" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="main.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
+     <configuration name="NodeTest.calcDistance_notSameDimension" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="ConvexHull" />
+       <option name="PACKAGE_NAME" value="" />
+@@ -116,6 +133,7 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.Main" />
+         <item itemvalue="JUnit.NodeTest.samePos" />
+         <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension (1)" />
+         <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension" />
+@@ -146,7 +164,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1721495610288</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="CuttingNodes2 working as expected">
++      <created>1721596992103</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1721596992103</updated>
++    </task>
++    <task id="LOCAL-00004" summary="CuttingNodes2 working as expected">
++      <created>1721597001267</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1721597001267</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -164,6 +196,10 @@
+     <MESSAGE value="upgrading to a maven project" />
+     <MESSAGE value="updating images" />
+     <MESSAGE value="GREEN: node.calcDistance" />
+-    <option name="LAST_COMMIT_MESSAGE" value="GREEN: node.calcDistance" />
++    <MESSAGE value="CuttingNodes2 working as expected" />
++    <option name="LAST_COMMIT_MESSAGE" value="CuttingNodes2 working as expected" />
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+   </component>
+ </project>
+\ No newline at end of file

@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="statistics for all algorithms">
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="colored heuristics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingNodes/10-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CuttingNodes/10-5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingNodes/30-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CuttingNodes/30-5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingNodes/50-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CuttingNodes/50-5.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,11 +77,11 @@
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/CuttingNodes" />
       <recent name="$PROJECT_DIR$/src/main/resources/DistanceFromG" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/CuttingNodes3" />
       <recent name="$PROJECT_DIR$/src/main/resources/CuttingNodes2" />
-      <recent name="$PROJECT_DIR$/src/main/resources/CuttingNodes" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
