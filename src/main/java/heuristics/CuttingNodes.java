@@ -8,9 +8,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static utils.Constants.GraphConstants.*;
-import static utils.Constants.GraphConstants.POINT_DIM;
-
 public abstract class CuttingNodes extends Heuristic{
   protected final List<Edge> convexHull;
 
@@ -31,24 +28,17 @@ public abstract class CuttingNodes extends Heuristic{
   @Override
   public void draw(Graphics g) {
     g.setColor(c);
-    for (Edge e : convexHull) {
-      //System.out.println("drawing line : " + e);
-      g.drawLine(e.n1().getX() + ORIGIN_X,
-          ORIGIN_Y - e.n1().getY(),
-          e.n2().getX() + ORIGIN_X,
-          ORIGIN_Y - e.n2().getY());
-    }
-    drawNewNodes(g);
+    drawEdges(g);
+    drawNodes(g);
   }
 
-  public void drawNewNodes(Graphics g) {
-    g.setColor(c);
-    for (Edge e : convexHull) {
-      int x = ORIGIN_X + e.n1().getX() - (int)(POINT_DIM * .3);
-      int y = ORIGIN_Y - e.n1().getY() - (int)(POINT_DIM * .3);
-      // g.drawString(e.n1().getIndex()+"", x - 2, y - 2);
-      g.fillOval(x, y, (int) (POINT_DIM * .7), (int) (POINT_DIM * .7));
-    }
+  public void drawEdges(Graphics g){
+    for (Edge e : convexHull) e.draw(g);
+  }
+
+  public void drawNodes(Graphics g) {
+    for (Edge e : convexHull)
+      e.n1().draw(g, false);
   }
 
   @Override

@@ -1,6 +1,10 @@
 package basic;
 
+import java.awt.*;
 import java.util.List;
+
+import static utils.Constants.GraphConstants.*;
+import static utils.Constants.GraphConstants.POINT_DIM;
 
 public class Node2D extends Node {
 
@@ -56,5 +60,12 @@ public class Node2D extends Node {
 
   public int getY() {
     return coordinates.get(1);
+  }
+
+  public void draw(Graphics g, boolean drawIndex){
+    int x = ORIGIN_X + getX() - (int)(POINT_DIM * .3);
+    int y = ORIGIN_Y - getY() - (int)(POINT_DIM * .3);
+    if(drawIndex) g.drawString(getIndex()+"", x - 2, y - 2);
+    g.fillOval(x, y, (int) (POINT_DIM * .7), (int) (POINT_DIM * .7));
   }
 }

@@ -1,5 +1,12 @@
 package basic;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static utils.Constants.GraphConstants.ORIGIN_X;
+import static utils.Constants.GraphConstants.ORIGIN_Y;
+
 public class Edge {
   private Node2D n1;
   private Node2D n2;
@@ -77,6 +84,7 @@ public class Edge {
     n1 = new Node2D(n1.index, n1.getX() + offsetX, n1.getY() + offsetY);
     n2 = new Node2D(n2.index, n2.getX() + offsetX, n2.getY() + offsetY);
   }
+
   public Node2D n1() {
     return n1;
   }
@@ -86,6 +94,7 @@ public class Edge {
   private boolean isConsecutive(Edge other){
     return other.n1.equals(n2);
   }
+
   public void setn1(Node2D n1) {
     this.n1 = n1;
   }
@@ -109,9 +118,31 @@ public class Edge {
     toWhichExtend.n1 = intersectionPrev;
   }
 
+  public List<Node2D> getSample(int offset){
+    double len = getLength();
+    int nPoints = (int)(len / offset);
+    List<Node2D> nodes = new ArrayList<>();
+    for(double t = 0; t < len; t += offset/len)
+      nodes.add(new Node2D(
+          (int) (n1.getX()+ t*(n2.getX()- n1.getX())),
+          (int)(n1.getY()+ t*(n2.getY()- n1.getY()))));
+    return nodes;
+  }
+
+  private double getLength(){
+    return Math.sqrt(Math.pow(n1.getX() - n2.getX(), 2)+ Math.pow(n1.getY() - n2.getY(), 2));
+  }
+
   @Override
   public String toString() {
     return "edge: "+n1+" - "+n2;
+  }
+
+  public void draw(Graphics g){
+    g.drawLine(n1().getX() + ORIGIN_X,
+        ORIGIN_Y - n1().getY(),
+        n2().getX() + ORIGIN_X,
+        ORIGIN_Y - n2().getY());
   }
 
 }
