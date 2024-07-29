@@ -71,4 +71,13 @@ class EdgeTest {
     assertEquals(expX2, Sut.n2().getX());
     assertEquals(expY2, Sut.n2().getY());
   }
+
+  @Test
+  void getSample() {
+    Edge Sut = new Edge(new Node2D(0,0,0), new Node2D(1, 0,100));
+    System.out.println(Sut.getSample(10));
+    assertEquals(10, Sut.getSample(10).size());
+
+  }
+
 }

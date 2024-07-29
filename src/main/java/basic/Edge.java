@@ -118,18 +118,25 @@ public class Edge {
     toWhichExtend.n1 = intersectionPrev;
   }
 
-  public List<Node2D> getSample(int offset){
+  public List<Node2D> getSample(int num) {
     double len = getLength();
-    int nPoints = (int)(len / offset);
     List<Node2D> nodes = new ArrayList<>();
-    for(double t = 0; t < len; t += offset/len)
-      nodes.add(new Node2D(
-          (int) (n1.getX()+ t*(n2.getX()- n1.getX())),
-          (int)(n1.getY()+ t*(n2.getY()- n1.getY()))));
+
+    // Calcola l'incremento t
+    double increment = 1.0 / (num);
+
+    for (int i = 1; i < num+1; i++) {
+      double t = i * increment;
+      nodes.add(new Node2D(-1,
+          (int) (n1.getX() + t * (n2.getX() - n1.getX())),
+          (int) (n1.getY() + t * (n2.getY() - n1.getY()))));
+    }
+
     return nodes;
   }
 
-  private double getLength(){
+
+  public double getLength(){
     return Math.sqrt(Math.pow(n1.getX() - n2.getX(), 2)+ Math.pow(n1.getY() - n2.getY(), 2));
   }
 
