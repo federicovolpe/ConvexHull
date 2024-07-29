@@ -1,80 +1,50 @@
 package main;
 
-import static java.awt.Color.BLUE;
-import static java.awt.Color.GREEN;
-import static java.awt.Color.ORANGE;
-import static java.awt.Color.RED;
-import static java.awt.Color.YELLOW;
+import static java.awt.Color.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JFrame;
-
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.Polygon;
-
+import org.locationtech.jts.geom.*;
 import basic.Edge;
 import basic.Node2D;
-import heuristics.CuttingLargerAngle;
 import heuristics.CuttingLargerAngle2;
-import heuristics.CuttingSmallerAngle;
 import heuristics.CuttingSmallerAngle2;
 import heuristics.DistanceFromG;
 import heuristics.Heuristic;
 import paintGraph.GraphPanel;
 import paintGraph.GraphWithPoints;
+import shapes.Polygon;
+import shapes.Shapes;
 import utils.utilMethods;
 
 public class Main {
   public static void main(String[] args) {
-    /*List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);
+
+    demonstrateHeuristics(400, 5, Shapes.RECTANGLE.getPolygon());
+    //demonstrateHeuristics(30, 5);
+    //demonstrateHeuristics(50, 5);
+
+    //iterationStatistics();
+  }
+
+  public static void demonstrateHeuristics(int nNodes, int desiredEdges, Polygon p){
+    List<Node2D> nodes;
+    if(p == null) nodes = utilMethods.rndNodesGenerator2D(nNodes);
+    else nodes = p.getSample(nNodes);
+
     JarvisMarch jm = new JarvisMarch(nodes);
     List<Edge> convexHull = jm.getHullEdges();
 
     List<Heuristic> heuristics = List.of(
-      // new CuttingSmallerAngle(5, convexHull, GREEN),
-      // new CuttingSmallerAngle2(5, convexHull, BLUE),
-      //new CuttingLargerAngle(5, convexHull, RED),
-      new CuttingLargerAngle2(5, convexHull, GREEN));
-      //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
+        //new CuttingSmallerAngle(desiredEdges, convexHull, GREEN),
+        new CuttingSmallerAngle2(desiredEdges, convexHull, BLUE),
+        //new CuttingLargerAngle(desiredEdges, convexHull, CYAN),
+        new CuttingLargerAngle2(desiredEdges, convexHull, YELLOW),
+        new DistanceFromG(desiredEdges, jm.getHullNodes(), nodes, ORANGE));
 
     GraphPanel graph = new GraphPanel(nodes, convexHull, heuristics);
     JFrame frame = new GraphWithPoints(graph);
     frame.setVisible(true);
-
-    nodes = utilMethods.rndNodesGenerator2D(30);
-    jm = new JarvisMarch(nodes);
-    convexHull = jm.getHullEdges();
-
-    heuristics = List.of(
-      // new CuttingSmallerAngle(5, convexHull, GREEN),
-      // new CuttingSmallerAngle2(5, convexHull, BLUE),
-      //new CuttingLargerAngle(5, convexHull, RED),
-      new CuttingLargerAngle2(5, convexHull, GREEN));
-      //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
-
-    graph = new GraphPanel(nodes, convexHull, heuristics);
-    frame = new GraphWithPoints(graph);
-    frame.setVisible(true);
-
-    nodes = utilMethods.rndNodesGenerator2D(50);
-    jm = new JarvisMarch(nodes);
-    convexHull = jm.getHullEdges();
-
-    heuristics = List.of(
-    // new CuttingSmallerAngle(5, convexHull, GREEN),
-    // new CuttingSmallerAngle2(5, convexHull, BLUE),
-    //new CuttingLargerAngle(5, convexHull, RED),
-    new CuttingLargerAngle2(5, convexHull, GREEN));
-    //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
-
-    graph = new GraphPanel(nodes, convexHull, heuristics);
-    frame = new GraphWithPoints(graph);
-    frame.setVisible(true);*/
-
-    iterationStatistics();
   }
 
   public static void iterationStatistics(){
@@ -90,10 +60,10 @@ public class Main {
       List<Edge> convexHull = jm.getHullEdges();
 
       List<Heuristic> heuristics = List.of(
-          new CuttingSmallerAngle(5, convexHull, GREEN),
-          new CuttingSmallerAngle2(5, convexHull, BLUE),
-          new CuttingLargerAngle(5, convexHull, RED),
-          new CuttingLargerAngle2(5, convexHull, YELLOW),
+          //new CuttingSmallerAngle(5, convexHull, GREEN),
+          //new CuttingSmallerAngle2(5, convexHull, BLUE),
+          //new CuttingLargerAngle(5, convexHull, RED),
+          //new CuttingLargerAngle2(5, convexHull, YELLOW),
           new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
 
       for (int h = 0; h < heuristics.size(); h++ ) {
@@ -133,10 +103,10 @@ public class Main {
 
     // Create Polygon objects
     Coordinate[] pa = polygonACoords.toArray(new Coordinate[0]);
-    Polygon polygonA = geometryFactory.createPolygon(pa);
+    org.locationtech.jts.geom.Polygon polygonA = geometryFactory.createPolygon(pa);
 
     Coordinate[] pb = polygonBCoords.toArray(new Coordinate[0]);
-    Polygon polygonB = geometryFactory.createPolygon(pb);
+    org.locationtech.jts.geom.Polygon polygonB = geometryFactory.createPolygon(pb);
 
     // Compute the symmetric difference
     //Geometry symmetricDifference = polygonA.symDifference(polygonB);

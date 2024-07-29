@@ -3,7 +3,6 @@ package shapes;
 import basic.CircularList;
 import basic.Edge;
 import basic.Node2D;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,11 +12,11 @@ public class Polygon {
   protected CircularList<Node2D> vertices;
   protected CircularList<Edge> edges;
 
-  public Polygon(List<Node2D> nodes){
+  public Polygon(List<Node2D> nodes) {
     vertices = new CircularList<>(nodes);
   }
 
-  protected double getPerimeter(){
+  protected double getPerimeter() {
     double sum = 0;
     for (Edge edge : edges) sum += edge.getLength();
     return sum;
@@ -25,6 +24,7 @@ public class Polygon {
 
   /**
    * generates a sample of n nodes inside the shape
+   *
    * @param n numbers of node to generate
    * @return a list of nodes
    */
@@ -62,11 +62,12 @@ public class Polygon {
 
     return points;
   }
+
   private Node2D generateRandomPointInTriangle(Triangle t, Random rand) {
     double r1 = Math.sqrt(rand.nextDouble());
     double r2 = rand.nextDouble();
     int x = (int) ((1 - r1) * t.a.getX() + (r1 * (1 - r2)) * t.b.getX() + (r1 * r2) * t.c.getX());
-    int y = (int)((1 - r1) * t.a.getY() + (r1 * (1 - r2)) * t.b.getY() + (r1 * r2) * t.c.getY());
+    int y = (int) ((1 - r1) * t.a.getY() + (r1 * (1 - r2)) * t.b.getY() + (r1 * r2) * t.c.getY());
     return new Node2D(-1, x, y);
   }
 
@@ -77,6 +78,7 @@ public class Polygon {
     }
     return triangles;
   }
+
   static class Triangle {
     Node2D a, b, c;
 
@@ -88,8 +90,8 @@ public class Polygon {
 
     double area() {
       return 0.5 * Math.abs(a.getX() * (b.getY() - c.getY()) +
-                            b.getX() * (c.getY() - a.getY()) +
-                            c.getX() * (a.getY() - b.getY()));
+          b.getX() * (c.getY() - a.getY()) +
+          c.getX() * (a.getY() - b.getY()));
     }
   }
 
