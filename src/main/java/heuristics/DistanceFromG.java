@@ -26,12 +26,13 @@ public class DistanceFromG extends PointHeuristic{
             if(chosenNodes.size() > 2 ){
                 if(!isNodeContained(allNodes.get(i), chosenNodes)) {
                     chosenNodes.add(allNodes.get(i));
-                    System.out.println("choosing node " + allNodes.get(i));
+                    //System.out.println("choosing node " + allNodes.get(i));
                     eliminateInsideNodes(chosenNodes);
                 }
             } else{
                 chosenNodes.add(allNodes.get(i));
-            System.out.println("choosing node " + allNodes.get(i));}
+                //System.out.println("choosing node " + allNodes.get(i));
+            }
             i++;
         }
         return chosenNodes;
@@ -54,7 +55,7 @@ public class DistanceFromG extends PointHeuristic{
         while (iterator.hasNext()) {
             Node2D n = iterator.next();
             if (isNodeContained(n, nodes)) {
-                System.out.println("removing inside node : " + n);
+                // System.out.println("removing inside node : " + n);
                 iterator.remove();
             }
         }

@@ -14,10 +14,7 @@ public abstract class CuttingNodes extends Heuristic{
 
   public void calcConvexHull(int n){
     if(n < 3) throw new IllegalArgumentException("number of edges must be greater than 3: "+ n);
-    while(this.convexHull.size() > n){
-      System.out.println("applying cut");
-      applyCut();
-    }
+    while(this.convexHull.size() > n) applyCut();
   }
 
   public void newData(List<Edge> newConvexHull){

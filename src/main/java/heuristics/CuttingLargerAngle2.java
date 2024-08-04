@@ -13,7 +13,7 @@ public class CuttingLargerAngle2 extends CuttingLargerAngle {
   }
 
   /**
-   * from all the nodes in the convex hull remove the one with the most acute angle
+   * from all the nodes in the convex hull remove the one with the most obtuse angle
    */
   protected void applyCut(){
     int selected = selectAngle();
@@ -44,5 +44,4 @@ public class CuttingLargerAngle2 extends CuttingLargerAngle {
     prev.extendEdgeN2(toExtend);
     succ.extendEdgeN1(toExtend);
   }
-
 }

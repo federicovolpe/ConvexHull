@@ -31,10 +31,10 @@ public class JarvisMarch {
             current = best;
         } while (!current.equals(lowest));
 
-        System.out.println("completed convex hull : ");
+        /*System.out.println("completed convex hull : ");
         for (Edge edge : convexHull) {
             System.out.println(edge);
-        }
+        }*/
     }
 
     public List<Edge> getHullEdges(){
