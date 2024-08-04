@@ -2,17 +2,17 @@ package shapes;
 
 import basic.CircularList;
 import basic.Edge;
-import basic.Node2D;
+import basic.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Polygon {
 
-  protected CircularList<Node2D> vertices;
+  protected CircularList<Point2D> vertices;
   protected CircularList<Edge> edges;
 
-  public Polygon(List<Node2D> nodes) {
+  public Polygon(List<Point2D> nodes) {
     vertices = new CircularList<>(nodes);
   }
 
@@ -28,9 +28,9 @@ public class Polygon {
    * @param n numbers of node to generate
    * @return a list of nodes
    */
-  public List<Node2D> getSample(int n) {
+  public List<Point2D> getSample(int n) {
     List<Triangle> triangles = triangulate();
-    List<Node2D> points = new ArrayList<>();
+    List<Point2D> points = new ArrayList<>();
     Random rand = new Random();
 
     double[] areas = new double[triangles.size()];
@@ -63,12 +63,12 @@ public class Polygon {
     return points;
   }
 
-  private Node2D generateRandomPointInTriangle(Triangle t, Random rand) {
+  private Point2D generateRandomPointInTriangle(Triangle t, Random rand) {
     double r1 = Math.sqrt(rand.nextDouble());
     double r2 = rand.nextDouble();
     int x = (int) ((1 - r1) * t.a.getX() + (r1 * (1 - r2)) * t.b.getX() + (r1 * r2) * t.c.getX());
     int y = (int) ((1 - r1) * t.a.getY() + (r1 * (1 - r2)) * t.b.getY() + (r1 * r2) * t.c.getY());
-    return new Node2D(-1, x, y);
+    return new Point2D(-1, x, y);
   }
 
   private List<Triangle> triangulate() {
@@ -80,9 +80,9 @@ public class Polygon {
   }
 
   static class Triangle {
-    Node2D a, b, c;
+    Point2D a, b, c;
 
-    Triangle(Node2D a, Node2D b, Node2D c) {
+    Triangle(Point2D a, Point2D b, Point2D c) {
       this.a = a;
       this.b = b;
       this.c = c;
@@ -97,7 +97,7 @@ public class Polygon {
 
   public String toPolymake(){
     StringBuilder sb = new StringBuilder("new Polytope(POINTS =>[");
-    for (Node2D n: vertices) {
+    for (Point2D n: vertices) {
       sb.append(n.toPolymakeVert()).append(",\n");
     }
     return sb.substring(0,sb.length()-2) + "]);";

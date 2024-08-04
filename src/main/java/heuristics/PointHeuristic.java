@@ -1,6 +1,6 @@
 package heuristics;
 
-import basic.Node2D;
+import basic.Point2D;
 import java.awt.*;
 import java.util.List;
 
@@ -8,16 +8,16 @@ import static utils.Constants.GraphConstants.*;
 import static utils.Constants.GraphConstants.POINT_DIM;
 
 public abstract class PointHeuristic extends Heuristic {
-  protected Node2D centerOfMass;
-  protected List<Node2D> allNodes;
+  protected Point2D centerOfMass;
+  protected List<Point2D> allNodes;
 
-  public PointHeuristic(Node2D centerOfMass, List<Node2D> allNodes, Color c) {
+  public PointHeuristic(Point2D centerOfMass, List<Point2D> allNodes, Color c) {
     super(c);
     this.centerOfMass = centerOfMass;
     this.allNodes = allNodes;
   }
 
-  public void newData(Node2D centerOfMass, List<Node2D> allNodes) {
+  public void newData(Point2D centerOfMass, List<Point2D> allNodes) {
     this.centerOfMass = centerOfMass;
     this.allNodes = allNodes;
   }

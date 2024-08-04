@@ -5,14 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="heuristics are now reusable">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/basic/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Point2D.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/PointHeuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/PointHeuristic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/JarvisMarch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/JarvisMarch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Shapes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Shapes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/utilMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/utilMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/basic/Node2DTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/Point2DTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/basic/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/PointTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +45,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="reusableHeuristics" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -147,7 +157,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NodeTest.toPolymake" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PointTest.toPolymake" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConvexHull" />
       <extension name="coverage">
         <pattern>
@@ -156,7 +166,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="basic" />
-      <option name="MAIN_CLASS_NAME" value="basic.NodeTest" />
+      <option name="MAIN_CLASS_NAME" value="basic.PointTest" />
       <option name="METHOD_NAME" value="toPolymake" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -166,10 +176,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.NodeTest.toPolymake" />
-        <item itemvalue="JUnit.EdgeTest.getSample" />
+        <item itemvalue="JUnit.PointTest.toPolymake" />
         <item itemvalue="JUnit.NodeTest.samePos" />
         <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension (1)" />
+        <item itemvalue="JUnit.EdgeTest.getSample" />
       </list>
     </recent_temporary>
   </component>

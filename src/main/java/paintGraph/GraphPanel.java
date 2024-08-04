@@ -1,7 +1,7 @@
 package paintGraph;
 
 import basic.Edge;
-import basic.Node2D;
+import basic.Point2D;
 import heuristics.Heuristic;
 import java.awt.*;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.swing.*;
 import static utils.Constants.GraphConstants.*;
 
 public class GraphPanel extends JPanel {
-  private final List<Node2D> nodes;
+  private final List<Point2D> points;
   private final List<Edge> edges ;
   private final List<Heuristic> heuristics ;
   protected LetterGenerator letterGenerator = new LetterGenerator();
@@ -21,12 +21,12 @@ public class GraphPanel extends JPanel {
    * @param nodes nodes of the graph
    * @param edges edges of the graph
    */
-  public GraphPanel(final List<Node2D> nodes, final List<Edge> edges, List<Heuristic> heuristics) {
+  public GraphPanel(final List<Point2D> nodes, final List<Edge> edges, List<Heuristic> heuristics) {
     this.heuristics = heuristics;
-    this.nodes = nodes;
+    this.points = nodes;
     this.edges = edges;
     int biggestD = 0;
-    for (Node2D n : nodes) {
+    for (Point2D n : nodes) {
       biggestD = (Math.abs(n.getY()) > biggestD) ? Math.abs(n.getX()) : biggestD;
       biggestD = Math.max(Math.abs(n.getY()), biggestD);
     }
@@ -53,7 +53,7 @@ public class GraphPanel extends JPanel {
   }
 
   protected void drawNodes(Graphics g) {
-    for (Node2D n : nodes) n.draw(g, true);
+    for (Point2D n : points) n.draw(g, true);
   }
 
   protected void drawEdges(Graphics2D g) {

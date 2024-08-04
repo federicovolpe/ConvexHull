@@ -2,7 +2,7 @@
 package main;
 
 import basic.Edge;
-import basic.Node2D;
+import basic.Point2D;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,16 +10,16 @@ import java.util.List;
 public class JarvisMarch {
     private final List<Edge> convexHull = new ArrayList<>();
 
-    public JarvisMarch(List<Node2D> nodes) {
-        Node2D lowest = findLowest(nodes);
-        Node2D current = lowest;
-        Node2D previous = new Node2D(0, current.getX() - 1, current.getY());
-        Node2D best;
+    public JarvisMarch(List<Point2D> points) {
+        Point2D lowest = findLowest(points);
+        Point2D current = lowest;
+        Point2D previous = new Point2D(0, current.getX() - 1, current.getY());
+        Point2D best;
 
         do {
             best = previous;
             double bestAngle = 0;
-            for (Node2D n : nodes) {
+            for (Point2D n : points) {
                 if (!n.equals(current))
                     if (current.angleBetweenNodes(previous, n) > bestAngle) {
                         best = n;
@@ -41,16 +41,16 @@ public class JarvisMarch {
         return convexHull;
     }
 
-    public List<Node2D> getHullNodes() {
-        List<Node2D> nodes = new ArrayList<>();
+    public List<Point2D> getHullNodes() {
+        List<Point2D> nodes = new ArrayList<>();
         for (Edge e : convexHull)
             nodes.add(e.n1());
         return nodes;
     }
 
-    private static Node2D findLowest(List<Node2D> nodes) {
-        Node2D lowest = nodes.get(0);
-        for (Node2D n : nodes) {
+    private static Point2D findLowest(List<Point2D> nodes) {
+        Point2D lowest = nodes.get(0);
+        for (Point2D n : nodes) {
             lowest = (n.getY() < lowest.getY()) ? n : lowest;
         }
         return lowest;

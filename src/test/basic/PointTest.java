@@ -7,12 +7,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-class NodeTest {
-  Node Sut = new Node(List.of(1,1,1), 0);
+class PointTest {
+  Point Sut = new Point(List.of(1,1,1), 0);
 
   @Test
   void calcDistance_notSameDimension() {
-    Node n = new Node(2, 10, 0);
+    Point n = new Point(2, 10, 0);
     assertThrows(IllegalArgumentException.class, () -> Sut.calcDistance(n));
   }
 
@@ -23,7 +23,7 @@ class NodeTest {
       "10, 11, 1, 1"
   })
   void calcDistance_sameDimension(double expected, int x, int y, int  z) {
-    Node n = new Node(List.of(x,y,z), 0);
+    Point n = new Point(List.of(x,y,z), 0);
     assertEquals(expected, Sut.calcDistance(n));
   }
 
@@ -34,19 +34,19 @@ class NodeTest {
       "false, 11, 1, 1"
   })
   void samePos(boolean expected, int x, int y, int  z) {
-    Node n = new Node(List.of(x,y,z), 0);
+    Point n = new Point(List.of(x,y,z), 0);
     assertEquals(expected, Sut.samePos(n));
   }
 
   @Test
   void sameDimension() {
-    Node n = new Node(List.of(1,1,1), 0);
+    Point n = new Point(List.of(1,1,1), 0);
     assertTrue(Sut.sameDimension(n));
 
-    n = new Node(List.of(1,1,1,1), 0);
+    n = new Point(List.of(1,1,1,1), 0);
     assertFalse(Sut.sameDimension(n));
 
-    n = new Node(List.of(1), 0);
+    n = new Point(List.of(1), 0);
     assertFalse(Sut.sameDimension(n));
   }
 
@@ -58,14 +58,14 @@ class NodeTest {
       "false, 11, 1, 1, 0"
   })
   void testEquals(boolean expected, int x, int y, int z, int index) {
-    Node n = new Node(List.of(x,y,z), index);
+    Point n = new Point(List.of(x,y,z), index);
     assertEquals(expected, Sut.equals(n));
   }
 
   @Test
   void toPolymake(){
     assertEquals("[1,1,1,1]",Sut.toPolymakeVert());
-    Node n = new Node(List.of(1,2,3,4,5), 0);
+    Point n = new Point(List.of(1,2,3,4,5), 0);
     assertEquals("[1,1,2,3,4,5]",n.toPolymakeVert());
   }
 

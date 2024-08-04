@@ -1,7 +1,7 @@
 package utils;
 
-import basic.Node;
-import basic.Node2D;
+import basic.Point;
+import basic.Point2D;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,13 +16,13 @@ public class utilMethods {
     private static final Random rnd = new Random();
 
     /**
-     * to read and return a list of nodes
+     * to read and return a list of point
      * 
-     * @param fileName file of the nodes
+     * @param fileName file of the points
      * @return
      */
-    public static List<Node> readNodesFromFile(String fileName) {
-        List<Node> nodes = new ArrayList<>();
+    public static List<Point> readNodesFromFile(String fileName) {
+        List<Point> points = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -40,27 +40,27 @@ public class utilMethods {
                 int xPos = Integer.parseInt(parts[1]);
                 int yPos = Integer.parseInt(parts[2]);
 
-                Node node = new Node(index, xPos, yPos);
+                Point point = new Point(index, xPos, yPos);
                 System.out.println("\nnodo : index " + index + " yPos " + yPos);
-                nodes.add(node);
+                points.add(point);
             }
         } catch (IOException e) {
             System.out.println("erroreeeee\n");
             e.printStackTrace();
         }
 
-        return nodes;
+        return points;
     }
 
-    public static List<Node2D> rndNodesGenerator2D(int n) {
-        List<Node2D> nodes = new ArrayList<>();
+    public static List<Point2D> rndNodesGenerator2D(int n) {
+        List<Point2D> points = new ArrayList<>();
 
-        while (nodes.size() < n) {
-            Node2D node = new Node2D(nodes.size(), GRAPH_BOUND);
-            if (!nodes.contains(node))
-                nodes.add(node);
+        while (points.size() < n) {
+            Point2D point = new Point2D(points.size(), GRAPH_BOUND);
+            if (!points.contains(point))
+                points.add(point);
         }
-        return nodes;
+        return points;
     }
 
 }

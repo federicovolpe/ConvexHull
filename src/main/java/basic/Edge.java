@@ -5,18 +5,18 @@ import static utils.Constants.GraphConstants.ORIGIN_X;
 import static utils.Constants.GraphConstants.ORIGIN_Y;
 
 public class Edge {
-  private Node2D n1;
-  private Node2D n2;
+  private Point2D n1;
+  private Point2D n2;
 
-  public Edge(Node2D n1, Node2D n2){
+  public Edge(Point2D n1, Point2D n2){
     this.n1 = n1;
     this.n2 = n2;
   }
 
   // Copy constructor
   public Edge(Edge edge) {
-    this.n1 = new Node2D(edge.n1);
-    this.n2 = new Node2D(edge.n2);
+    this.n1 = new Point2D(edge.n1);
+    this.n2 = new Point2D(edge.n2);
   }
 
   /**
@@ -34,9 +34,9 @@ public class Edge {
    * @param other the adjacent one (n2 of this should be equal of n1 of other)
    * @return the center of mass
    */
-  public Node2D getCenterOfMass(Edge other){
+  public Point2D getCenterOfMass(Edge other){
     if(!isConsecutive(other)) throw new IllegalArgumentException("edges are not successors n2 "+n2+" != "+other.n1);
-    return new Node2D(-1,
+    return new Point2D(-1,
         (n1.getX() + n2.getX() + other.n2.getX())/3,
         (n1.getY() + n2.getY() + other.n2.getY())/3);
   }
@@ -55,7 +55,7 @@ public class Edge {
    * generic mathematical formula for finding an intersection between two lines
    * @return the point of intersection of the tqo lines
    */
-  public Node2D calcIntersectionWithLine(int a2, int b2, int c2){
+  public Point2D calcIntersectionWithLine(int a2, int b2, int c2){
     int[] param = getLineParameters();
     int a1 = param[0];
     int b1 = param[1];
@@ -64,7 +64,7 @@ public class Edge {
     double x = (b1 * c2 - b2 * c1) / denominator;
     double y = (a2 * c1 - a1 * c2) / denominator;
 
-    return new Node2D(-1, (int)x, (int)y);
+    return new Point2D(-1, (int)x, (int)y);
   }
 
   /**
@@ -73,19 +73,19 @@ public class Edge {
    * the orientation remains the same
    * @param offsetNode the node to which traslate the edge
    */
-  public void traslate (Node2D offsetNode){
+  public void traslate (Point2D offsetNode){
     int middleX = (n1.getX() + n2.getX())/2;
     int middleY = (n1.getY() + n2.getY())/2;
     int offsetX = offsetNode.getX() - middleX;
     int offsetY = offsetNode.getY() - middleY;
-    n1 = new Node2D(n1.index, n1.getX() + offsetX, n1.getY() + offsetY);
-    n2 = new Node2D(n2.index, n2.getX() + offsetX, n2.getY() + offsetY);
+    n1 = new Point2D(n1.index, n1.getX() + offsetX, n1.getY() + offsetY);
+    n2 = new Point2D(n2.index, n2.getX() + offsetX, n2.getY() + offsetY);
   }
 
-  public Node2D n1() {
+  public Point2D n1() {
     return n1;
   }
-  public Node2D n2() {
+  public Point2D n2() {
     return n2;
   }
   private boolean isConsecutive(Edge other){
@@ -93,17 +93,17 @@ public class Edge {
   }
 
   public void extendEdgeN1(Edge toWhichExtend){
-    Node2D intersectionSucc = toWhichExtend.calcIntersectionWithLine(getLineParameters()[0],
+    Point2D intersectionSucc = toWhichExtend.calcIntersectionWithLine(getLineParameters()[0],
         getLineParameters()[1],
         getLineParameters()[2]);
-    n1 = new Node2D(n1.getIndex(), intersectionSucc.getX(), intersectionSucc.getY());
+    n1 = new Point2D(n1.getIndex(), intersectionSucc.getX(), intersectionSucc.getY());
     toWhichExtend.n2 = n1;
   }
   public void extendEdgeN2(Edge toWhichExtend){
-    Node2D intersectionPrev = toWhichExtend.calcIntersectionWithLine(getLineParameters()[0],
+    Point2D intersectionPrev = toWhichExtend.calcIntersectionWithLine(getLineParameters()[0],
         getLineParameters()[1],
         getLineParameters()[2]);
-    n2 = new Node2D(n2.getIndex(), intersectionPrev.getX(), intersectionPrev.getY());
+    n2 = new Point2D(n2.getIndex(), intersectionPrev.getX(), intersectionPrev.getY());
     toWhichExtend.n1 = n2;
   }
 

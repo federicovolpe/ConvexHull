@@ -2,7 +2,7 @@ package heuristics;
 
 import basic.CircularList;
 import basic.Edge;
-import basic.Node2D;
+import basic.Point2D;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +48,8 @@ public abstract class Heuristic {
             e.n1().draw(g, false);
     }
 
-    public List<Node2D> getHullNodes(){
-        List<Node2D> nodes = new ArrayList<>();
+    public List<Point2D> getHullNodes(){
+        List<Point2D> nodes = new ArrayList<>();
         for (Edge e : convexHull)
             nodes.add(e.n1());
         return nodes;

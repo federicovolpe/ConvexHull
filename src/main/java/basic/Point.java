@@ -10,7 +10,7 @@ import java.util.Random;
  * generic node class for a node in n dimension
  * depending by the dimension given in its constructor
  */
-public class Node {
+public class Point {
     
     protected int dim, index;
     protected List<Integer> coordinates ;
@@ -20,7 +20,7 @@ public class Node {
      * given a list of coordinates initializes the point
      * @param coordinates list of coordinates of the node
      */
-    public Node (final List<Integer> coordinates, int index){
+    public Point(final List<Integer> coordinates, int index){
       this.coordinates = new ArrayList<>(coordinates);
       dim = coordinates.size();
       this.index = index;
@@ -33,7 +33,7 @@ public class Node {
      * @param index of the node
      * @throws IllegalArgumentException if the dimension is < 1
      */
-    public Node (int dim, int bound, int index) throws IllegalArgumentException {
+    public Point(int dim, int bound, int index) throws IllegalArgumentException {
       if(dim < 1) throw new IllegalArgumentException("dimension of random node should be >= 1");
       rnd = new Random();
       this.dim = dim;
@@ -50,7 +50,7 @@ public class Node {
      * @param other should be of the same dimension as this one
      * @return the distance between the two
      */
-    public double calcDistance(Node other) throws IllegalArgumentException{
+    public double calcDistance(Point other) throws IllegalArgumentException{
       if(! sameDimension(other)) throw new IllegalArgumentException("points should be of the same dimension "+this.dim+" != " +other.dim );
       double sum = 0;
 
@@ -65,7 +65,7 @@ public class Node {
      * @param other other node to compare
      * @throws IllegalArgumentException if thw two nodes dont have the same dimension
      */
-    public boolean samePos(Node other) throws IllegalArgumentException {
+    public boolean samePos(Point other) throws IllegalArgumentException {
       if(! sameDimension(other)) throw new IllegalArgumentException("points should be of the same dimension "+this.dim+" != " +other.dim );
 
       for (int i = 0; i < dim; i++) 
@@ -77,7 +77,7 @@ public class Node {
     /**
      * if this node has the same dimension as another one
      */
-    public boolean sameDimension(Node other){
+    public boolean sameDimension(Point other){
       return this.dim == other.dim;
     }
 
@@ -110,8 +110,8 @@ public class Node {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Node node = (Node) o;
-        return Objects.equals(coordinates, node.coordinates) && (index == node.index);
+        Point point = (Point) o;
+        return Objects.equals(coordinates, point.coordinates) && (index == point.index);
     }
 
     @Override

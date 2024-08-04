@@ -1,7 +1,7 @@
 package heuristics;
 
 import basic.Edge;
-import basic.Node2D;
+import basic.Point2D;
 
 import java.awt.*;
 import java.util.List;
@@ -18,7 +18,7 @@ public class CuttingLargerAngle2 extends CuttingLargerAngle {
   protected void applyCut(){
     int selected = selectAngle();
     Edge lowestA  = convexHull.get(selected);
-    Node2D cuttedNode = lowestA.n2();
+    Point2D cuttedNode = lowestA.n2();
     Edge lowestB = convexHull.get(selected+1);
 
     //cutting the node

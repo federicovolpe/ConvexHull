@@ -6,18 +6,18 @@ import java.util.List;
 import static utils.Constants.GraphConstants.*;
 import static utils.Constants.GraphConstants.POINT_DIM;
 
-public class Node2D extends Node {
+public class Point2D extends Point {
 
-  public Node2D(int index, int xPos, int yPos) {
+  public Point2D(int index, int xPos, int yPos) {
     super(List.of(xPos, yPos), index);
   }
 
-  public Node2D(int index, int bound) throws IllegalArgumentException {
+  public Point2D(int index, int bound) throws IllegalArgumentException {
     super(2, bound, index);
   }
 
   // Copy constructor
-  public Node2D (Node2D node) {
+  public Point2D(Point2D node) {
     super(List.of(node.getX(), node.getY()), node.getIndex());
   }
 
@@ -25,7 +25,7 @@ public class Node2D extends Node {
    * given two points and the line that intersect them
    * tells the angle between p1-p2-p3
    */
-  public double angleBetweenNodes(Node2D A, Node2D C) {
+  public double angleBetweenNodes(Point2D A, Point2D C) {
     double a = Math.sqrt(
         Math.pow((A.getX() - getX()), 2) + Math.pow( (A.getY() - getY()), 2));
     double b = Math.sqrt(
@@ -38,7 +38,7 @@ public class Node2D extends Node {
 
   // if the node is contained between a triangle
   // if this is one of the vertex is not considered insides
-  public boolean isContained(Node2D A, Node2D B, Node2D C){
+  public boolean isContained(Point2D A, Point2D B, Point2D C){
     if(this.equals(A) || this.equals(B) || this.equals(C)) return false;
     double areaABC = triangleArea(A, B, C);
     double areaABP = triangleArea(A, B, this);
@@ -48,7 +48,7 @@ public class Node2D extends Node {
     return (areaABC == (areaABP + areaBCP + areaCAP));
   }
 
-  private double triangleArea(Node2D A, Node2D B, Node2D C) {
+  private double triangleArea(Point2D A, Point2D B, Point2D C) {
     return Math.abs(A.getX() * (B.getY() - C.getY()) +
         B.getX() * (C.getY() - A.getY()) +
         C.getX() * (A.getY() - B.getY())) / 2.0;
