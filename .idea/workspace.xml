@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="heuristics are now reusable">
-      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/PointHeuristic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Edge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/JarvisMarch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/JarvisMarch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -318,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722775252746</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="heuristics are now reusable">
+      <created>1722783931644</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1722783931644</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

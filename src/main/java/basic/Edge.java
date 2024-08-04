@@ -1,9 +1,6 @@
 package basic;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-
 import static utils.Constants.GraphConstants.ORIGIN_X;
 import static utils.Constants.GraphConstants.ORIGIN_Y;
 
@@ -95,46 +92,20 @@ public class Edge {
     return other.n1.equals(n2);
   }
 
-  public void setn1(Node2D n1) {
-    this.n1 = n1;
-  }
-
-  public void setn2(Node2D n2) {
-    this.n2 = n2;
-  }
-
   public void extendEdgeN1(Edge toWhichExtend){
     Node2D intersectionSucc = toWhichExtend.calcIntersectionWithLine(getLineParameters()[0],
         getLineParameters()[1],
         getLineParameters()[2]);
-    n1 = intersectionSucc;
-    toWhichExtend.n2 = intersectionSucc;
+    n1 = new Node2D(n1.getIndex(), intersectionSucc.getX(), intersectionSucc.getY());
+    toWhichExtend.n2 = n1;
   }
   public void extendEdgeN2(Edge toWhichExtend){
     Node2D intersectionPrev = toWhichExtend.calcIntersectionWithLine(getLineParameters()[0],
         getLineParameters()[1],
         getLineParameters()[2]);
-    n2 = intersectionPrev;
-    toWhichExtend.n1 = intersectionPrev;
+    n2 = new Node2D(n2.getIndex(), intersectionPrev.getX(), intersectionPrev.getY());
+    toWhichExtend.n1 = n2;
   }
-
-  public List<Node2D> getSample(int num) {
-    double len = getLength();
-    List<Node2D> nodes = new ArrayList<>();
-
-    // Calcola l'incremento t
-    double increment = 1.0 / (num);
-
-    for (int i = 1; i < num+1; i++) {
-      double t = i * increment;
-      nodes.add(new Node2D(-1,
-          (int) (n1.getX() + t * (n2.getX() - n1.getX())),
-          (int) (n1.getY() + t * (n2.getY() - n1.getY()))));
-    }
-
-    return nodes;
-  }
-
 
   public double getLength(){
     return Math.sqrt(Math.pow(n1.getX() - n2.getX(), 2)+ Math.pow(n1.getY() - n2.getY(), 2));
