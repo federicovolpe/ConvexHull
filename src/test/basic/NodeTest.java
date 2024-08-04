@@ -62,4 +62,11 @@ class NodeTest {
     assertEquals(expected, Sut.equals(n));
   }
 
+  @Test
+  void toPolymake(){
+    assertEquals("[1,1,1,1]",Sut.toPolymakeVert());
+    Node n = new Node(List.of(1,2,3,4,5), 0);
+    assertEquals("[1,1,2,3,4,5]",n.toPolymakeVert());
+  }
+
 }

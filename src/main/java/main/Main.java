@@ -19,12 +19,20 @@ import utils.utilMethods;
 
 public class Main {
   public static void main(String[] args) {
-
-    demonstrateHeuristics(400, 5, Shapes.RECTANGLE.getPolygon());
+    System.out.println(toPolymake(Shapes.TRIANGLE.getPolygon().getSample(60)));
+    System.out.println(Shapes.TRIANGLE.getPolygon().toPolymake());
+    //demonstrateHeuristics(400, 5, Shapes.RECTANGLE.getPolygon());
     //demonstrateHeuristics(30, 5);
     //demonstrateHeuristics(50, 5);
 
     //iterationStatistics();
+  }
+  private static String toPolymake(List<Node2D> nodes){
+    StringBuilder sb = new StringBuilder("new Polytope(POINTS =>[");
+    for (Node2D n: nodes) {
+      sb.append(n.toPolymakeVert()).append(",\n");
+    }
+    return sb.substring(0,sb.length()-2)+ "]);";
   }
 
   public static void demonstrateHeuristics(int nNodes, int desiredEdges, Polygon p){
@@ -84,7 +92,6 @@ public class Main {
       System.out.println(i +" "+ jaccardIndexes[i]/ iterations);
     }
   }
-
 
   public static double jaccardIndex(List<Node2D> hullA, List<Node2D> hullB) {
     GeometryFactory geometryFactory = new GeometryFactory();

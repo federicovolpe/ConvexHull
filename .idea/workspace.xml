@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="general polygon implemented">
-      <change afterPath="$PROJECT_DIR$/src/main/java/shapes/ShapeGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/shapes/Shapes.java" afterDir="false" />
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="regular shapes tested">
+      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/LessArea.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/basic/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/NodeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,15 +26,15 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="tmp" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -124,22 +126,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Node2DTest.isContained (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ConvexHull" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="basic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="basic" />
-      <option name="MAIN_CLASS_NAME" value="basic.Node2DTest" />
-      <option name="METHOD_NAME" value="isContained(boolean,int,int,int,int,int,int,int)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="NodeTest.calcDistance_sameDimension (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConvexHull" />
       <option name="PACKAGE_NAME" value="" />
@@ -160,13 +146,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NodeTest.toPolymake" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConvexHull" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="basic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="basic" />
+      <option name="MAIN_CLASS_NAME" value="basic.NodeTest" />
+      <option name="METHOD_NAME" value="toPolymake" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.NodeTest.toPolymake" />
         <item itemvalue="JUnit.EdgeTest.getSample" />
         <item itemvalue="JUnit.NodeTest.samePos" />
         <item itemvalue="JUnit.NodeTest.calcDistance_sameDimension (1)" />
-        <item itemvalue="JUnit.Node2DTest.isContained (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -330,7 +332,8 @@
     <MESSAGE value="drawable edges" />
     <MESSAGE value="initialized triangle shape" />
     <MESSAGE value="general polygon implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="general polygon implemented" />
+    <MESSAGE value="regular shapes tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="regular shapes tested" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

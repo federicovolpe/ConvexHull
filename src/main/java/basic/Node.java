@@ -81,6 +81,15 @@ public class Node {
       return this.dim == other.dim;
     }
 
+    public String toPolymakeVert(){
+      StringBuilder sb = new StringBuilder();
+      sb.append("[1");
+      for (Integer c: coordinates) {
+        sb.append(",").append(c / 50);
+      }
+      return sb +"]";
+    }
+
     @Override
     public String toString(){
       StringBuilder sb = new StringBuilder();

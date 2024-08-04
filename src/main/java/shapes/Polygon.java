@@ -95,4 +95,12 @@ public class Polygon {
     }
   }
 
+  public String toPolymake(){
+    StringBuilder sb = new StringBuilder("new Polytope(POINTS =>[");
+    for (Node2D n: vertices) {
+      sb.append(n.toPolymakeVert()).append(",\n");
+    }
+    return sb.substring(0,sb.length()-2) + "]);";
+  }
+
 }
