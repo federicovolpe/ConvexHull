@@ -4,25 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="heuristics are now reusable">
-      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Edge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Point2D.java" afterDir="false" />
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="refactoring: renming node to point">
+      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/EdgeExtension.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/PointHeuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/PointHeuristic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/JarvisMarch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/JarvisMarch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Shapes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Shapes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/utilMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/utilMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/basic/Node2DTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/Point2DTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/basic/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/PointTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +24,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -332,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722783931644</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="refactoring: renming node to point">
+      <created>1722806428377</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1722806428377</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -367,7 +362,8 @@
     <MESSAGE value="regular shapes tested" />
     <MESSAGE value="red: resettable heuristic" />
     <MESSAGE value="heuristics are now reusable" />
-    <option name="LAST_COMMIT_MESSAGE" value="heuristics are now reusable" />
+    <MESSAGE value="refactoring: renming node to point" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring: renming node to point" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

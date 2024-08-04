@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.swing.JFrame;
 
 import heuristics.*;
+import heuristics.fromConvexHull.*;
 import org.locationtech.jts.geom.*;
 import basic.Edge;
 import basic.Point2D;
@@ -27,7 +28,7 @@ public class Main {
 
     //displayHeurisitc(heuristics, rndNodesGenerator2D(20), 5);
 
-    iterationStatistics(heuristics, 4, 100, 100);
+    iterationStatistics(heuristics, 4, 30, 100);
   }
   private static String toPolymake(List<Point2D> points){
     StringBuilder sb = new StringBuilder("new Polytope(POINTS =>[");

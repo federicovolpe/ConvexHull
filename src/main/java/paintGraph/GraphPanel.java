@@ -10,7 +10,7 @@ import javax.swing.*;
 import static utils.Constants.GraphConstants.*;
 
 public class GraphPanel extends JPanel {
-  private final List<Point2D> points;
+  private final List<Point2D> nodes;
   private final List<Edge> edges ;
   private final List<Heuristic> heuristics ;
   protected LetterGenerator letterGenerator = new LetterGenerator();
@@ -23,7 +23,7 @@ public class GraphPanel extends JPanel {
    */
   public GraphPanel(final List<Point2D> nodes, final List<Edge> edges, List<Heuristic> heuristics) {
     this.heuristics = heuristics;
-    this.points = nodes;
+    this.nodes = nodes;
     this.edges = edges;
     int biggestD = 0;
     for (Point2D n : nodes) {
@@ -53,7 +53,7 @@ public class GraphPanel extends JPanel {
   }
 
   protected void drawNodes(Graphics g) {
-    for (Point2D n : points) n.draw(g, true);
+    for (Point2D n : nodes) n.draw(g, true);
   }
 
   protected void drawEdges(Graphics2D g) {
