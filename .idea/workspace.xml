@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="regular shapes tested">
-      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/LessArea.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" afterDir="false" />
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="heuristics are now reusable">
+      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/PointHeuristic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingLargerAngle2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingSmallerAngle2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/basic/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/NodeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,7 +304,21 @@
       <option name="project" value="LOCAL" />
       <updated>1722244552560</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="polygon printing correctly">
+      <created>1722774231559</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1722774231559</updated>
+    </task>
+    <task id="LOCAL-00019" summary="red: resettable heuristic">
+      <created>1722775252746</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1722775252746</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,7 +351,9 @@
     <MESSAGE value="initialized triangle shape" />
     <MESSAGE value="general polygon implemented" />
     <MESSAGE value="regular shapes tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="regular shapes tested" />
+    <MESSAGE value="red: resettable heuristic" />
+    <MESSAGE value="heuristics are now reusable" />
+    <option name="LAST_COMMIT_MESSAGE" value="heuristics are now reusable" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

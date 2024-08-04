@@ -3,28 +3,20 @@ package heuristics;
 import basic.CircularList;
 import basic.Node2D;
 import main.JarvisMarch;
-
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-import static utils.Constants.GraphConstants.*;
 
 /**
  * given a convex hull and a set of nodes this heuristic based algorithm tries to find an approximation of the
  * convex hull of n edges by selecting the most outer nodes of the convex hull from the center of mass
  */
-public class DistanceFromG extends Heuristic{
-    private final Node2D centerOfMass;
-    private final List<Node2D> convexHull ;
-
-    public DistanceFromG(int n, List<Node2D> convexHull, List<Node2D> allNodes, Color c){
-        super(c);
-        centerOfMass = getG(convexHull);
-        List<Node2D> chosenNodes = selectNodes(n, allNodes);
-        this.convexHull = new CircularList<>(new JarvisMarch(chosenNodes).getHullNodes());
+public class DistanceFromG extends PointHeuristic{
+    public DistanceFromG(Node2D centerOfMass, List<Node2D> allNodes, Color c){
+        super(centerOfMass, allNodes, c);
     }
 
-    private List<Node2D> selectNodes(int n, List<Node2D> allNodes){
+    private List<Node2D> selectNodes(int n){
         List<Node2D> chosenNodes = new ArrayList<>();
         allNodes.sort(Collections.reverseOrder(Comparator.comparing((Node2D node) -> node.calcDistance(centerOfMass))));
 
@@ -68,56 +60,9 @@ public class DistanceFromG extends Heuristic{
         }
     }
 
-
-    /**
-     * returns the center of mass of the given ConvexHull
-     * @param convexHull list of edges of the convexhull
-     */
-    private Node2D getG(List<Node2D> convexHull) {
-        int x = 0;
-        int y = 0;
-        for (Node2D n : convexHull) {
-            x += n.getX();
-            y += n.getY();
-        }
-        x /= convexHull.size();
-        y /= convexHull.size();
-
-        //List<Integer> coord = new ArrayList<>(coordinates);
-        return new Node2D(100, x, y);
-    }
-
-    // about drawing the heuristic
-    public void draw(Graphics g) {
-        g.setColor(c);
-        for (Node2D n : convexHull) {
-            int x = ORIGIN_X + n.getX() - (int)(POINT_DIM * .3);
-            int y = ORIGIN_Y - n.getY() - (int)(POINT_DIM * .3);
-            g.fillOval(x, y, (int) (POINT_DIM * .7), (int) (POINT_DIM * .7));
-        }
-        g.setColor(Color.BLACK);
-        int x = ORIGIN_X + centerOfMass.getX() - POINT_DIM /2;
-        int y = ORIGIN_Y - centerOfMass.getY() - POINT_DIM /2;
-        g.fillOval(x, y, POINT_DIM, POINT_DIM);
-        drawEdges(g);
-    }
-
-    protected void drawEdges(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;  // Cast to Graphics2D
-        g2.setColor(c);
-
-        for (Node2D n : convexHull) {
-            //System.out.println("drawing line : " + e);
-            g.drawLine(n.getX() + ORIGIN_X,
-                ORIGIN_Y - n.getY(),
-                convexHull.get(convexHull.indexOf(n) +1).getX() + ORIGIN_X,
-                ORIGIN_Y - convexHull.get(convexHull.indexOf(n) +1).getY());
-        }
-    }
-
-    @Override
-    public List<Node2D> getHullNodes() {
-        return convexHull;
+    public void calcConvexHull(int n) {
+        List<Node2D> chosenNodes = selectNodes(n);
+        convexHull = new CircularList<>(new JarvisMarch(chosenNodes).getHullEdges());
     }
 
 }

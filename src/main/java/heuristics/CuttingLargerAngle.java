@@ -7,14 +7,8 @@ import java.util.List;
 
 public class CuttingLargerAngle extends CuttingNodes {
 
-  /**
-   * constructor which instanciates all the computation
-   *
-   * @param n          number of desired edges
-   * @param convexHull official convex hull
-   */
-  public CuttingLargerAngle(int n, List<Edge> convexHull, Color c) {
-    super(n, convexHull, c);
+  public CuttingLargerAngle(List<Edge> convexHull, Color c) {
+    super(convexHull, c);
   }
 
   protected void applyCut(){

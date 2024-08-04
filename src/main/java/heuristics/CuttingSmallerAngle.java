@@ -15,14 +15,8 @@ import java.util.List;
  */
 public class CuttingSmallerAngle extends CuttingNodes {
 
-
-  /**
-   * constructor which instanciates all the computation
-   * @param n number of desired edges
-   * @param convexHull official convex hull
-   */
-  public CuttingSmallerAngle(int n, final List<Edge> convexHull, Color c) {
-    super(n, convexHull, c);
+  public CuttingSmallerAngle(final List<Edge> convexHull, Color c) {
+    super(convexHull, c);
   }
 
   /**
