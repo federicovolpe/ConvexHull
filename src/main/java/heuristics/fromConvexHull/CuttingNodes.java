@@ -1,11 +1,13 @@
-package heuristics;
+package heuristics.fromConvexHull;
 
 import basic.CircularList;
 import basic.Edge;
+import heuristics.Heuristic;
+
 import java.awt.*;
 import java.util.List;
 
-public abstract class CuttingNodes extends Heuristic{
+public abstract class CuttingNodes extends Heuristic {
 
   protected CuttingNodes(final List<Edge> convexHull, Color c) {
     super(c);

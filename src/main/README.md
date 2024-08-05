@@ -14,6 +14,8 @@ procedono per semplificazione di questo tramite approssimazioni iterative.
 
 Una prima ipotesi per l'approssimazione del guscio convesso con un numero limitato di lati è implementata in [CuttingSmallerAngles](../../../tesi2/ConvexHull/src/heuristics/CuttingSmallerAngles.java). Questo algoritmo prevede la classificazione e lo scarto dei vertici che creano gli angoli interni al poliedro che siano più acuti. Si presume che gli angoli più acuti possano essere formati dai vertici che possono essere considerati outlier.
 
+esempi :
+
 <div style="display: flex; justify-content: space-between;">
     <img src="resources/CuttingSmallerAngles/10-5.png" alt="Image 1" width="30%">
     <img src="resources/CuttingSmallerAngles/30-5.png" alt="Image 2" width="30%">

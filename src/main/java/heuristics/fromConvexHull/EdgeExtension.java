@@ -1,14 +1,13 @@
-package heuristics;
+package heuristics.fromConvexHull;
 
 import basic.Edge;
 import basic.Point2D;
-
 import java.awt.*;
 import java.util.List;
 
-public class CuttingSmallerAngle2 extends CuttingSmallerAngle {
+public abstract class EdgeExtension extends CuttingNodes {
 
-  public CuttingSmallerAngle2(final List<Edge> convexHull, Color c) {
+  public EdgeExtension (final List<Edge> convexHull, Color c) {
     super(convexHull, c);
   }
 
@@ -43,4 +42,5 @@ public class CuttingSmallerAngle2 extends CuttingSmallerAngle {
     prev.extendEdgeN2(toExtend);
     succ.extendEdgeN1(toExtend);
   }
+
 }
