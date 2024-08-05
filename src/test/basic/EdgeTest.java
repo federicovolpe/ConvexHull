@@ -72,4 +72,14 @@ class EdgeTest {
     assertEquals(expY2, Sut.n2().getY());
   }
 
+  @ParameterizedTest
+  @CsvSource({
+      "0, 0, 0, 0",
+      "10, 10, 10, 10",
+      "2, 2, 0, 4"
+  })
+  void projection (int expX, int expY, int x , int y) {
+    assertEquals(new Point2D(-1, expX, expY), Sut.projection(new Point2D(1, x, y)));
+  }
+
 }

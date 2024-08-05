@@ -3,7 +3,6 @@ package heuristics.edgeChoice;
 import basic.CircularList;
 import basic.Edge;
 import heuristics.Heuristic;
-
 import java.awt.*;
 import java.util.List;
 
@@ -20,10 +19,14 @@ public class LessArea extends Heuristic {
 
   @Override
   public void calcConvexHull(int n) {
-    //extend(selectEdges(n));
+    connectEdges(selectEdges(n));
   }
 
-  private void extendEdges (List<Edge> edges) {
+  private List<Edge> selectEdges(int n) {
+    return null;
+  }
+
+  private void connectEdges(List<Edge> edges){
 
   }
 }

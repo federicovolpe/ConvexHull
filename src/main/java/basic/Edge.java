@@ -107,6 +107,21 @@ public class Edge {
     toWhichExtend.n1 = n2;
   }
 
+  /**
+   * project the specified point onto an edge
+   * it uses the formulae for the minimization of the distance point - line
+   * @param p point to project
+   * @return the point p' representing the projection
+   */
+  public Point2D projection (Point2D p){
+    int[] params = getLineParameters();
+    double cf = (params[0] * p.getX() + params[1] * p.getY() + params[2]) /
+        (Math.pow(params[0], 2) + Math.pow(params[1],2)); // common factor
+    int x = (int)(p.getX() - params[0] * cf);
+    int y = (int)(p.getY() - params[1] * cf);
+    return new Point2D(-p.getIndex(), x, y);
+  }
+
   public double getLength(){
     return Math.sqrt(Math.pow(n1.getX() - n2.getX(), 2)+ Math.pow(n1.getY() - n2.getY(), 2));
   }
