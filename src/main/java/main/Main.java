@@ -1,35 +1,43 @@
 package main;
 
-import static java.awt.Color.*;
-import static utils.utilMethods.rndNodesGenerator2D;
-
+import static java.awt.Color.BLUE;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.JFrame;
 
-import heuristics.*;
-import heuristics.fromConvexHull.*;
-import org.locationtech.jts.geom.*;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
+
 import basic.Edge;
 import basic.Point2D;
+import heuristics.Heuristic;
+import heuristics.PointHeuristic;
+import heuristics.fromConvexHull.CuttingNodes;
+import heuristics.fromConvexHull.CuttingSmallerAngle2;
 import paintGraph.GraphPanel;
 import paintGraph.GraphWithPoints;
+import static utils.utilMethods.rndNodesGenerator2D;
 
 public class Main {
   public static void main(String[] args) {
     List<Heuristic> heuristics = List.of(
-        new CuttingSmallerAngle(new ArrayList<>(), GREEN),
-        new CuttingSmallerAngle2(new ArrayList<>(), BLUE),
-        new CuttingLargerAngle(new ArrayList<>(), RED),
-        new CuttingLargerAngle2(new ArrayList<>(), YELLOW),
-        new DistanceFromG(null, new ArrayList<>(), ORANGE));
+        //new CuttingSmallerAngle(new ArrayList<>(), GREEN),
+        new CuttingSmallerAngle2(new ArrayList<>(), BLUE));
+        //new CuttingLargerAngle(new ArrayList<>(), RED),
+        //new CuttingLargerAngle2(new ArrayList<>(), YELLOW),
+        //new DistanceFromG(null, new ArrayList<>(), ORANGE));
 
-    //displayHeurisitc(heuristics, rndNodesGenerator2D(20), 5);
+    // displayHeurisitc(heuristics, rndNodesGenerator2D(10), 5);
+    // displayHeurisitc(heuristics, rndNodesGenerator2D(30), 5);
+     displayHeurisitc(heuristics, rndNodesGenerator2D(50), 5);
 
-    iterationStatistics(heuristics, 4, 30, 100);
+    //iterationStatistics(heuristics, 4, 30, 100);
   }
+
   private static String toPolymake(List<Point2D> points){
     StringBuilder sb = new StringBuilder("new Polytope(POINTS =>[");
     for (Point2D n: points) {
