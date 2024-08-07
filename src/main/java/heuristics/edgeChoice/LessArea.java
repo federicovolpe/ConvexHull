@@ -3,7 +3,7 @@ package heuristics.edgeChoice;
 import basic.CircularList;
 import basic.Edge;
 import basic.Point2D;
-import heuristics.fromConvexHull.CuttingNodes;
+import heuristics.FromCH;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * considering all the edges, the chosen are the one which if prolungated
  * create the smallest outside area from the polygon
  */
-public class LessArea extends CuttingNodes {
+public class LessArea extends FromCH implements SelectEdges{
 
   public LessArea(List<Edge> convexHull, Color c) {
     super(convexHull, c);
@@ -29,7 +29,7 @@ public class LessArea extends CuttingNodes {
 
     System.out.println("\nbest edges: ");
     for(Edge e : selected) System.out.println(e);
-    sortBByA(selected);
+    sortBByA(convexHull, selected);
     System.out.println("\nsorted: ");
     for(Edge e : selected) System.out.println(e);
 
@@ -38,16 +38,7 @@ public class LessArea extends CuttingNodes {
   }
 
   @Override
-  protected void applyCut() {
-
-  }
-
-  @Override
-  protected int selectAngle() {
-    return 0;
-  }
-
-  private List<Edge> selectEdges(int n) {
+  public List<Edge> selectEdges(int n) {
     List<Edge> sortedEdges = new ArrayList<>(convexHull);
 
     sortedEdges.sort((e1, e2) -> {
@@ -55,22 +46,9 @@ public class LessArea extends CuttingNodes {
       double area2 = calcProjectedArea(e2);
       return Double.compare(area1, area2);
     });
-
-    return sortedEdges.subList(0,n);
-  }
-
-  /**
-   * sort the list in order of apperance in the convexHull
-   * @param edges selected edges
-   */
-  private void sortBByA(List<Edge> edges) {
-    // Create a map from elements in A to their indices
-    Map<Edge, Integer> indexMap = new HashMap<>();
-    for (int i = 0; i < convexHull.size(); i++)
-      indexMap.put(convexHull.get(i), i);
-
-    // Sort B using the indices from the map
-    edges.sort(Comparator.comparingInt(indexMap::get));
+    System.out.println("sorted edges > " + sortedEdges.size());
+    System.out.println("total edges > " + convexHull.size());
+    return sortedEdges.subList(0, n-1);
   }
 
   /**
@@ -83,8 +61,6 @@ public class LessArea extends CuttingNodes {
     Edge extremeL = estremi.get(0);
     Edge extremeR = estremi.get(1);
 
-    //System.out.println(e +" :\n"+estremi );
-
     // calcolare la lista di lati contenuti fra i due
     List<Edge> betweenEd = betweenEdges(extremeL, extremeR);
     //Left - LeftP
@@ -93,11 +69,15 @@ public class LessArea extends CuttingNodes {
     Edge pConnection = new Edge(e.projection(extremeR.n1()), e.projection(extremeL.n1()));
     betweenEd.addAll(List.of(projectR, pConnection, projectL));
 
-
     // calcolare l'area compresa con la proiezione e i punti
     return calcArea(getHullNodes(betweenEd));
   }
 
+  /**
+   * gauss formula for calculating the area of a polygon
+   * @param points set of the vertices of the polygon
+   * @return the area
+   */
   private double calcArea(List<Point2D> points) {
     int n = points.size();
     double area = 0;
@@ -130,24 +110,16 @@ public class LessArea extends CuttingNodes {
   }
 
   /**
-   * return a list of nodes (vertices of the polygon)
-   * @param hull list of all the edges of the polygon
-   * @return list of vertices
+   * just like in the explainatory image finds the two points which projection
+   * onto the selected edge are the furhtest
+   * @param e edge onto which project
+   * @param edges convex hull
+   * @return a list of two nodes
    */
-  private List<Point2D> getHullNodes(List<Edge> hull) {
-    List<Point2D> nodes = new ArrayList<>();
-    for (Edge e : hull)
-      nodes.add(e.n1());
-    return nodes;
-  }
-
   private List<Edge> findFurthestProjectionNodes (Edge e, List<Edge> edges){
     Edge eA = e;
     Edge eB = e;
-    Point2D furthestFromA = e.n1();
-    Point2D furthestFromB = e.n2();
     double maxDistance = e.n1().calcDistance(e.n2());
-
 
     for (Edge e1: edges) {
       for(Edge e2: edges){
@@ -156,20 +128,16 @@ public class LessArea extends CuttingNodes {
 
           // to establish which is to the left and which on the right
           if(e.n1().calcDistance(e1.n1()) < e.n2().calcDistance(e1.n1())){ // n1 is closest to the first node (left)
-            furthestFromA = e1.n1();
             eA = e1;
-            furthestFromB = e2.n1();
             eB = e2;
           }else{
-            furthestFromA = e2.n1();
             eA = e2;
-            furthestFromB = e1.n1();
             eB = e1;
           }
         }
       }
     }
-    //return List.of(furthestFromA, furthestFromB);
+
     return List.of(eA, eB);
   }
 

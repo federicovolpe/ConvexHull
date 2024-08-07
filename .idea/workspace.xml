@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="lessArea working as expected">
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="updated readme info">
+      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/FromCH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/edgeChoice/SelectEdges.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/PointHeuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/FromPoints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Proportions.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/edgeChoice/LessArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/edgeChoice/LessArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/CuttingNodes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/CuttingSmallerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/CuttingSmallerAngle2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +30,8 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -108,17 +115,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EdgeTest.projection (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EdgeTest.projection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConvexHull" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="basic.*" />
+          <option name="PATTERN" value="heuristics.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="basic" />
       <option name="MAIN_CLASS_NAME" value="basic.EdgeTest" />
-      <option name="METHOD_NAME" value="projection(int,int,int,int)" />
+      <option name="METHOD_NAME" value="projection" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -128,13 +135,13 @@
       <module name="ConvexHull" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="basic.*" />
+          <option name="PATTERN" value="heuristics.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="basic" />
       <option name="MAIN_CLASS_NAME" value="basic.EdgeTest" />
-      <option name="METHOD_NAME" value="projection" />
+      <option name="METHOD_NAME" value="projection(int,int,int,int)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -154,7 +161,7 @@
       <module name="ConvexHull" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="basic.*" />
+          <option name="PATTERN" value="heuristics.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -367,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723018508958</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="updated readme info">
+      <created>1723020933176</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1723020933176</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -383,7 +397,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="updating images" />
     <MESSAGE value="GREEN: node.calcDistance" />
     <MESSAGE value="merging test" />
     <MESSAGE value="updated info" />
@@ -408,7 +421,8 @@
     <MESSAGE value="uptated readme info" />
     <MESSAGE value="point projection onto an edge" />
     <MESSAGE value="lessArea working as expected" />
-    <option name="LAST_COMMIT_MESSAGE" value="lessArea working as expected" />
+    <MESSAGE value="updated readme info" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated readme info" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

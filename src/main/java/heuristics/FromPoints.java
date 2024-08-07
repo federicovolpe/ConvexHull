@@ -7,11 +7,12 @@ import java.util.List;
 import static utils.Constants.GraphConstants.*;
 import static utils.Constants.GraphConstants.POINT_DIM;
 
-public abstract class PointHeuristic extends Heuristic {
+public abstract class FromPoints extends Heuristic {
+
   protected Point2D centerOfMass;
   protected List<Point2D> allNodes;
 
-  public PointHeuristic(Point2D centerOfMass, List<Point2D> allNodes, Color c) {
+  public FromPoints(Point2D centerOfMass, List<Point2D> allNodes, Color c) {
     super(c);
     this.centerOfMass = centerOfMass;
     this.allNodes = allNodes;

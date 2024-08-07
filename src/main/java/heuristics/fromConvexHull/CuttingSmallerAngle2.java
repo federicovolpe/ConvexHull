@@ -1,7 +1,6 @@
 package heuristics.fromConvexHull;
 
 import basic.Edge;
-
 import java.awt.*;
 import java.util.List;
 

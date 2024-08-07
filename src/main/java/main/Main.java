@@ -6,15 +6,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JFrame;
+
+import heuristics.DistanceFromG;
+import heuristics.FromCH;
 import heuristics.edgeChoice.LessArea;
+import heuristics.fromConvexHull.*;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import basic.Edge;
 import basic.Point2D;
 import heuristics.Heuristic;
-import heuristics.PointHeuristic;
-import heuristics.fromConvexHull.CuttingNodes;
+import heuristics.FromPoints;
 import paintGraph.GraphPanel;
 import paintGraph.GraphWithPoints;
 import static utils.utilMethods.rndNodesGenerator2D;
@@ -22,14 +25,14 @@ import static utils.utilMethods.rndNodesGenerator2D;
 public class Main {
   public static void main(String[] args) {
     List<Heuristic> heuristics = List.of(
-        //new CuttingSmallerAngle(new ArrayList<>(), GREEN),
-        //new CuttingSmallerAngle2(new ArrayList<>(), BLUE));
-        //new CuttingLargerAngle(new ArrayList<>(), RED),
-        //new CuttingLargerAngle2(new ArrayList<>(), YELLOW),
-        //new DistanceFromG(null, new ArrayList<>(), ORANGE),
+        new CuttingSmallerAngle(new ArrayList<>(), GREEN),
+        new CuttingSmallerAngle2(new ArrayList<>(), BLUE),
+        new CuttingLargerAngle(new ArrayList<>(), RED),
+        new CuttingLargerAngle2(new ArrayList<>(), YELLOW),
+        new DistanceFromG(null, new ArrayList<>(), ORANGE),
         new LessArea(new ArrayList<>(), GRAY));
 
-    displayHeurisitc(heuristics, rndNodesGenerator2D(50), 7);
+    displayHeurisitc(heuristics, rndNodesGenerator2D(20), 7);
     // displayHeurisitc(heuristics, rndNodesGenerator2D(30), 5);
     //displayHeurisitc(heuristics, rndNodesGenerator2D(50), 5);
 
@@ -60,8 +63,8 @@ public class Main {
     List<Edge> convexHull = jm.getHullEdges();
 
     for(Heuristic h : heuristics) {
-      if(h instanceof CuttingNodes) ((CuttingNodes) h).newData(convexHull);
-      if(h instanceof PointHeuristic) ((PointHeuristic) h).newData(getG(jm.getHullNodes()), points);
+      if(h instanceof FromCH) ((FromCH) h).newData(convexHull);
+      if(h instanceof FromPoints) ((FromPoints) h).newData(getG(jm.getHullNodes()), points);
       h.calcConvexHull(desiredEdges);
     }
 
@@ -85,7 +88,7 @@ public class Main {
         try {
           // init the heuristic
           if(h instanceof CuttingNodes) ((CuttingNodes) h).newData(convexHull);
-          if(h instanceof PointHeuristic) ((PointHeuristic) h).newData(getG(jm.getHullNodes()), points);
+          if(h instanceof FromPoints) ((FromPoints) h).newData(getG(jm.getHullNodes()), points);
 
           h.calcConvexHull(desiredEdges);
 

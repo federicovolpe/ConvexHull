@@ -11,7 +11,7 @@ import java.util.List;
  * given a convex hull and a set of nodes this heuristic based algorithm tries to find an approximation of the
  * convex hull of n edges by selecting the most outer nodes of the convex hull from the center of mass
  */
-public class DistanceFromG extends PointHeuristic{
+public class DistanceFromG extends FromPoints {
     public DistanceFromG(Point2D centerOfMass, List<Point2D> allNodes, Color c){
         super(centerOfMass, allNodes, c);
     }

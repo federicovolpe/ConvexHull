@@ -1,17 +1,14 @@
 package heuristics.fromConvexHull;
 
-import basic.CircularList;
 import basic.Edge;
-import heuristics.Heuristic;
-
+import heuristics.FromCH;
 import java.awt.*;
 import java.util.List;
 
-public abstract class CuttingNodes extends Heuristic {
+public abstract class CuttingNodes extends FromCH {
 
   protected CuttingNodes(final List<Edge> convexHull, Color c) {
-    super(c);
-    this.convexHull = new CircularList<>(convexHull);
+    super(convexHull, c);
   }
 
   public void calcConvexHull(int n){
@@ -19,9 +16,6 @@ public abstract class CuttingNodes extends Heuristic {
     while(this.convexHull.size() > n) applyCut();
   }
 
-  public void newData(List<Edge> newConvexHull){
-    this.convexHull = new CircularList<>(newConvexHull);
-  }
   protected abstract void applyCut();
   protected abstract int selectAngle();
 

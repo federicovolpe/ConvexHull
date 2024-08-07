@@ -54,4 +54,16 @@ public abstract class Heuristic {
             nodes.add(e.n1());
         return nodes;
     }
+
+    /**
+     * return a list of nodes (vertices of the polygon)
+     * @param hull list of all the edges of the polygon
+     * @return list of vertices
+     */
+    protected List<Point2D> getHullNodes(List<Edge> hull) {
+        List<Point2D> nodes = new ArrayList<>();
+        for (Edge e : hull)
+            nodes.add(e.n1());
+        return nodes;
+    }
 }
