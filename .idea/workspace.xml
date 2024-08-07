@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="uptated readme info">
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="lessArea working as expected">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/CircularList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/CircularList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/edgeChoice/LessArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/edgeChoice/LessArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,7 @@
       <recent name="heuristics" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EdgeTest.projection (1)">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="ConvexHull" />
@@ -168,9 +168,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.EdgeTest.projection (1)" />
         <item itemvalue="JUnit.EdgeTest.projection" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.PointTest.toPolymake" />
         <item itemvalue="JUnit.NodeTest.samePos" />
       </list>
@@ -353,7 +353,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722874763798</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="point projection onto an edge">
+      <created>1722896708100</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1722896708100</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -369,7 +376,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="upgrading to a maven project" />
     <MESSAGE value="updating images" />
     <MESSAGE value="GREEN: node.calcDistance" />
     <MESSAGE value="merging test" />
@@ -393,7 +399,9 @@
     <MESSAGE value="extracted common class ExtendEdges" />
     <MESSAGE value="reorganizing heuristics" />
     <MESSAGE value="uptated readme info" />
-    <option name="LAST_COMMIT_MESSAGE" value="uptated readme info" />
+    <MESSAGE value="point projection onto an edge" />
+    <MESSAGE value="lessArea working as expected" />
+    <option name="LAST_COMMIT_MESSAGE" value="lessArea working as expected" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

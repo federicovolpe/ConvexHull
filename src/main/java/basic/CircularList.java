@@ -7,7 +7,12 @@ public class CircularList<E> extends LinkedList<E> {
 
   public CircularList() {}
 
-  // Constructor that takes a List
+  /**
+   * constructor of a circular list starting from another list
+   * the elements are references to the element of the original list
+   * if the starting list is a list of edges the circular one has copies of the og elems
+   * @param list starting list
+   */
   public CircularList(List<E> list) {
     for (E element : list) {
       if (element instanceof Edge) {
@@ -18,12 +23,29 @@ public class CircularList<E> extends LinkedList<E> {
     }
   }
 
+  /**
+   * gets the next element of the list in a circular way
+   * @param current current element
+   * @return the next element from the given one
+   */
   public E getNext(E current) {
     int index = this.indexOf(current);
-    if (index == -1) {
-      throw new IllegalArgumentException("Element not found in the list.");
-    }
+    if (index == -1) throw new IllegalArgumentException("Element not found in the list.");
+
     int nextIndex = (index + 1) % this.size();
+    return this.get(nextIndex);
+  }
+
+  /**
+   * gets the previous element of the list in a circular way
+   * @param current current element
+   * @return the previous element from the given one
+   */
+  public E getPrev(E current) {
+    int index = this.indexOf(current);
+    if (index == -1) throw new IllegalArgumentException("Element not found in the list.");
+
+    int nextIndex = (index - 1) % this.size();
     return this.get(nextIndex);
   }
 
