@@ -145,7 +145,7 @@ centro di massa del corretto guscio convesso.
 
 #### 1. [Ipotesi di Algoritmo (Distance From G)](src/main/java/heuristics/DistanceFromG.java)
 
-Questo algoritmo prevede la ricerca dei nodi più distanti dal baricentro del guscio convesso. Ad ogni iterazione 
+Questo algoritmo prevede la ricerca dei nodi più distanti dal baricentro del guscio convesso. Ad ogni iterazione
 viene aggiunto un nuovo vertice e vengono rimossi i vertici che, con l'aggiunta di quest'ultimo, vengono inclusi nel poliedro.
 
 <p style="text-align: center;"><strong>Approssimazione con 5 lati</strong></p>
@@ -169,3 +169,22 @@ quando i punti si concentrano lungo due poli o presentano una densità elevata a
 l'approssimazione risulterà lontana dal reale convex hull.
 
 > **Indice di Jaccard**: ≈ 0.9
+
+
+## Algoritmi con scelta di Iperpiani
+
+A differenza degli algoritmi cutting edges, gli algoritmi a scelta di iperpiani selezionano in base a differenti
+criteri, n lati del poligono fornito in modo tale che se prolungati possano creare l'approssimazione migliore.
+
+
+#### 1. [Ipotesi di Algoritmo (Less Area)](src/main/java/heuristics/edgeChoice.java)
+
+L'algoritmo ipotizzato per evitare la natura combinatoria del problema di scelta di n lati per l'approssimazione,
+tende a cercare i lati che meglio possano rappresentare un lato del poligono selezionando quelli che tendono 
+a minimizzare l'area compresa fra essi e il poligono stesso come mostrato in figura.
+
+<div style="text-align: center; width: 80%;">
+        <img src="src/main/resources/demo_smaller_area.jpg" alt="Image 1" style="width: 100%;">
+        <p>dimostrazione del criterio di scelta del lato migliore</p>
+</div>
+
