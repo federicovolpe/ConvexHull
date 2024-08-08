@@ -11,15 +11,7 @@ public class CuttingLargerAngle extends CuttingNodes {
     super(convexHull, c);
   }
 
-  protected void applyCut(){
-    int selected = selectAngle();
-    Edge lowestA  = convexHull.get(selected);
-    Edge lowestB = convexHull.get(selected+1);
-
-    convexHull.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
-    convexHull.remove(lowestB);
-  }
-
+  @Override
   protected int selectAngle() {
     int indexToModify = -1;   // indice del lato da modificare
     double angle = 0;

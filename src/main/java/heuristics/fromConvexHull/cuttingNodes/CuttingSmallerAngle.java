@@ -19,18 +19,7 @@ public class CuttingSmallerAngle extends CuttingNodes {
     super(convexHull, c);
   }
 
-  /**
-   * from all the nodes in the convex hull remove the one with the most acute angle
-   */
-  protected void applyCut(){
-    int selected = selectAngle();
-    Edge lowestA  = convexHull.get(selected);
-    Edge lowestB = convexHull.get(selected+1);
-
-    convexHull.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
-    convexHull.remove(lowestB);
-  }
-
+  @Override
   protected int selectAngle() {
     int indexToModify = -1;   // indice del lato da modificare
     double angle = Double.MAX_VALUE;
