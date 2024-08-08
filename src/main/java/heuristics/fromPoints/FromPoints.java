@@ -20,12 +20,16 @@ public abstract class FromPoints extends Heuristic {
     this.allNodes = allNodes;
   }
 
+  /**
+   * resets the current algorithm and initializes it with new set of data
+   * @param centerOfMass heuristic point (the center of mass)
+   * @param allNodes all of the points for the ch calcuation
+   */
   public void newData(Point2D centerOfMass, List<Point2D> allNodes) {
     this.centerOfMass = centerOfMass;
     this.allNodes = allNodes;
   }
 
-  // about drawing the heuristic
   public void draw(Graphics g) {
     super.draw(g);
     g.setColor(Color.BLACK);

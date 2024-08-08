@@ -3,7 +3,6 @@ package main;
 
 import basic.Edge;
 import basic.Point2D;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,17 +29,15 @@ public class JarvisMarch {
             previous = current;
             current = best;
         } while (!current.equals(lowest));
-
-        /*System.out.println("completed convex hull : ");
-        for (Edge edge : convexHull) {
-            System.out.println(edge);
-        }*/
     }
 
     public List<Edge> getHullEdges(){
         return convexHull;
     }
 
+    /**
+     * @return a list containing all the convex hull vertices
+     */
     public List<Point2D> getHullNodes() {
         List<Point2D> nodes = new ArrayList<>();
         for (Edge e : convexHull)
@@ -48,9 +45,14 @@ public class JarvisMarch {
         return nodes;
     }
 
-    private static Point2D findLowest(List<Point2D> nodes) {
-        Point2D lowest = nodes.get(0);
-        for (Point2D n : nodes) {
+    /**
+     * finds the point of the given set which has the lower Y coordinate
+     * @param points list of points to check
+     * @return single point with the lowest Y coor
+     */
+    private static Point2D findLowest(List<Point2D> points) {
+        Point2D lowest = points.get(0);
+        for (Point2D n : points) {
             lowest = (n.getY() < lowest.getY()) ? n : lowest;
         }
         return lowest;

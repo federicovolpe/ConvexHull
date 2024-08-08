@@ -42,15 +42,26 @@ public abstract class Heuristic {
         drawNodes(g);
     }
 
+    /**
+     * draws all the edges of the convex hull
+     * @param g graphics to use
+     */
     public void drawEdges(Graphics g){
         for (Edge e : convexHull) e.draw(g);
     }
 
+    /**
+     * draws all the points interested in the calculation of the convex hull
+     * @param g graphics to use
+     */
     public void drawNodes(Graphics g) {
         for (Edge e : convexHull)
             e.n1().draw(g, false);
     }
 
+    /**
+     * @return the vertices of the convex hull
+     */
     public List<Point2D> getHullNodes(){
         List<Point2D> nodes = new ArrayList<>();
         for (Edge e : convexHull)

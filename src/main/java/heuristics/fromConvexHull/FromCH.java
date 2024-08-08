@@ -14,6 +14,10 @@ public abstract class FromCH extends Heuristic {
     this.convexHull = new CircularList<>(convexHull);
   }
 
+  /**
+   * resets the current algorithm and initializes it with new set of data
+   * @param newConvexHull new set of data
+   */
   public void newData(List<Edge> newConvexHull){
     this.convexHull = new CircularList<>(newConvexHull);
   }

@@ -4,66 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="documentated all the polygon statistics">
-      <change afterPath="$PROJECT_DIR$/README.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngles/10-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngles/30-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngles/50-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngles2/10-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngles2/30-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngles2/50-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngles/10-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngles/30-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngles/50-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngles2/10-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngles2/30-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngles2/50-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/DistanceFromG/10-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/DistanceFromG/30-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/DistanceFromG/50-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/LessArea/10-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/LessArea/30-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/LessArea/50-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/demo_distance_g.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/demo_larger_angle.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/demo_smaller_angle.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/demo_smaller_area.jpg" afterDir="false" />
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="refactoring: applycut moved in the cuttingNodes class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/FromCH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/FromCH.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/FromPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/FromPoints.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/edgeChoice/LessArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/edgeChoice/LessArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/edgeChoice/SelectEdges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/edgeChoice/SelectEdges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/CuttingLargerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/CuttingLargerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingNodes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/CuttingSmallerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/CuttingSmallerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/EdgeExtension.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/EdgeExtension.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/FromCH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/FromCH.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/EdgeExtension.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/EdgeExtension.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/edgeChoice/LessArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/edgeChoice/LessArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/FromPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/FromPoints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/JarvisMarch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/JarvisMarch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Shapes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Shapes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingLargerAngles/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingLargerAngles/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingLargerAngles/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingLargerAngles2/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingLargerAngles2/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingLargerAngles2/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingSmallerAngles/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingSmallerAngles/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingSmallerAngles/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingSmallerAngles2/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingSmallerAngles2/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingSmallerAngles2/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DistanceFromG/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DistanceFromG/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DistanceFromG/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/demo_larger_angle.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/demo_smaller_angle.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/demo_smaller_area.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="polygon_statistics" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -428,7 +377,21 @@
       <option name="project" value="LOCAL" />
       <updated>1723020933176</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="documentated all the polygon statistics">
+      <created>1723126926126</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1723126926126</updated>
+    </task>
+    <task id="LOCAL-00029" summary="refactoring: applycut moved in the cuttingNodes class">
+      <created>1723129289360</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1723129289360</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,7 +407,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="merging test" />
     <MESSAGE value="updated info" />
     <MESSAGE value="implemented inheritance" />
     <MESSAGE value="updating readme" />
@@ -469,7 +431,8 @@
     <MESSAGE value="lessArea working as expected" />
     <MESSAGE value="updated readme info" />
     <MESSAGE value="documentated all the polygon statistics" />
-    <option name="LAST_COMMIT_MESSAGE" value="documentated all the polygon statistics" />
+    <MESSAGE value="refactoring: applycut moved in the cuttingNodes class" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring: applycut moved in the cuttingNodes class" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

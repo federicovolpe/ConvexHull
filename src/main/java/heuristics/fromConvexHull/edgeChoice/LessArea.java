@@ -141,6 +141,10 @@ public class LessArea extends FromCH implements SelectEdges{
     return List.of(eA, eB);
   }
 
+  /**
+   * given a set of edges, connects them to form a polygon
+   * @param edges edges to connect
+   */
   private void connectEdges(CircularList<Edge> edges){
     for(Edge curr : edges){
       curr.extendEdgeN2(edges.getNext(curr));
