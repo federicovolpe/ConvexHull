@@ -1,4 +1,4 @@
-package heuristics;
+package heuristics.fromPoints;
 
 import basic.CircularList;
 import basic.Point2D;

@@ -1,6 +1,8 @@
-package heuristics;
+package heuristics.fromPoints;
 
 import basic.Point2D;
+import heuristics.Heuristic;
+
 import java.awt.*;
 import java.util.List;
 

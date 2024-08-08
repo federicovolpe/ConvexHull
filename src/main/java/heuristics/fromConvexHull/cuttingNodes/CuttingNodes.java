@@ -1,7 +1,7 @@
-package heuristics.fromConvexHull;
+package heuristics.fromConvexHull.cuttingNodes;
 
 import basic.Edge;
-import heuristics.FromCH;
+import heuristics.fromConvexHull.FromCH;
 import java.awt.*;
 import java.util.List;
 

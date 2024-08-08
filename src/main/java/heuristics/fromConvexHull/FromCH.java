@@ -1,10 +1,11 @@
-package heuristics;
+package heuristics.fromConvexHull;
+
+import java.awt.Color;
+import java.util.List;
 
 import basic.CircularList;
 import basic.Edge;
-import basic.Point2D;
-import java.awt.*;
-import java.util.List;
+import heuristics.Heuristic;
 
 public abstract class FromCH extends Heuristic {
 

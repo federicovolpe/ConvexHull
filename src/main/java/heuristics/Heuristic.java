@@ -1,11 +1,13 @@
 package heuristics;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
+
 import basic.CircularList;
 import basic.Edge;
 import basic.Point2D;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * a heuristical algorithm can be executed , drawn or recalculated
@@ -34,6 +36,7 @@ public abstract class Heuristic {
      * drawing the nodes and the edges calculated by the heuristic
      */
     public void draw(Graphics g) {
+        System.out.println("printing...");
         g.setColor(c);
         drawEdges(g);
         drawNodes(g);

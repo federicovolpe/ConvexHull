@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Polygon {
-
   protected CircularList<Point2D> vertices;
   protected CircularList<Edge> edges;
 
@@ -57,18 +56,18 @@ public class Polygon {
 
       // Genera un punto casuale nel triangolo selezionato
       Triangle t = triangles.get(triangleIndex);
-      points.add(generateRandomPointInTriangle(t, rand));
+      points.add(generateRandomPointInTriangle(i, t, rand));
     }
 
     return points;
   }
 
-  private Point2D generateRandomPointInTriangle(Triangle t, Random rand) {
+  private Point2D generateRandomPointInTriangle(int index, Triangle t, Random rand) {
     double r1 = Math.sqrt(rand.nextDouble());
     double r2 = rand.nextDouble();
     int x = (int) ((1 - r1) * t.a.getX() + (r1 * (1 - r2)) * t.b.getX() + (r1 * r2) * t.c.getX());
     int y = (int) ((1 - r1) * t.a.getY() + (r1 * (1 - r2)) * t.b.getY() + (r1 * r2) * t.c.getY());
-    return new Point2D(-1, x, y);
+    return new Point2D(index, x, y);
   }
 
   private List<Triangle> triangulate() {
@@ -93,6 +92,10 @@ public class Polygon {
           b.getX() * (c.getY() - a.getY()) +
           c.getX() * (a.getY() - b.getY()));
     }
+  }
+
+  public int getEdgeNumber() {
+    return vertices.size();
   }
 
   public String toPolymake(){

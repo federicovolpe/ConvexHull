@@ -1,12 +1,13 @@
-package heuristics.edgeChoice;
+package heuristics.fromConvexHull.edgeChoice;
+
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import basic.CircularList;
 import basic.Edge;
 import basic.Point2D;
-import heuristics.FromCH;
-import java.awt.*;
-import java.util.*;
-import java.util.List;
+import heuristics.fromConvexHull.FromCH;
 
 /*
  * considering all the edges, the chosen are the one which if prolungated
@@ -20,21 +21,20 @@ public class LessArea extends FromCH implements SelectEdges{
 
   @Override
   public void calcConvexHull(int n) {
-    System.out.println("\nconvex hull: ");
-    for(Edge e : convexHull) System.out.println(e);
 
     //connectEdges(
     CircularList<Edge> selected = new CircularList<>();
     selected.addAll(selectEdges(n));
 
-    System.out.println("\nbest edges: ");
-    for(Edge e : selected) System.out.println(e);
+    //System.out.println("\nbest edges: ");
+    //for(Edge e : selected) System.out.println(e);
     sortBByA(convexHull, selected);
-    System.out.println("\nsorted: ");
-    for(Edge e : selected) System.out.println(e);
+    //System.out.println("\nsorted: ");
+    //for(Edge e : selected) System.out.println(e);
 
     connectEdges(selected);
     convexHull = selected;
+    //System.out.println( "resulting convex hull: " + convexHull);
   }
 
   @Override
@@ -46,9 +46,9 @@ public class LessArea extends FromCH implements SelectEdges{
       double area2 = calcProjectedArea(e2);
       return Double.compare(area1, area2);
     });
-    System.out.println("sorted edges > " + sortedEdges.size());
-    System.out.println("total edges > " + convexHull.size());
-    return sortedEdges.subList(0, n-1);
+    //System.out.println("sorted edges > " + sortedEdges.size());
+    //System.out.println("total edges > " + convexHull.size());
+    return sortedEdges.subList(0, n);
   }
 
   /**
@@ -148,18 +148,4 @@ public class LessArea extends FromCH implements SelectEdges{
     }
   }
 
-  @Override
-  public void draw(Graphics g) {
-    super.draw(g);
-    /*for(Edge e: convexHull){
-      System.out.println("drawing points");
-      List<Edge> estremi = findFurthestProjectionNodes(e, convexHull);
-      g.setColor(Color.GREEN);
-      new Edge(e.projection(estremi.get(0).n1()), e.projection(estremi.get(1).n1())).draw(g);
-
-      //for(Point2D p : estremi) {
-      //  e.projection(p).draw(g, true);
-      //}
-    }*/
-  }
 }

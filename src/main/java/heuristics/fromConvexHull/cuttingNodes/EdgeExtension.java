@@ -1,4 +1,4 @@
-package heuristics.fromConvexHull;
+package heuristics.fromConvexHull.cuttingNodes;
 
 import basic.Edge;
 import basic.Point2D;

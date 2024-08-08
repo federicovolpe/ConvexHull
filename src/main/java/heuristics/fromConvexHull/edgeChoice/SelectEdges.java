@@ -1,4 +1,4 @@
-package heuristics.edgeChoice;
+package heuristics.fromConvexHull.edgeChoice;
 
 import basic.Edge;
 

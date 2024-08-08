@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Sperimentazione in Java</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="sperimentazione-in-java">Sperimentazione in Java</h1>
+<p>Questa repository contiene sperimentazioni per la ricerca del guscio convesso
+e delle sue approssimazioni utilizzando il linguaggio Java.</p>
+<h2 id="algoritmo-di-ricerca-del-guscio-convesso">Algoritmo di Ricerca del Guscio Convesso</h2>
+<p>Per la ricerca del guscio convesso dato un set di punti, è stato implementato l'algoritmo di ricerca noto
+come <strong>Jarvis March</strong> (o Gift Wrapping). Il guscio convesso trovato viene poi utilizzato per trovare diverse
+euristiche che consentiranno agli algoritmi di ricerca di trovare un poligono di n lati che possa approssimare con
+maggiore accuratezza possibile il guscio convesso.</p>
+<h2 id="algoritmi-con-euristica-completa-del-guscio-convesso">Algoritmi con euristica completa del guscio convesso</h2>
+<p>questi algoritmi presumono la completa conoscenza del guscio convesso,
+procedono per semplificazione di questo tramite approssimazioni iterative.</p>
+<h2 id="algoritmi-cutting-nodes">Algoritmi cutting nodes</h2>
+<p>gli algoritmi cutting nodes hanno alla base del loro funzionamento la selezione di un set di punti che meglio rispetta determinati criteri di selezione</p>
+<h4 id="1-ipotesi-di-algoritmo-cutting-smaller-angles-csa">1. <a href="src/main/java/heuristics/fromConvexHull/CuttingSmallerAngle.java">Ipotesi di Algoritmo Cutting Smaller Angles (CSA)</a></h4>
+<p>Questo algoritmo prevede lo scarto dei vertici che creano gli angoli interni al poliedro che siano più acuti.
+Si presume che gli angoli più acuti possano essere formati dai vertici che possono essere considerati outlier.</p>
+<p style="text-align: center;"><strong>Approssimazione con 5 lati</strong></p>
+<div style="display: flex; justify-content: space-between;">
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingSmallerAngles/10-5.png" alt="Image 1" style="width: 100%;">
+        <p>10 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingSmallerAngles/30-5.png" alt="Image 2" style="width: 100%;">
+        <p>30 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingSmallerAngles/50-5.png" alt="Image 3" style="width: 100%;">
+        <p>50 punti</p>
+    </div>
+</div>
+<p>Le approssimazioni ottenute da questo algoritmo portano allo scarto di alcuni punti ammissibili poichè il poligono risultante sarà sempre una approssimazione per difetto dell'originale.</p>
+<blockquote>
+<p><strong>Indice di Jaccard</strong>: ≈ 0.2</p>
+</blockquote>
+<h4 id="2-ipotesi-di-algoritmo-cutting-smaller-angles-2-csa2">2. <a href="src/main/java/heuristics/fromConvexHull/CuttingSmallerAngle2.java">Ipotesi di Algoritmo Cutting Smaller Angles 2 (CSA2)</a></h4>
+<p>Evolvendo la precedente ipotesi e consentendo all'algoritmo di poter includere i nodi esclusi traslando il taglio creato, si può cosi creare un guscio che oltre a essere convesso rispetta l'inclusione di tutti i punti ammissibili.</p>
+<div style="text-align: center; width: 100%;">
+    <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/demo_smaller_angle.jpg" alt="Image 1" style="width: 60%;">
+        <p>1) Dimostrazione logica dell'algoritmo cutting Smaller Angles<br>
+            2) Dimostrazione logica dell'algoritmo cutting Smaller Angles2</p>
+</div>
+<p style="text-align: center;"><strong>Approssimazione con 5 lati</strong></p>
+<div style="display: flex; justify-content: space-between;">
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingSmallerAngles2/10-5.png" alt="Image 1" style="width: 100%;">
+        <p>10 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingSmallerAngles2/30-5.png" alt="Image 2" style="width: 100%;">
+        <p>30 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingSmallerAngles2/50-5.png" alt="Image 3" style="width: 100%;">
+        <p>50 punti</p>
+    </div>
+</div>
+<p>Questo approccio rende l'algoritmo precedente accettabile poichè include tutti i punti ammissibili, tuttavia all'aumentare dei vertici è molto probabile che le traslazioni portino i lati del poliedro risultante molto lontani dalla posizione ideale.</p>
+<blockquote>
+<p><strong>Indice di Jaccard</strong>: ≈ 0.2</p>
+</blockquote>
+<h4 style="page-break-before: always;" id="3-ipotesi-di-algoritmo-cutting-larger-angles-cla">3. <a href="src/main/java/heuristics/fromConvexHull/CuttingLargerAngle.java">Ipotesi di Algoritmo Cutting Larger Angles (CLA)</a></h4>
+<p>Applicando un cambio di ragionamento all'algoritmo CSA si potrebbe ipotizzare che gli angoli interni con ampiezza maggiore siano i candidati migliori per essere approssimati con un segmento, questo poichè la perdita di area applicando il taglio sarebbe minima.</p>
+<p style="text-align: center;"><strong>Approssimazione con 5 lati</strong></p>
+<div style="display: flex; justify-content: space-between;">
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingLargerAngles/10-5.png" alt="Image 1" style="width: 100%;">
+        <p>10 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingLargerAngles/30-5.png" alt="Image 2" style="width: 100%;">
+        <p>30 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingLargerAngles/50-5.png" alt="Image 3" style="width: 100%;">
+        <p>50 punti</p>
+    </div>
+</div>
+<p>Si rivela un approccio vincente in termini di somiglianza con l'area del guscio convesso. Condivide però assieme all'approcco CSA il fatto di non includere i nodi che vengono tagliati, rendendolo così inaccettabile.</p>
+<blockquote>
+<p><strong>Indice di Jaccard</strong>: ≈ 0.78</p>
+</blockquote>
+<h4 style="page-break-before: always;" id="4-ipotesi-di-algoritmo-cutting-larger-angles-2-cla2">4. <a href="src/main/java/heuristics/fromConvexHull/CuttingLargerAngle2.java">Ipotesi di Algoritmo Cutting Larger Angles 2 (CLA2)</a></h4>
+<p>Applicando la medesima trasformazione fatta nell'algoritmo CSA2, si consente al precedente algoritmo di includere tutti i punti ammissibili, rendendo di fatto il precedente algoritmo accettabile.</p>
+<div style="text-align: center; width: 100%;">
+    <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/demo_larger_angle.jpg" alt="Image 1" style="width: 60%;">
+        <p>1) Dimostrazione logica dell'algoritmo cutting Larger Angles<br>
+            2) Dimostrazione logica dell'algoritmo cutting Larger Angles2</p>
+</div>
+<p style="text-align: center;"><strong>Approssimazione con 5 lati</strong></p>
+<div style="display: flex; justify-content: space-between;">
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingLargerAngles2/10-5.png" alt="Image 1" style="width: 100%;">
+        <p>10 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingLargerAngles2/30-5.png" alt="Image 2" style="width: 100%;">
+        <p>30 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/CuttingLargerAngles2/50-5.png" alt="Image 3" style="width: 100%;">
+        <p>50 punti</p>
+    </div>
+</div>
+<p>Il risultato ottenuto in termini di somiglianza visiva con il poligono originale è buono. L'indice di Jaccard fornito risulta rispecchiare questo punto di vista,
+può essere una opzione più che valida per l'approssimazione del guscio convesso.</p>
+<blockquote>
+<p><strong>Indice di Jaccard</strong>: ≈ 0.77</p>
+</blockquote>
+<h3 style="page-break-before: always;" id="algoritmi-con-scelta-di-iperpiani">Algoritmi con scelta di Iperpiani</h3>
+<p>A differenza degli algoritmi cutting edges, gli algoritmi a scelta di iperpiani selezionano un numero n di lati dell'involucro convesso in base a differenti criteri.
+Questi una volta prolungati forniscono una approssimazione del guscio convesso.</p>
+<h4 id="5-ipotesi-di-algoritmo-less-area">5. <a href="src/main/java/heuristics/edgeChoice.java">Ipotesi di Algoritmo (Less Area)</a></h4>
+<p>L'algoritmo ipotizzato per evitare la natura combinatoria del problema di scelta di n lati per l'approssimazione cerca i lati che meglio possano rappresentare un lato del poligono, selezionando quelli che tendono a minimizzare l'area compresa fra essi e il poligono stesso, come mostrato in figura.</p>
+<div style="text-align: center; width: 100%;">
+    <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/demo_smaller_area.jpg" alt="Image 1" style="width: 60%;">
+    <p>Dimostrazione del criterio di scelta del lato migliore</p>
+</div>
+Approssimazione con 5 lati
+<div style="display: flex; justify-content: space-between;">
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/LessArea/10-5.png" alt="Image 1" style="width: 100%;">
+        <p>10 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/LessArea/30-5.png" alt="Image 2" style="width: 100%;">
+        <p>30 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/LessArea/50-5.png" alt="Image 3" style="width: 100%;">
+        <p>50 punti</p>
+    </div>
+</div>
+<p>I poligoni generati da questo algoritmo sembrano visivamente rappresentare al meglio la forma originale del poligono da cui vengono estratti i punti per il campione.
+La selezione del lato risulta essere piu' complessa all'aumentare del numero di lati del poliedro, tuttavia il processo di selezione puo' essere facilmente parallelizzato.</p>
+<blockquote>
+<p><strong>Indice di Jaccard</strong>: ≈ 0.56</p>
+</blockquote>
+<p>Il problema principale dell'algoritmo si presenta quando molti lati adiacenti del guscio convesso risultano essere i migliori. In quel caso, il poligono generato non solo può erroneamente escludere tutti i punti positivi, ma non rappresenta nemmeno la forma del poligono originale.</p>
+<h2 style="page-break-before: always;" id="algoritmi-su-euristica-puntiforme">Algoritmi su Euristica Puntiforme</h2>
+<p>Questi algoritmi si basano su una euristica puntiforme che fornisce meno informazioni riguardo alla forma e alla disposizione dei punti nel piano. Gli algoritmi presentati utilizzano come euristica il punto che rappresenta il centro di massa del guscio convesso (questo, in caso di distribuzione omogenea, potrebbe essere approssimato come il baricentro dell'intero set di punti ammissibili).</p>
+<h4 id="1-ipotesi-di-algoritmo-distance-from-g">1. <a href="src/main/java/heuristics/DistanceFromG.java">Ipotesi di Algoritmo (Distance From G)</a></h4>
+<p>Questo algoritmo prevede la ricerca dei nodi più distanti dal baricentro del guscio convesso. Ad ogni iterazione viene aggiunto un nuovo vertice e vengono rimossi i precedenti vertici che, con l'aggiunta di quest'ultimo, vengono inclusi nel poliedro risultante.</p>
+<div style="text-align: center; width: 100%;">
+    <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/demo_distance_g.jpg" alt="Image 1" style="width: 50%;">
+    <p>Dimostrazione del criterio di scelta del vertice migliore</p>
+</div>
+<p style="text-align: center;"><strong>Approssimazione con 5 lati</strong></p>
+<div style="display: flex; justify-content: space-between;">
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/DistanceFromG/10-5.png" alt="Image 1" style="width: 100%;">
+        <p>10 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/DistanceFromG/30-5.png" alt="Image 2" style="width: 100%;">
+        <p>30 punti</p>
+    </div>
+    <div style="text-align: center; width: 30%;">
+        <img src="file:////Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/media/DistanceFromG/50-5.png" alt="Image 3" style="width: 100%;">
+        <p>50 punti</p>
+    </div>
+</div>
+<p>L'algoritmo risulta particolarmente efficace quando i punti sono distribuiti in maniera omogenea. Al contrario, quando i punti si concentrano lungo due poli o presentano una densità elevata attorno a un punto, l'approssimazione risulterà lontana dal reale convex hull.
+Inoltre come CLA CSA ottiene una approssimazione del guscio convesso per difetto il che lo rende non corretto.</p>
+<blockquote>
+<p><strong>Indice di Jaccard</strong>: ≈ 0.32</p>
+</blockquote>
+<h1 id="testing">Testing</h1>
+<p>per ottenere l'indice di ogni
+Il testing è stato effettuato utilizzando un approccio iterativo.
+Una volta scelto un poligono di riferimento, vengono prelevati 100 campioni di n punti randomici al suo interno. Questo procedimento viene ripetuto per n = 10, 50, 100 per analizzare se la precisione aumenta all'aumentare del numero di punti. I poligoni generati dalle euristiche vengono infine paragonati con il guscio convesso generato dall'algoritmo JarvisMarch. Della serie di indici generati viene fatta la media per ciascuna euristica.</p>
+<h3 id="risultati-jaccard-index-e-tempi-di-esecuzione">Risultati Jaccard Index e Tempi di Esecuzione</h3>
+<table>
+<thead>
+<tr>
+<th>Algoritmo</th>
+<th>Jaccard Index</th>
+<th>Tempo Medio (μs)</th>
+<th>Eccezioni</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CuttingSmallerAngle</td>
+<td>0.142</td>
+<td>47</td>
+<td>null</td>
+</tr>
+<tr>
+<td>CuttingSmallerAngle2</td>
+<td>0.141</td>
+<td>67</td>
+<td>50</td>
+</tr>
+<tr>
+<td>CuttingLargerAngle</td>
+<td>0.780</td>
+<td>67</td>
+<td>null</td>
+</tr>
+<tr>
+<td>CuttingLargerAngle2</td>
+<td>0.768</td>
+<td>58</td>
+<td>null</td>
+</tr>
+<tr>
+<td>DistanceFromG</td>
+<td>0.321</td>
+<td>102</td>
+<td>null</td>
+</tr>
+<tr>
+<td>LessArea</td>
+<td>0.463</td>
+<td>731</td>
+<td>47</td>
+</tr>
+</tbody>
+</table>
+
+            
+            
+        </body>
+        </html>
