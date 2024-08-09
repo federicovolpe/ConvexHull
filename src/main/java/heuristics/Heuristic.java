@@ -62,8 +62,8 @@ public abstract class Heuristic {
     /**
      * @return the vertices of the convex hull
      */
-    public List<Point2D> getHullNodes(){
-        List<Point2D> nodes = new ArrayList<>();
+    public CircularList<Point2D> getHullNodes(){
+        CircularList<Point2D> nodes = new CircularList<>();
         for (Edge e : convexHull)
             nodes.add(e.n1());
         return nodes;

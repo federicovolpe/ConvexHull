@@ -15,10 +15,20 @@ public class DistanceFromG extends FromPoints {
     public DistanceFromG(Point2D centerOfMass, List<Point2D> allNodes, Color c){
         super(centerOfMass, allNodes, c);
     }
+    @Override
+    public void calcConvexHull(int n) {
+        List<Point2D> chosenNodes = selectNodes(n);
+        convexHull = new CircularList<>(new JarvisMarch(chosenNodes).getHullEdges());
+    }
 
-    private List<Point2D> selectNodes(int n){
+    /**
+     * select n furthest nodes from the center of mass
+     * @param n number of nodes to select
+     * @return list of the selected nodes
+     */
+    protected List<Point2D> selectNodes(int n){
         List<Point2D> chosenNodes = new ArrayList<>();
-        allNodes.sort(Collections.reverseOrder(Comparator.comparing((Point2D node) -> node.calcDistance(centerOfMass))));
+        sortPointsFromLargestDistance(centerOfMass);
 
         int i = 0;
         while (chosenNodes.size() < n){
@@ -36,6 +46,14 @@ public class DistanceFromG extends FromPoints {
             i++;
         }
         return chosenNodes;
+    }
+
+    /**
+     * sort the AllNodes list according to the furthest point from a given p
+     * @param p point according to which sort the list
+     */
+    protected void sortPointsFromLargestDistance(Point2D p) {
+        allNodes.sort(Collections.reverseOrder(Comparator.comparing((Point2D node) -> node.calcDistance(centerOfMass))));
     }
 
     private boolean isNodeContained(Point2D n, List<Point2D> nodes){
@@ -59,11 +77,6 @@ public class DistanceFromG extends FromPoints {
                 iterator.remove();
             }
         }
-    }
-
-    public void calcConvexHull(int n) {
-        List<Point2D> chosenNodes = selectNodes(n);
-        convexHull = new CircularList<>(new JarvisMarch(chosenNodes).getHullEdges());
     }
 
 }

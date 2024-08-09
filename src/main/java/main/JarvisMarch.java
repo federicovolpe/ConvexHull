@@ -57,4 +57,22 @@ public class JarvisMarch {
         }
         return lowest;
     }
+
+    /**
+     * gauss formula for calculating the area of a polygon
+     * @return the area
+     */
+    public double calcArea() {
+        List<Point2D> points = getHullNodes();
+        int n = convexHull.size();
+        double area = 0;
+
+        for (int i = 0; i < n; i++) {
+            Point2D current = points.get(i);
+            Point2D next = points.get((i + 1) % n); // Next point, wrapping around to the first point at the end
+            area += current.getX() * next.getY() - current.getY() * next.getX();
+        }
+
+        return Math.abs(area) / 2.0;
+    }
 }
