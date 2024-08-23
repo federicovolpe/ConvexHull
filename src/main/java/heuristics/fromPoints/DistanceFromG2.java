@@ -45,7 +45,7 @@ public class DistanceFromG2 extends DistanceFromG {
     List<Point2D> newVertex = new ArrayList<>(vertices);
 
     for (int v = 0; v < vertices.size(); v++) {
-      System.out.println("analyzing: "+ vertices.get(v));
+      //System.out.println("analyzing: "+ vertices.get(v));
       for (int i = 0; i < other.size(); i++) {
         Point2D p = other.get(i);
         Point2D prev = newVertex.get(v);

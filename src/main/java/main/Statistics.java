@@ -27,11 +27,9 @@ public class Statistics {
    * for each polygon are extracted 10 samples with 10 points, 10 with 30, 10 with 50
    * @param heuristics list of heuristics to test
    */
-  public static void iterationStatistics(List<Heuristic> heuristics){
-    // init the map
+  public static void iterationStatistics(List<Heuristic> heuristics) {
     Map<Heuristic, Double> jaccardIndexes = new HashMap<>();
     Map<Heuristic, Long> timing = new HashMap<>();
-
     Map<Heuristic, Integer> exceptions = new HashMap<>();
 
     List<Polygon> polygons = List.of(
@@ -40,58 +38,63 @@ public class Statistics {
         Shapes.TRIANGLE.getPolygon()
     );
 
-    int j = 1;
-    it:
-    for (Polygon p : polygons) {
-      // generate samples
-      List<List<Point2D>> samples = polygonSampleList(p);
-      for (List<Point2D> sample : samples){
-        System.out.println("\n-------------- iteration : " + j+"\n");
-        j++;
+    int iteration = 1;
+    for (Polygon polygon : polygons) {
+      List<List<Point2D>> samples = polygonSampleList(polygon);
 
-        System.out.println("jarvis initing");
-        JarvisMarch jm = new JarvisMarch(sample);
-        System.out.println("jarvis calculating");
-        List<Edge> convexHull = jm.getHullEdges();
-        System.out.println("jarvis done");
-
-        for (Heuristic h: heuristics) {
-          try {
-            // init the heuristic
-            if (h instanceof FromCH) ((FromCH) h).newData(convexHull);
-            if (h instanceof FromPoints) ((FromPoints) h).newData(getG(jm.getHullNodes()), sample);
-
-            long startTime = System.nanoTime();
-            System.out.println("solving " +h.getClass().getName()+ "\n...");
-            h.calcConvexHull(p.getEdgeNumber());
-            long endTime = System.nanoTime();
-            System.out.println("time "+h.getClass().getCanonicalName()+": " + (endTime - startTime) + "\n");
-            // Calcolo del tempo trascorso in millisecondi
-            timing.put(h, timing.getOrDefault(h,0l) + (endTime - startTime)); // Converti da nanosecondi a millisecondi
-
-            jaccardIndexes.put(h, jaccardIndexes.getOrDefault(h, 0.) + jaccardIndex(jm.getHullNodes(), h.getHullNodes()));
-
-          } catch (Exception e) {
-            displayHeurisitc(List.of(h), sample, p.getEdgeNumber());
-            System.out.println("exception in " + h.getClass());
-            exceptions.put(h, exceptions.getOrDefault(h, 0) + 1);
-            e.printStackTrace();
-            break it;
-          }
-        }
+      for (List<Point2D> sample : samples) {
+        System.out.println("\n-------------- iteration : " + iteration + "\n");
+        iteration++;
+        processSample(heuristics, sample, polygon, timing, jaccardIndexes, exceptions);
       }
     }
 
-    System.out.println("\n-----------    jaccardIndex over " + j + " iterations    ---------------");
+    System.out.println("\n-----------    jaccardIndex over " + iteration + " iterations    ---------------");
     for (Map.Entry<Heuristic, Double> e : jaccardIndexes.entrySet()) {
       // index must be divided with the number of times the algorithm has worked succesfully
-      double index = jaccardIndexes.get(e.getKey()) / (j - exceptions.getOrDefault(e.getKey(), 0));
-      long time = timing.get(e.getKey()) / (j - exceptions.getOrDefault(e.getKey(), 0));
+      double index = jaccardIndexes.get(e.getKey()) / (iteration - exceptions.getOrDefault(e.getKey(), 0));
+      long time = timing.get(e.getKey()) / (iteration - exceptions.getOrDefault(e.getKey(), 0));
 
       System.out.println(e.getKey().getClass().getName() + " \t: " +
           String.format("%.3f", index) +  // Formatta index a 3 cifre decimali
           "\t average time: " + time +
           "\t exceptions: " + exceptions.get(e.getKey()));
+    }
+  }
+
+  private static void processSample(List<Heuristic> heuristics, List<Point2D> sample, Polygon polygon, Map<Heuristic, Long> timing, Map<Heuristic, Double> jaccardIndexes, Map<Heuristic, Integer> exceptions) {
+
+    JarvisMarch jm = new JarvisMarch(sample);
+    List<Edge> convexHull = jm.getHullEdges();
+
+    it:
+    for (Heuristic heuristic : heuristics) {
+      try {
+        if (heuristic instanceof FromCH) {
+          ((FromCH) heuristic).newData(convexHull);
+        }
+        if (heuristic instanceof FromPoints) {
+          ((FromPoints) heuristic).newData(getG(jm.getHullNodes()), sample);
+        }
+
+        long startTime = System.nanoTime();
+        System.out.println("solving " + heuristic.getClass().getName() + "\n...");
+
+        heuristic.calcConvexHull(polygon.getEdgeNumber());
+
+        long endTime = System.nanoTime();
+        System.out.println("time " + heuristic.getClass().getCanonicalName() + ": " + (endTime - startTime) + "\n");
+
+        timing.put(heuristic, timing.getOrDefault(heuristic, 0L) + (endTime - startTime));
+        jaccardIndexes.put(heuristic, jaccardIndexes.getOrDefault(heuristic, 0.0) + jaccardIndex(jm.getHullNodes(), heuristic.getHullNodes()));
+
+      } catch (Exception e) {
+        displayHeurisitc(List.of(heuristic), sample, polygon.getEdgeNumber());
+        System.out.println("exception in " + heuristic.getClass());
+        exceptions.put(heuristic, exceptions.getOrDefault(heuristic, 0) + 1);
+        e.printStackTrace();
+        break it;
+      }
     }
   }
 

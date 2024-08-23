@@ -30,6 +30,7 @@ public class CuttingEdges extends FromCH {
   @Override
   public void newData(List<Edge> convexHull){
     super.newData(convexHull);
+    procedure = new ArrayList<>();
     edge_area = new HashMap<>();
     initMap();
   }
@@ -121,7 +122,6 @@ public class CuttingEdges extends FromCH {
     super.draw(g);
     g.setColor(Color.GRAY);
     for(CircularList<Edge> c : procedure){
-      System.out.println("drw");
       for(Edge e: c) e.draw(g);
     }
   }

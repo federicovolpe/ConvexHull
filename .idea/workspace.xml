@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="CuttingEdges heuristic working as expected with some minor exceptions">
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/Statistics.java" afterDir="false" />
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="reorganized statistic in Statistic class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Statistics.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -401,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723242568759</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="reorganized statistic in Statistic class">
+      <created>1724399758928</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1724399758928</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -417,7 +426,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="updating readme" />
     <MESSAGE value="detaching ceterOfMass from heuristic" />
     <MESSAGE value="updating README.md" />
     <MESSAGE value="heuristic as an abstract class" />
@@ -442,7 +450,8 @@
     <MESSAGE value="refactoring: applycut moved in the cuttingNodes class" />
     <MESSAGE value="updating comments and print" />
     <MESSAGE value="CuttingEdges heuristic working as expected with some minor exceptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="CuttingEdges heuristic working as expected with some minor exceptions" />
+    <MESSAGE value="reorganized statistic in Statistic class" />
+    <option name="LAST_COMMIT_MESSAGE" value="reorganized statistic in Statistic class" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

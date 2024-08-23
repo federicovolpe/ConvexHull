@@ -39,5 +39,5 @@ public class Main {
         sb.append(n.toPolymakeVert()).append(",\n");
       }
       return sb.substring(0,sb.length()-2)+ "]);";
-    }
+  }
 }
