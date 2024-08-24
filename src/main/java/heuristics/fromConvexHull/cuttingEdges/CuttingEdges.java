@@ -45,8 +45,8 @@ public class CuttingEdges extends FromCH {
 
   private void applyCut(){
     Edge selected = selectEdge();
-    System.out.println("choosing edge "+ selected);
-    System.out.println("with area "+ edge_area.get(selected));
+    //System.out.println("choosing edge "+ selected);
+    //System.out.println("with area "+ edge_area.get(selected));
     Edge prev = convexHull.getPrev(selected);
     Edge next = convexHull.getNext(selected);
     prev.extendEdgeN2(next);
@@ -61,9 +61,9 @@ public class CuttingEdges extends FromCH {
     edge_area.put(convexHull.getNext(next), getArea(convexHull.getNext(next)));
     edge_area.put(convexHull.getPrev(prev), getArea(convexHull.getPrev(prev)));
 
-    System.out.println("updated map:");
-    for(Map.Entry<Edge, Double> entry : edge_area.entrySet())
-      System.out.println(entry.getKey() +" -> "+ entry.getValue());
+    //System.out.println("updated map:");
+    //for(Map.Entry<Edge, Double> entry : edge_area.entrySet())
+      //System.out.println(entry.getKey() +" -> "+ entry.getValue());
   }
 
   private Edge selectEdge (){

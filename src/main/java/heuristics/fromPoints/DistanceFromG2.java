@@ -26,20 +26,20 @@ public class DistanceFromG2 extends DistanceFromG {
 
     // allNodes list should already be ordered
     List<Point2D> enlarged = enlargeArea(vertices);
-    System.out.println("modified vertices");
-    for(Point2D p : enlarged){
-      System.out.println(p);
-    }
+    //System.out.println("modified vertices");
+    //for(Point2D p : enlarged){
+      //System.out.println(p);
+    //}
     this.convexHull = new CircularList<>(new JarvisMarch(enlarged).getHullEdges());
   }
 
   private List<Point2D> enlargeArea(List<Point2D> vertices) {
     List<Point2D> other = getOtherNodes(allNodes, vertices);
     double area = new JarvisMarch(vertices).calcArea();
-    System.out.println("chosen:");
-    for(Point2D v : vertices)
-      System.out.println(v);
-    System.out.println("og area: " + area);
+    //System.out.println("chosen:");
+    //for(Point2D v : vertices)
+      //System.out.println(v);
+    //System.out.println("og area: " + area);
 
     // Lista temporanea copia dei vertici
     List<Point2D> newVertex = new ArrayList<>(vertices);
@@ -54,12 +54,12 @@ public class DistanceFromG2 extends DistanceFromG {
         double area2 = new JarvisMarch(newVertex).calcArea();
 
         if (area2 > area) {
-          System.out.println("substituting v: " + vertices.get(v) + " with " + p);
-          System.out.println("area with " + p + " = " + area2);
+          //System.out.println("substituting v: " + vertices.get(v) + " with " + p);
+          //System.out.println("area with " + p + " = " + area2);
           area = area2;
           other.remove(p);
-          System.out.println("resulting:");
-          for(Point2D p1: newVertex) System.out.println(p1);
+          //System.out.println("resulting:");
+          //for(Point2D p1: newVertex) System.out.println(p1);
         } else {
           newVertex.set(v, prev);
         }
