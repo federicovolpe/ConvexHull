@@ -14,6 +14,10 @@ import shapes.Polygon;
 import shapes.Shapes;
 
 import javax.swing.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +69,34 @@ public class Statistics {
           String.format("%.3f", index) +  // Formatta index a 3 cifre decimali
           "\t average time: " + time +
           "\t exceptions: " + exceptions.get(e.getKey()));
+    }
+  }
+
+  public static void fileReportStatistics(List<Heuristic> heuristics){
+    List<Polygon> polygons = List.of(
+        Shapes.RECTANGLE.getPolygon(),
+        Shapes.SQUARE.getPolygon(),
+        Shapes.TRIANGLE.getPolygon()
+    );
+
+    // per ogni poligono nella lista di poligoni crea una lista di sample sample di punti
+    List<TestCase> testCases = new ArrayList<>();
+    for (Polygon polygon : polygons)
+      testCases.addAll(getPolygonSample(polygon)); // ogni lista creata è un sample
+
+    File file = new File("report.csv");
+
+    // Writing output to a file
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+      writer.write("heuristic , points , jaccard index , time , exceptions \n");
+      for (Heuristic h : heuristics) {
+        for (ReportData r : processSample(h, testCases)) {
+          writer.write(r.toCsv());
+        }
+      }
+      System.out.println("Report written to " + file.getAbsolutePath());
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 
