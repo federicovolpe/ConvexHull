@@ -1,9 +1,13 @@
 package heuristics.fromConvexHull.cuttingNodes;
 
 import basic.Edge;
-
-import java.awt.*;
+import java.awt.Color;
 import java.util.List;
+
+/**
+ * direct evolution of CuttingLarger angle.
+ * It allows the previous Algorithm to become acceptable by extending the edges adjacent to the cut
+ */
 
 public class CuttingLargerAngle2 extends EdgeExtension {
 
@@ -13,7 +17,7 @@ public class CuttingLargerAngle2 extends EdgeExtension {
 
   @Override
   protected int selectAngle() {
-    int indexToModify = -1;   // indice del lato da modificare
+    int indexToModify = -1;
     double angle = 0;
 
     for (int i = 0; i < convexHull.size(); i++)

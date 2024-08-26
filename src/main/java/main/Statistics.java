@@ -29,7 +29,8 @@ import static utils.utilMethods.rndNodesGenerator2D;
 public class Statistics {
 
   /**
-   * for each polygon are extracted 10 samples with 10 points, 10 with 30, 10 with 50
+   * each of the heuristic is applied to a set of test cases, the results are accumulated and
+   * printed at the end of the execution
    *
    * @param heuristics list of heuristics to test
    */
@@ -59,7 +60,6 @@ public class Statistics {
       }
     }
 
-
     System.out.println("\n-----------    jaccardIndex over " + testCases.size() + " iterations    ---------------");
     for (Map.Entry<Heuristic, Double> e : jaccardIndexes.entrySet()) {
       // index must be divided with the number of times the algorithm has worked succesfully
@@ -73,6 +73,11 @@ public class Statistics {
     }
   }
 
+  /**
+   * each of the heuristic is applied to a set of test cases, the results are written in a file
+   *    if a case generates an exception, a window with a graphical visualization of the error is shown
+   * @param heuristics
+   */
   public static void fileReportStatistics(List<Heuristic> heuristics){
     List<Polygon> polygons = List.of(
         Shapes.RECTANGLE.getPolygon(),
@@ -102,7 +107,10 @@ public class Statistics {
   }
 
   /**
-   * test the given heuristic onto a set of given test case
+   * applies the given heuristic to a list of testCase
+   * @param heuristic heuristic to test
+   * @param testCases list of testcases to which apply the heuristic
+   * @return a list of reports of all the applications
    */
   private static List<ReportData> processSample(Heuristic heuristic, List<TestCase> testCases) {
     List<ReportData> reportList = new ArrayList<>();
@@ -124,6 +132,12 @@ public class Statistics {
     return reportList;
   }
 
+  /**
+   * simply applies the given heuristic to a given test case and returns a report containing the results
+   * @param heuristic heuristic to apply
+   * @param testCase specific test case to which apply the heuristic
+   * @return a Report data containing the result of the application
+   */
   private static ReportData singleHeuristicApplication(Heuristic heuristic, TestCase testCase) {
     // initialize the heuristic with the new data
     if (heuristic instanceof FromCH)

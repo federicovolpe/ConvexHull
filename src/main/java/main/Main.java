@@ -42,6 +42,11 @@ public class Main {
     fileReportStatistics(heuristics);
   }
 
+  /**
+   * converts a list of points into a readable polymake polytope
+   * @param points list of the points
+   * @return a command for generating a polymake polytope
+   */
   private static String toPolymake(List<Point2D> points){
       StringBuilder sb = new StringBuilder("new Polytope(POINTS =>[");
       for (Point2D n: points) {
