@@ -15,12 +15,6 @@ public class Polygon {
     vertices = new CircularList<>(nodes);
   }
 
-  protected double getPerimeter() {
-    double sum = 0;
-    for (Edge edge : edges) sum += edge.getLength();
-    return sum;
-  }
-
   /**
    * generates a sample of n nodes inside the shape
    *
@@ -96,6 +90,10 @@ public class Polygon {
 
   public int getEdgeNumber() {
     return vertices.size();
+  }
+
+  public CircularList<Point2D> getVertices(){
+    return new CircularList<>(vertices);
   }
 
   public String toPolymake(){
