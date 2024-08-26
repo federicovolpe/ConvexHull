@@ -1,19 +1,5 @@
 package main;
 
-import basic.Edge;
-import basic.Point2D;
-import heuristics.Heuristic;
-import heuristics.fromConvexHull.FromCH;
-import heuristics.fromPoints.FromPoints;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryFactory;
-import paintGraph.GraphPanel;
-import paintGraph.GraphWithPoints;
-import shapes.Polygon;
-import shapes.Shapes;
-
-import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -23,6 +9,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JFrame;
+
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
+
+import basic.Edge;
+import basic.Point2D;
+import heuristics.Heuristic;
+import heuristics.fromConvexHull.FromCH;
+import heuristics.fromPoints.FromPoints;
+import paintGraph.GraphPanel;
+import paintGraph.GraphWithPoints;
+import shapes.Polygon;
+import shapes.Shapes;
 import static utils.utilMethods.rndNodesGenerator2D;
 
 public class Statistics {
@@ -84,11 +85,11 @@ public class Statistics {
     for (Polygon polygon : polygons)
       testCases.addAll(getPolygonSample(polygon)); // ogni lista creata è un sample
 
-    File file = new File("report.csv");
+    File file = new File("report2.csv");
 
     // Writing output to a file
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-      writer.write("heuristic , points , jaccard index , time , exceptions \n");
+      writer.write("heuristic,points,jaccard_index,time,exceptions\n");
       for (Heuristic h : heuristics) {
         for (ReportData r : processSample(h, testCases)) {
           writer.write(r.toCsv());
@@ -192,13 +193,14 @@ public class Statistics {
   public static List<TestCase> getPolygonSample(Polygon p) {
     List<TestCase> samples = new ArrayList<>();
 
-    for (int nPoints : new int[]{10, 50, 100})
-      for (int i = 0; i < 30; i++){
+    for(int nPoints = 10; nPoints <= 200; nPoints += 5){
         List<Point2D> sample = p.getSample(nPoints);
         JarvisMarch jm = new JarvisMarch(sample);
         samples.add(new TestCase(sample, p.getEdgeNumber(), jm.getHullEdges(), jm.getHullNodes()));
+        System.out.println("g3n34ated sample " + nPoints);
       }
 
+    System.out.println("g3n34ated sample");
     return samples;
   }
 

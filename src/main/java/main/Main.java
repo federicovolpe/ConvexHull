@@ -1,19 +1,25 @@
 package main;
 
+import static java.awt.Color.BLACK;
+import static java.awt.Color.BLUE;
+import static java.awt.Color.GREEN;
+import static java.awt.Color.ORANGE;
+import static java.awt.Color.RED;
+import static java.awt.Color.YELLOW;
 import java.util.ArrayList;
 import java.util.List;
-import heuristics.fromConvexHull.cuttingEdges.CuttingEdges;
-import heuristics.fromConvexHull.cuttingNodes.CuttingSmallerAngle2;
-import heuristics.fromConvexHull.edgeChoice.LessArea;
-import heuristics.fromPoints.DistanceFromG2;
+
 import basic.Point2D;
 import heuristics.Heuristic;
+import heuristics.fromConvexHull.cuttingEdges.CuttingEdges;
 import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle;
 import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle2;
 import heuristics.fromConvexHull.cuttingNodes.CuttingSmallerAngle;
+import heuristics.fromConvexHull.cuttingNodes.CuttingSmallerAngle2;
+import heuristics.fromConvexHull.edgeChoice.LessArea;
 import heuristics.fromPoints.DistanceFromG;
-import static java.awt.Color.*;
-import static main.Statistics.*;
+import heuristics.fromPoints.DistanceFromG2;
+import static main.Statistics.fileReportStatistics;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
