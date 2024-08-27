@@ -3,6 +3,8 @@ package shapes;
 import basic.CircularList;
 import basic.Edge;
 import basic.Point2D;
+import main.JarvisMarch;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +15,7 @@ public class Polygon {
 
   public Polygon(List<Point2D> nodes) {
     vertices = new CircularList<>(nodes);
+    edges = new CircularList<>(new JarvisMarch(vertices).getHullEdges());
   }
 
   /**
@@ -94,6 +97,9 @@ public class Polygon {
 
   public CircularList<Point2D> getVertices(){
     return new CircularList<>(vertices);
+  }
+  public CircularList<Edge> getEdges(){
+    return new CircularList<>(edges);
   }
 
   public String toPolymake(){

@@ -5,9 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JFrame;
 
@@ -23,8 +22,7 @@ import heuristics.fromPoints.FromPoints;
 import paintGraph.GraphPanel;
 import paintGraph.GraphWithPoints;
 import shapes.Polygon;
-import shapes.Shapes;
-import static utils.utilMethods.rndNodesGenerator2D;
+import shapes.PolygonGenerator;
 
 public class Statistics {
 
@@ -35,7 +33,7 @@ public class Statistics {
    * @param heuristics list of heuristics to test
    */
   public static void iterationStatistics(List<Heuristic> heuristics) {
-    Map<Heuristic, Double> jaccardIndexes = new HashMap<>();
+    /*Map<Heuristic, Double> jaccardIndexes = new HashMap<>();
     Map<Heuristic, Long> timing = new HashMap<>();
     Map<Heuristic, Integer> exceptions = new HashMap<>();
 
@@ -70,7 +68,7 @@ public class Statistics {
           String.format("%.3f", index) +  // Formatta index a 3 cifre decimali
           "\t average time: " + time +
           "\t exceptions: " + exceptions.get(e.getKey()));
-    }
+    }*/
   }
 
   /**
@@ -79,54 +77,65 @@ public class Statistics {
    * @param heuristics
    */
   public static void fileReportStatistics(List<Heuristic> heuristics){
-    List<Polygon> polygons = List.of(
-        Shapes.RECTANGLE.getPolygon(),
-        Shapes.SQUARE.getPolygon(),
-        Shapes.TRIANGLE.getPolygon()
-    );
 
-    // per ogni poligono nella lista di poligoni crea una lista di sample sample di punti
-    List<TestCase> testCases = new ArrayList<>();
-    for (Polygon polygon : polygons)
-      testCases.addAll(getPolygonSample(polygon)); // ogni lista creata è un sample
-
-    File file = new File("report2.csv");
-
-    // Writing output to a file
+    File file = new File("report.csv");
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-      writer.write("heuristic,points,jaccard_index,time,exceptions\n");
-      for (Heuristic h : heuristics) {
-        for (ReportData r : processSample(h, testCases)) {
-          writer.write(r.toCsv());
-        }
-      }
-      System.out.println("Report written to " + file.getAbsolutePath());
+      writer.write("heuristic,points,hyperplane_budget,jaccard_index,time,exceptions\n");
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+    List<ReportData> reports = new ArrayList<>();
+
+
+    //while (it.hasNext()){
+    for(int sideNumber = 4; sideNumber < 50; sideNumber++){
+      Iterator<Polygon> it = new PolygonGenerator().iterator(sideNumber, 5);
+      while(it.hasNext()){
+        Polygon testPolygon = it.next();
+      for(int budget = 3; budget < sideNumber; budget ++){
+
+        TestCase test = new TestCase(
+            testPolygon.getVertices(),
+            budget,
+            testPolygon.getEdges(),
+            testPolygon.getVertices());
+
+          // applico tutte le euristiche al caso
+          // Writing output to a file
+          try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            //displayHeurisitc(heuristics, test.sample() , test.DesiredEdges());
+            for (ReportData r : processSample(heuristics, test)) writer.write(r.toCsv());
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    }
+      System.out.println("Report written to " + file.getAbsolutePath());
   }
+
 
   /**
    * applies the given heuristic to a list of testCase
-   * @param heuristic heuristic to test
-   * @param testCases list of testcases to which apply the heuristic
+   * @param heuristics list of heuristics to test
+   * @param testCase specific testcase
    * @return a list of reports of all the applications
    */
-  private static List<ReportData> processSample(Heuristic heuristic, List<TestCase> testCases) {
+  private static List<ReportData> processSample(List<Heuristic> heuristics, TestCase testCase) {
     List<ReportData> reportList = new ArrayList<>();
 
     int iteration = 1;
-    for (TestCase testCase : testCases) {
-      System.out.println("\n-------------- heuristic : "+heuristic+" iteration : " + iteration + "\n");
+    for (Heuristic h : heuristics) {
+      System.out.println("\n-------------- heuristic : " + h.getClass().getSimpleName() + " with budget: : " + testCase.DesiredEdges() + "\n");
       iteration++;
 
-      ReportData report = singleHeuristicApplication(heuristic, testCase);
+      ReportData report = singleHeuristicApplication(h, testCase);
       reportList.add(report);
 
       if (report.exception()) {
-        System.out.println("exception in " + heuristic.getClass());
-        displayHeurisitc(List.of(heuristic), testCase.sample(), testCase.DesiredEdges());
-        break;
+        System.out.println("exception in " + h.getClass());
+        //displayHeurisitc(List.of(h), testCase.sample(), testCase.DesiredEdges());
       }
     }
     return reportList;
@@ -153,17 +162,19 @@ public class Statistics {
       heuristic.calcConvexHull(testCase.DesiredEdges());
 
       long endTime = System.nanoTime();
-      System.out.println("time " + heuristic.getClass().getCanonicalName() + ": " + (endTime - startTime) + "\n");
+
       return new ReportData(heuristic,
           testCase.sample().size(),
+          testCase.DesiredEdges(),
           jaccardIndex(testCase.hullNodes(), heuristic.getHullNodes()),
           (endTime - startTime),
           false);
     } catch (Exception e) {
 
-      e.printStackTrace();
+      //e.printStackTrace();
       return new ReportData(
           heuristic,
+          testCase.DesiredEdges(),
           testCase.sample().size(),
           null,
           null,
@@ -179,10 +190,6 @@ public class Statistics {
    * @param desiredEdges number of desired edges
    */
   public static void displayHeurisitc(List<Heuristic> heuristics, List<Point2D> points, int desiredEdges) {
-    if (points == null) {
-      System.out.println("randomly generating 30 points for display");
-      points = rndNodesGenerator2D(30);
-    }
 
     JarvisMarch jm = new JarvisMarch(points);
     List<Edge> convexHull = jm.getHullEdges();
@@ -196,26 +203,6 @@ public class Statistics {
     GraphPanel graph = new GraphPanel(points, convexHull, heuristics);
     JFrame frame = new GraphWithPoints(graph);
     frame.setVisible(true);
-  }
-
-  /**
-   * given a polygon generates a list of sample points
-   *
-   * @param p polygon from which generate samples
-   * @return a list of samples for the testing of heuristics
-   */
-  public static List<TestCase> getPolygonSample(Polygon p) {
-    List<TestCase> samples = new ArrayList<>();
-
-    for(int nPoints = 10; nPoints <= 200; nPoints += 5){
-        List<Point2D> sample = p.getSample(nPoints);
-        JarvisMarch jm = new JarvisMarch(sample);
-        samples.add(new TestCase(sample, p.getEdgeNumber(), jm.getHullEdges(), jm.getHullNodes()));
-        System.out.println("g3n34ated sample " + nPoints);
-      }
-
-    System.out.println("g3n34ated sample");
-    return samples;
   }
 
   public static double jaccardIndex(List<Point2D> hullA, List<Point2D> hullB) {
