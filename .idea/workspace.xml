@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="first implementation of a polygon generator">
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="written statistics now working with iterator">
       <change afterPath="$PROJECT_DIR$/media/report/Accuracy_plot.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/report/Average_time.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/media/report/Budget_variation.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/report/Time_plot.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/media/report/bxplt_jaccard.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/media/report/bxplt_time.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/report/plt_time.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/report.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analysis/report.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/report.ipynb" afterDir="false" />
@@ -22,10 +21,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/ReportData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/ReportData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Statistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/PolygonGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/PolygonGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Shapes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Shapes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/utilMethods.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -468,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724686684158</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="written statistics now working with iterator">
+      <created>1724791348319</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1724791348319</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -484,7 +488,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="cuttingLargerAngle2 readapted and tested" />
     <MESSAGE value="drawable edges" />
     <MESSAGE value="initialized triangle shape" />
     <MESSAGE value="general polygon implemented" />
@@ -509,7 +512,8 @@
     <MESSAGE value="added report and analysis" />
     <MESSAGE value="adding coments" />
     <MESSAGE value="first implementation of a polygon generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="first implementation of a polygon generator" />
+    <MESSAGE value="written statistics now working with iterator" />
+    <option name="LAST_COMMIT_MESSAGE" value="written statistics now working with iterator" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

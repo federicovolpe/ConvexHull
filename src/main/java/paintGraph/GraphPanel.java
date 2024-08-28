@@ -13,18 +13,16 @@ public class GraphPanel extends JPanel {
   private final List<Point2D> nodes;
   private final List<Edge> edges ;
   private final List<Heuristic> heuristics ;
-  protected LetterGenerator letterGenerator = new LetterGenerator();
 
   /**
    * initialize a graphpanel with all the nodes and the edges
    *
-   * @param nodes nodes of the graph
-   * @param edges edges of the graph
+   * @param p polygon representing the convex hull
    */
-  public GraphPanel(final List<Point2D> nodes, final List<Edge> edges, List<Heuristic> heuristics) {
+  public GraphPanel(shapes.Polygon p, List<Heuristic> heuristics) {
     this.heuristics = heuristics;
-    this.nodes = nodes;
-    this.edges = edges;
+    this.nodes = p.getVertices();
+    this.edges = p.getEdges();
     int biggestD = 0;
     for (Point2D n : nodes) {
       biggestD = (Math.abs(n.getY()) > biggestD) ? Math.abs(n.getX()) : biggestD;
@@ -54,6 +52,17 @@ public class GraphPanel extends JPanel {
 
   protected void drawNodes(Graphics g) {
     for (Point2D n : nodes) n.draw(g, true);
+
+    Polygon p = new Polygon();
+    for (Point2D n : nodes)
+      p.addPoint(ORIGIN_X + n.getX(), ORIGIN_Y - n.getY());
+
+    // Set the color and transparency
+    Color fillColor = new Color(255, 0, 0, 100); // Red with 50% transparency
+    g.setColor(fillColor);
+
+    // Fill the polygon
+    g.fillPolygon(p);
   }
 
   protected void drawEdges(Graphics2D g) {

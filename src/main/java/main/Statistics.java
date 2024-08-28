@@ -7,14 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.swing.JFrame;
-
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
-
-import basic.Edge;
 import basic.Point2D;
 import heuristics.Heuristic;
 import heuristics.fromConvexHull.FromCH;
@@ -85,27 +81,20 @@ public class Statistics {
       e.printStackTrace();
     }
 
-    List<ReportData> reports = new ArrayList<>();
-
-
-    //while (it.hasNext()){
-    for(int sideNumber = 4; sideNumber < 50; sideNumber++){
+    for(int sideNumber = 4; sideNumber < 30; sideNumber++){
       Iterator<Polygon> it = new PolygonGenerator().iterator(sideNumber, 5);
       while(it.hasNext()){
         Polygon testPolygon = it.next();
-      for(int budget = 3; budget < sideNumber; budget ++){
+        for(int budget = 3; budget < sideNumber; budget ++){
+          TestCase test = new TestCase(
+              testPolygon.getVertices(),
+              budget,
+              testPolygon.getEdges(),
+              testPolygon.getVertices());
 
-        TestCase test = new TestCase(
-            testPolygon.getVertices(),
-            budget,
-            testPolygon.getEdges(),
-            testPolygon.getVertices());
-
-          // applico tutte le euristiche al caso
-          // Writing output to a file
           try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-            //displayHeurisitc(heuristics, test.sample() , test.DesiredEdges());
-            for (ReportData r : processSample(heuristics, test)) writer.write(r.toCsv());
+            //displayHeurisitc(heuristics, testPolygon, test.DesiredEdges());
+            //for (ReportData r : processSample(heuristics, test)) writer.write(r.toCsv());
           } catch (IOException e) {
             e.printStackTrace();
           }
@@ -186,21 +175,18 @@ public class Statistics {
    * displays a list of heuristical algoritms result in a window
    *
    * @param heuristics   list of algorithms to display
-   * @param points       sample of point onto which execute the algorithm
+   * @param p starting convex hull
    * @param desiredEdges number of desired edges
    */
-  public static void displayHeurisitc(List<Heuristic> heuristics, List<Point2D> points, int desiredEdges) {
-
-    JarvisMarch jm = new JarvisMarch(points);
-    List<Edge> convexHull = jm.getHullEdges();
+  public static void displayHeurisitc(List<Heuristic> heuristics, Polygon p, int desiredEdges) {
 
     for (Heuristic h : heuristics) {
-      if (h instanceof FromCH fromCH) fromCH.newData(convexHull);
-      if (h instanceof FromPoints fromPoints) fromPoints.newData(getG(jm.getHullNodes()), points);
+      if (h instanceof FromCH fromCH) fromCH.newData(p.getEdges());
+      if (h instanceof FromPoints fromPoints) fromPoints.newData(getG(p.getVertices()), p.getVertices());
       h.calcConvexHull(desiredEdges);
     }
 
-    GraphPanel graph = new GraphPanel(points, convexHull, heuristics);
+    GraphPanel graph = new GraphPanel(p, heuristics);
     JFrame frame = new GraphWithPoints(graph);
     frame.setVisible(true);
   }
