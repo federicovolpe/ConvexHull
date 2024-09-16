@@ -1,7 +1,6 @@
 package heuristics;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +37,7 @@ public abstract class Heuristic {
     public void draw(Graphics g) {
         System.out.println("printing...");
         g.setColor(c);
-        drawEdges(g);
+        drawEdges((Graphics2D) g);
         drawNodes(g);
     }
 
@@ -46,8 +45,10 @@ public abstract class Heuristic {
      * draws all the edges of the convex hull
      * @param g graphics to use
      */
-    public void drawEdges(Graphics g){
+    public void drawEdges(Graphics2D g){
+        g.setStroke(new BasicStroke(2));
         for (Edge e : convexHull) e.draw(g);
+        g.setStroke(new BasicStroke(1));
     }
 
     /**

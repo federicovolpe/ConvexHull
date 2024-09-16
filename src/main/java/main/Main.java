@@ -2,8 +2,12 @@ package main;
 
 import java.awt.Color;
 import static java.awt.Color.*;
+import static main.Statistics.*;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import basic.Point2D;
 import heuristics.Heuristic;
@@ -15,29 +19,36 @@ import heuristics.fromConvexHull.cuttingNodes.CuttingSmallerAngle2;
 import heuristics.fromConvexHull.edgeChoice.LessArea;
 import heuristics.fromPoints.DistanceFromG;
 import heuristics.fromPoints.DistanceFromG2;
+import shapes.Polygon;
 import shapes.PolygonGenerator;
-
-import static main.Statistics.displayHeurisitc;
-import static main.Statistics.fileReportStatistics;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
     List<Heuristic> heuristics = List.of(
-        new CuttingSmallerAngle(new ArrayList<>(), GREEN),
-        new CuttingSmallerAngle2(new ArrayList<>(), BLUE),
-        new CuttingLargerAngle(new ArrayList<>(), RED),
-        new CuttingLargerAngle2(new ArrayList<>(), YELLOW),
-        //new DistanceFromG(null, new ArrayList<>(), ORANGE),
-        new CuttingEdges(new ArrayList<>(), BLACK),
-        //new LessArea(new ArrayList<>(), GREEN),
-        new DistanceFromG2(null, new ArrayList<>(), Color.CYAN));
+        //new CuttingSmallerAngle(GREEN),
+        //new CuttingSmallerAngle2(BLUE),
+        //new CuttingLargerAngle(YELLOW),
+        //new CuttingLargerAngle2(ORANGE),
+        //new DistanceFromG(DARK_GRAY),
+        new CuttingEdges(BLACK),
+        new LessArea(PINK),
+        new DistanceFromG2(CYAN));
 
     displayHeurisitc(heuristics,
-        new PolygonGenerator().generateRandomRegularPolygon(6), 4);
-    //displayHeurisitc(heuristics, rndNodesGenerator2D(10), 5);
-    //displayHeurisitc(heuristics, rndNodesGenerator2D(30), 5);
-    //displayHeurisitc(heuristics, rndNodesGenerator2D(50), 5);
+        new PolygonGenerator().generateRandomRegularPolygon(7), 3);
+    //displayHeurisitc(heuristics,
+    //  new PolygonGenerator().generateRandomRegularPolygon(7), 5);
+    //displayHeurisitc(heuristics,
+       // new PolygonGenerator().generateRandomRegularPolygon(10), 5);
 
+    /*PolygonGenerator pg =  new PolygonGenerator();
+    Polygon p = pg.generateRandomRegularPolygon(4);
+    TestCase t0 = new TestCase(null,3, p.getEdges(), p.getVertices());
+    p = pg.generateRandomRegularPolygon(7);
+    TestCase t1 = new TestCase(null,5, p.getEdges(), p.getVertices());
+    p = pg.generateRandomRegularPolygon(10);
+    TestCase t2 = new TestCase(null,7, p.getEdges(), p.getVertices());
+    generateDemoImages(heuristics, List.of(t0, t1, t2));*/
     //iterationStatistics(heuristics);
     //fileReportStatistics(heuristics);
 

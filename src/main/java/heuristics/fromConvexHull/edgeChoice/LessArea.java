@@ -15,8 +15,8 @@ import heuristics.fromConvexHull.FromCH;
  */
 public class LessArea extends FromCH implements SelectEdges{
 
-  public LessArea(List<Edge> convexHull, Color c) {
-    super(convexHull, c);
+  public LessArea(Color c) {
+    super(c);
   }
 
   @Override

@@ -6,7 +6,6 @@ import heuristics.Heuristic;
 import java.awt.*;
 import java.util.List;
 import javax.swing.*;
-
 import static utils.Constants.GraphConstants.*;
 
 public class GraphPanel extends JPanel {

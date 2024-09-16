@@ -9,9 +9,9 @@ import heuristics.Heuristic;
 
 public abstract class FromCH extends Heuristic {
 
-  public FromCH(List<Edge> convexHull, Color c) {
+  public FromCH(Color c) {
     super(c);
-    this.convexHull = new CircularList<>(convexHull);
+    this.convexHull = new CircularList<>();
   }
 
   /**

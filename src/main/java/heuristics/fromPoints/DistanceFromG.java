@@ -12,8 +12,8 @@ import java.util.List;
  * convex hull of n edges by selecting the most outer nodes of the convex hull from the center of mass
  */
 public class DistanceFromG extends FromPoints {
-    public DistanceFromG(Point2D centerOfMass, List<Point2D> allNodes, Color c){
-        super(centerOfMass, allNodes, c);
+    public DistanceFromG(Color c){
+        super(c);
     }
     @Override
     public void calcConvexHull(int n) {
@@ -78,5 +78,6 @@ public class DistanceFromG extends FromPoints {
             }
         }
     }
+
 
 }

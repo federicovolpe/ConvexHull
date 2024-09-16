@@ -7,8 +7,8 @@ import java.util.List;
 
 public class CuttingLargerAngle extends CuttingNodes {
 
-  public CuttingLargerAngle(List<Edge> convexHull, Color c) {
-    super(convexHull, c);
+  public CuttingLargerAngle(Color c) {
+    super(c);
   }
 
   @Override

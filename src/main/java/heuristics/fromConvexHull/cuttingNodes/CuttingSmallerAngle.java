@@ -1,9 +1,6 @@
 package heuristics.fromConvexHull.cuttingNodes;
 
-import basic.Edge;
-
 import java.awt.*;
-import java.util.List;
 
 /**
  * this strategy, starting from the convex hull tries to find an approximation by cutting the
@@ -15,8 +12,8 @@ import java.util.List;
  */
 public class CuttingSmallerAngle extends CuttingNodes {
 
-  public CuttingSmallerAngle(final List<Edge> convexHull, Color c) {
-    super(convexHull, c);
+  public CuttingSmallerAngle(Color c) {
+    super(c);
   }
 
   @Override

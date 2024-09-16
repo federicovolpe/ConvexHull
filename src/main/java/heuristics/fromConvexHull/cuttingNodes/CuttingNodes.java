@@ -11,8 +11,8 @@ import java.util.List;
  */
 public abstract class CuttingNodes extends FromCH {
 
-  protected CuttingNodes(final List<Edge> convexHull, Color c) {
-    super(convexHull, c);
+  protected CuttingNodes(Color c) {
+    super(c);
   }
 
   public void calcConvexHull(int n){

@@ -10,8 +10,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class DistanceFromG2 extends DistanceFromG {
-  public DistanceFromG2(Point2D centerOfMass, List<Point2D> allNodes, Color c) {
-    super(centerOfMass, allNodes, c);
+  public DistanceFromG2(Color c) {
+    super(c);
   }
 
   @Override

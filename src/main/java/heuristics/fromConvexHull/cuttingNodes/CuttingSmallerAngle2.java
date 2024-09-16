@@ -6,8 +6,8 @@ import java.util.List;
 
 public class CuttingSmallerAngle2 extends EdgeExtension {
 
-  public CuttingSmallerAngle2(final List<Edge> convexHull, Color c) {
-    super(convexHull, c);
+  public CuttingSmallerAngle2(Color c) {
+    super(c);
   }
 
   @Override

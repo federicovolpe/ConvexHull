@@ -14,9 +14,8 @@ public class CuttingEdges extends FromCH {
   private Map<Edge, Double> edge_area = new HashMap<>();
   private List<CircularList<Edge>> procedure = new ArrayList<>();
 
-  public CuttingEdges(List<Edge> convexHull, Color c) {
-    super(convexHull, c);
-    initMap();
+  public CuttingEdges(Color c) {
+    super(c);
   }
 
   /**

@@ -12,8 +12,8 @@ import java.util.List;
  */
 public abstract class EdgeExtension extends CuttingNodes {
 
-  public EdgeExtension (final List<Edge> convexHull, Color c) {
-    super(convexHull, c);
+  public EdgeExtension (Color c) {
+    super(c);
   }
 
   /**
