@@ -4,24 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="presentation 28/8">
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/Model.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/Observable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/GraphPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/HeuristicPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/InputPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/Observer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/ButtonPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/GraphWithPoints.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/InputView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/OutputView.java" afterDir="false" />
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="basic implementation of mvp">
+      <change afterPath="$PROJECT_DIR$/analysis/reportreg.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reportREG.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/ReportData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/ReportData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Statistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/GraphPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphWithPoints.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/TestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/TestCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/HeuristicPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/HeuristicPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/view/GraphWithPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/GraphWithPoints.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/shapes/PolygonGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/PolygonGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -479,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724849899486</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="basic implementation of mvp">
+      <created>1726557159271</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1726557159271</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -495,7 +495,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="initialized triangle shape" />
     <MESSAGE value="general polygon implemented" />
     <MESSAGE value="regular shapes tested" />
     <MESSAGE value="red: resettable heuristic" />
@@ -520,7 +519,8 @@
     <MESSAGE value="first implementation of a polygon generator" />
     <MESSAGE value="written statistics now working with iterator" />
     <MESSAGE value="presentation 28/8" />
-    <option name="LAST_COMMIT_MESSAGE" value="presentation 28/8" />
+    <MESSAGE value="basic implementation of mvp" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic implementation of mvp" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

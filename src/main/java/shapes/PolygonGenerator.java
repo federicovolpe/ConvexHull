@@ -50,9 +50,10 @@ public class PolygonGenerator {
   public Polygon generateRegularPolygon(int sides) {
     List<Point2D> vertices = new ArrayList<>();
     for(int i = 0; i < sides; i++){
-      Point2D v = new Point2D(i, (int)(100 * Math.cos(i * 2*Math.PI / 5)), (int) (100 * Math.sin(i * 2*Math.PI / 5)) );
+      Point2D v = new Point2D(i, (int)(100 * Math.cos(i * 2*Math.PI / sides)), (int) (100 * Math.sin(i * 2*Math.PI / sides)) );
       vertices.add(v);
     }
+    System.out.println("generated "+vertices.size()+" vertices");
     return new Polygon(vertices);
   }
 

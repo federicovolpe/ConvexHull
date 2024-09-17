@@ -46,7 +46,5 @@ public class GraphWithPoints extends JFrame implements OutputView {
         // Revalidate and repaint to update the UI
         mainPanel.revalidate();
         mainPanel.repaint();
-
-        System.out.println("Redrawing main panel with new graph panel");
     }
 }

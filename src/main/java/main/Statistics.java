@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import basic.CircularList;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
@@ -67,9 +68,9 @@ public class Statistics {
    */
   public static void fileReportStatistics(List<Heuristic> heuristics){
 
-    File file = new File("report.csv");
+    File file = new File("reportREG.csv");
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-      writer.write("heuristic,points,hyperplane_budget,jaccard_index,time,exceptions\n");
+      writer.write("heuristic,points,hyperplane_budget,jaccard_index,time,exceptions,regularity\n");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -80,14 +81,13 @@ public class Statistics {
         Polygon testPolygon = it.next();
         for(int budget = 3; budget < sideNumber; budget ++){
           TestCase test = new TestCase(
-              testPolygon.getVertices(),
-              budget,
-              testPolygon.getEdges(),
-              testPolygon.getVertices());
+              testPolygon,
+              budget
+          );
 
           try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             //displayHeurisitc(heuristics, testPolygon, test.DesiredEdges());
-            //for (ReportData r : processSample(heuristics, test)) writer.write(r.toCsv());
+            for (ReportData r : processSample(heuristics, test)) writer.write(r.toCsv());
           } catch (IOException e) {
             e.printStackTrace();
           }
@@ -132,9 +132,9 @@ public class Statistics {
   private static ReportData singleHeuristicApplication(Heuristic heuristic, TestCase testCase) {
     // initialize the heuristic with the new data
     if (heuristic instanceof FromCH)
-      ((FromCH) heuristic).newData(testCase.hullEdges());
+      ((FromCH) heuristic).newData(new CircularList<>(testCase.hullEdges()));
     if (heuristic instanceof FromPoints)
-      ((FromPoints) heuristic).newData(testCase.hullNodes());
+      ((FromPoints) heuristic).newData(new CircularList<>(testCase.hullNodes()));
 
     try {
 
@@ -146,21 +146,22 @@ public class Statistics {
       long endTime = System.nanoTime();
 
       return new ReportData(heuristic,
-          testCase.sample().size(),
+          testCase.hullNodes().size(),
           testCase.DesiredEdges(),
           jaccardIndex(testCase.hullNodes(), heuristic.getHullNodes()),
           (endTime - startTime),
-          false);
+          false,
+          testCase.regularity());
     } catch (Exception e) {
 
-      //e.printStackTrace();
-      return new ReportData(
-          heuristic,
+      e.printStackTrace();
+      return new ReportData(heuristic,
+          testCase.hullNodes().size(),
           testCase.DesiredEdges(),
-          testCase.sample().size(),
           null,
           null,
-          true);
+          true,
+          testCase.regularity());
     }
   }
 
@@ -189,7 +190,6 @@ public class Statistics {
     InputPresenter inputPresenter = new HeuristicPresenter(bp, model, heuristics);
     GraphPresenter graphPanel = new GraphPresenter(frame, model);
 
-
     model.notifyObservers();
     frame.setVisible(true);
     for(Heuristic h : heuristics)
@@ -199,7 +199,6 @@ public class Statistics {
   public static double jaccardIndex(List<Point2D> hullA, List<Point2D> hullB) {
     GeometryFactory geometryFactory = new GeometryFactory();
 
-    // System.out.println("hullA: " + hullA);
     // Define coordinates for the first polygon
     List<Coordinate> polygonACoords = new ArrayList<>();
     for (Point2D n : hullA) polygonACoords.add(new Coordinate(n.getX(), n.getY()));
@@ -222,7 +221,6 @@ public class Statistics {
     double intersectionArea = intersection.getArea();
     double unionArea = union.getArea();
 
-    //System.out.println("jaccard: "+intersectionArea / unionArea);
     return intersectionArea / unionArea;// Jaccard index
   }
 

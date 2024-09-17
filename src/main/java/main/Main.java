@@ -7,8 +7,14 @@ import java.util.List;
 import basic.Point2D;
 import heuristics.Heuristic;
 import heuristics.fromConvexHull.cuttingEdges.CuttingEdges;
+import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle;
 import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle2;
+import heuristics.fromConvexHull.cuttingNodes.CuttingSmallerAngle;
+import heuristics.fromConvexHull.cuttingNodes.CuttingSmallerAngle2;
+import heuristics.fromConvexHull.edgeChoice.LessArea;
+import heuristics.fromPoints.DistanceFromG;
 import heuristics.fromPoints.DistanceFromG2;
+import shapes.Polygon;
 import shapes.PolygonGenerator;
 
 public class Main {
@@ -18,13 +24,13 @@ public class Main {
         //new CuttingSmallerAngle2(BLUE),
         //new CuttingLargerAngle(YELLOW),
         new CuttingLargerAngle2(ORANGE),
-        //new DistanceFromG(DARK_GRAY),
+        new DistanceFromG(DARK_GRAY),
         new CuttingEdges(BLACK),
-        //new LessArea(PINK),
-        new DistanceFromG2(CYAN));
+        new LessArea(PINK));
+        //new DistanceFromG2(CYAN));
 
-    displayHeurisitc(heuristics,
-        new PolygonGenerator().generateRegularPolygon(7), 3);
+    //displayHeurisitc(heuristics,
+    //    new PolygonGenerator().generateRegularPolygon(5), 3);
     //displayHeurisitc(heuristics,
     //  new PolygonGenerator().generateRandomRegularPolygon(7), 5);
     //displayHeurisitc(heuristics,
@@ -39,7 +45,7 @@ public class Main {
     TestCase t2 = new TestCase(null,7, p.getEdges(), p.getVertices());
     generateDemoImages(heuristics, List.of(t0, t1, t2));*/
     //iterationStatistics(heuristics);
-    //fileReportStatistics(heuristics);
+    fileReportStatistics(heuristics);
 
   }
 

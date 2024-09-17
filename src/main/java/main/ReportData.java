@@ -2,7 +2,13 @@ package main;
 
 import heuristics.Heuristic;
 
-public record ReportData(Heuristic heuristic, int pointNumber, int hyperplaneBudget, Double jaccardIndex, Long time, boolean exception) {
+public record ReportData(Heuristic heuristic,
+                         int pointNumber,
+                         int hyperplaneBudget,
+                         Double jaccardIndex,
+                         Long time,
+                         boolean exception,
+                         int regularity) {
 
   public String toCsv(){
     return heuristic.getClass().getSimpleName() + ","+
@@ -10,6 +16,7 @@ public record ReportData(Heuristic heuristic, int pointNumber, int hyperplaneBud
         hyperplaneBudget + "," +
         jaccardIndex + "," +
         time + "," +
-        exception + "\n";
+        exception + "," +
+        regularity +"\n";
   }
 }

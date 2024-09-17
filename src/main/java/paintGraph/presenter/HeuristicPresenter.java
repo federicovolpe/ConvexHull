@@ -17,7 +17,6 @@ public class HeuristicPresenter implements InputPresenter {
   }
   @Override
   public void action(String text) {
-    System.out.println("presenter is sending to model the requset");
     for(Heuristic h : heuristics){
       if(h.getClass().getSimpleName().equals(text))
         m.heuristicSelection(h);
