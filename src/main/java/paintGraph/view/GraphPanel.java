@@ -1,4 +1,4 @@
-package paintGraph;
+package paintGraph.view;
 
 import basic.Edge;
 import basic.Point2D;
@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.*;
 import static utils.Constants.GraphConstants.*;
 
-public class GraphPanel extends JPanel {
+public class GraphPanel extends JPanel{
   private final List<Point2D> nodes;
   private final List<Edge> edges ;
   private final List<Heuristic> heuristics ;
@@ -19,10 +19,12 @@ public class GraphPanel extends JPanel {
    * @param p polygon representing the convex hull
    */
   public GraphPanel(shapes.Polygon p, List<Heuristic> heuristics) {
+
     this.heuristics = heuristics;
     this.nodes = p.getVertices();
     this.edges = p.getEdges();
     int biggestD = 0;
+
     for (Point2D n : nodes) {
       biggestD = (Math.abs(n.getY()) > biggestD) ? Math.abs(n.getX()) : biggestD;
       biggestD = Math.max(Math.abs(n.getY()), biggestD);

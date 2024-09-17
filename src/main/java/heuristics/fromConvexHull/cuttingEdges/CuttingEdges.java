@@ -106,9 +106,5 @@ public class CuttingEdges extends FromCH {
   @Override
   public void draw(Graphics g){
     super.draw(g);
-    g.setColor(Color.GRAY);
-    for(CircularList<Edge> c : procedure){
-      for(Edge e: c) e.draw(g);
-    }
   }
 }

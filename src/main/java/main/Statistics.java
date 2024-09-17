@@ -1,19 +1,12 @@
 package main;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
@@ -23,8 +16,13 @@ import basic.Point2D;
 import heuristics.Heuristic;
 import heuristics.fromConvexHull.FromCH;
 import heuristics.fromPoints.FromPoints;
-import paintGraph.GraphPanel;
-import paintGraph.GraphWithPoints;
+import paintGraph.presenter.GraphPresenter;
+import paintGraph.presenter.HeuristicPresenter;
+import paintGraph.presenter.InputPresenter;
+import paintGraph.view.ButtonPanel;
+import paintGraph.view.GraphPanel;
+import paintGraph.view.GraphWithPoints;
+import paintGraph.Model;
 import shapes.Polygon;
 import shapes.PolygonGenerator;
 
@@ -37,9 +35,9 @@ public class Statistics {
    * @param heuristics list of heuristics to test
    */
   public static void generateDemoImages (List<Heuristic> heuristics, List<TestCase> tests) {
-    for(Heuristic h : heuristics){
+    /*for(Heuristic h : heuristics){
       for(TestCase t : tests) {
-        JPanel p = displayHeurisitc(List.of(h), new Polygon(t.hullNodes()), t.DesiredEdges());
+        displayHeurisitc(List.of(h), new Polygon(t.hullNodes()), t.DesiredEdges());
 
         BufferedImage image = new BufferedImage(p.getWidth(), p.getHeight(), BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = image.createGraphics();
@@ -59,7 +57,7 @@ public class Statistics {
         System.out.println("JPanel salvato come immagine!");
 
       }
-    }
+    }*/
   }
 
   /**
@@ -173,18 +171,29 @@ public class Statistics {
    * @param p starting convex hull
    * @param desiredEdges number of desired edges
    */
-  public static JPanel displayHeurisitc(List<Heuristic> heuristics, Polygon p, int desiredEdges) {
+  public static void displayHeurisitc(List<Heuristic> heuristics, Polygon p, int desiredEdges) {
     for (Heuristic h : heuristics) {
       if (h instanceof FromCH fromCH) fromCH.newData(p.getEdges());
       if (h instanceof FromPoints fromPoints) fromPoints.newData(p.getVertices());
       h.calcConvexHull(desiredEdges);
     }
 
+    // model creation
+    Model model = new Model(p, heuristics);
+    // view creation
     GraphPanel graph = new GraphPanel(p, heuristics);
-    JFrame frame = new GraphWithPoints(graph);
+    ButtonPanel bp = new ButtonPanel(heuristics);
+    GraphWithPoints frame = new GraphWithPoints(bp, graph);
+
+    // presenter creation
+    InputPresenter inputPresenter = new HeuristicPresenter(bp, model, heuristics);
+    GraphPresenter graphPanel = new GraphPresenter(frame, model);
+
+
+    model.notifyObservers();
     frame.setVisible(true);
-    // for making screenshots
-    return graph;
+    for(Heuristic h : heuristics)
+      System.out.println(h.getClass().getSimpleName() + " -> "+ jaccardIndex(p.getVertices(), h.getHullNodes()));
   }
 
   public static double jaccardIndex(List<Point2D> hullA, List<Point2D> hullB) {
@@ -213,7 +222,7 @@ public class Statistics {
     double intersectionArea = intersection.getArea();
     double unionArea = union.getArea();
 
-    System.out.println("jaccard: "+intersectionArea / unionArea);
+    //System.out.println("jaccard: "+intersectionArea / unionArea);
     return intersectionArea / unionArea;// Jaccard index
   }
 

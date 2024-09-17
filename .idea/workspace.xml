@@ -5,68 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="presentation 28/8">
-      <change afterPath="$PROJECT_DIR$/media/CuttingEdges/10_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingEdges/4_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingEdges/7_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngle/10_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngle/4_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngle/7_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngle2/10_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngle2/4_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingLargerAngle2/7_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngle/10_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngle/4_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngle/7_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngle2/10_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngle2/4_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/CuttingSmallerAngle2/7_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/DistanceFromG/10_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/DistanceFromG/4_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/DistanceFromG/7_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/DistanceFromG2/10_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/DistanceFromG2/4_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/DistanceFromG2/7_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/LessArea/10_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/LessArea/4_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/LessArea/7_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromGScaled.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/Model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/Observable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/GraphPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/HeuristicPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/InputPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/presenter/Observer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/ButtonPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/GraphWithPoints.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/InputView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/OutputView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/report.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/report.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingLargerAngles/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingLargerAngles/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingLargerAngles/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingLargerAngles2/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingLargerAngles2/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingLargerAngles2/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingSmallerAngles/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingSmallerAngles/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingSmallerAngles/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingSmallerAngles2/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingSmallerAngles2/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/CuttingSmallerAngles2/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/DistanceFromG/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/DistanceFromG/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/DistanceFromG/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/LessArea/10-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/LessArea/30-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/LessArea/50-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/report/bxplt_time.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/media/report/bxplt_time.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/FromCH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/FromCH.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingNodes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/EdgeExtension.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/EdgeExtension.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/edgeChoice/LessArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/edgeChoice/LessArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/FromPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/FromPoints.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Statistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/view/GraphPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphWithPoints.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/PolygonGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/PolygonGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +37,8 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -116,21 +72,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_directory_selection&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_directory_selection": "/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test",
+    "last_opened_file_path": "/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
@@ -230,7 +186,7 @@
         <item itemvalue="JUnit.PointTest.toPolymake" />
         <item itemvalue="JUnit.NodeTest.samePos" />
         <item itemvalue="JUnit.EdgeTest.projection" />
-        <item itemvalue="JUnit.PointTest.toPolymake" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>

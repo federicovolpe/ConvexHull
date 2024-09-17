@@ -35,7 +35,7 @@ public abstract class Heuristic {
      * drawing the nodes and the edges calculated by the heuristic
      */
     public void draw(Graphics g) {
-        System.out.println("printing...");
+        System.out.println("printing heuristic " + this.getClass().getSimpleName());
         g.setColor(c);
         drawEdges((Graphics2D) g);
         drawNodes(g);

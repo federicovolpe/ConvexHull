@@ -47,7 +47,14 @@ public class PolygonGenerator {
     return new Polygon(jm.getHullNodes());
   }
 
-
+  public Polygon generateRegularPolygon(int sides) {
+    List<Point2D> vertices = new ArrayList<>();
+    for(int i = 0; i < sides; i++){
+      Point2D v = new Point2D(i, (int)(100 * Math.cos(i * 2*Math.PI / 5)), (int) (100 * Math.sin(i * 2*Math.PI / 5)) );
+      vertices.add(v);
+    }
+    return new Polygon(vertices);
+  }
 
   private static Polygon valtrAlgorithm(int n) {
     // Generate two lists of random X and Y coordinates

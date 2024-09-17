@@ -1,25 +1,14 @@
 package main;
 
-import java.awt.Color;
 import static java.awt.Color.*;
 import static main.Statistics.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import basic.Point2D;
 import heuristics.Heuristic;
 import heuristics.fromConvexHull.cuttingEdges.CuttingEdges;
-import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle;
 import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle2;
-import heuristics.fromConvexHull.cuttingNodes.CuttingSmallerAngle;
-import heuristics.fromConvexHull.cuttingNodes.CuttingSmallerAngle2;
-import heuristics.fromConvexHull.edgeChoice.LessArea;
-import heuristics.fromPoints.DistanceFromG;
 import heuristics.fromPoints.DistanceFromG2;
-import shapes.Polygon;
 import shapes.PolygonGenerator;
 
 public class Main {
@@ -28,14 +17,14 @@ public class Main {
         //new CuttingSmallerAngle(GREEN),
         //new CuttingSmallerAngle2(BLUE),
         //new CuttingLargerAngle(YELLOW),
-        //new CuttingLargerAngle2(ORANGE),
+        new CuttingLargerAngle2(ORANGE),
         //new DistanceFromG(DARK_GRAY),
         new CuttingEdges(BLACK),
-        new LessArea(PINK),
+        //new LessArea(PINK),
         new DistanceFromG2(CYAN));
 
     displayHeurisitc(heuristics,
-        new PolygonGenerator().generateRandomRegularPolygon(7), 3);
+        new PolygonGenerator().generateRegularPolygon(7), 3);
     //displayHeurisitc(heuristics,
     //  new PolygonGenerator().generateRandomRegularPolygon(7), 5);
     //displayHeurisitc(heuristics,
