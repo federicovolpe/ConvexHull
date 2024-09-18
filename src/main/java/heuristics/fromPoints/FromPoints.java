@@ -29,10 +29,11 @@ public abstract class FromPoints extends Heuristic {
 
   public void draw(Graphics g) {
     super.draw(g);
-    g.setColor(Color.BLACK);
+    g.setColor(new Color(248, 3, 252));
     int x = ORIGIN_X + centerOfMass.getX() - POINT_DIM /2;
     int y = ORIGIN_Y - centerOfMass.getY() - POINT_DIM /2;
     g.fillOval(x, y, POINT_DIM, POINT_DIM);
+    g.setColor(Color.BLACK);
   }
 
   /**

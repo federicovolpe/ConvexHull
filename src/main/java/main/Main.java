@@ -6,6 +6,7 @@ import java.util.List;
 
 import basic.Point2D;
 import heuristics.Heuristic;
+import heuristics.fromConvexHull.GreedyPolymake;
 import heuristics.fromConvexHull.cuttingEdges.CuttingEdges;
 import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle;
 import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle2;
@@ -20,14 +21,15 @@ import shapes.PolygonGenerator;
 public class Main {
   public static void main(String[] args) throws InterruptedException {
     List<Heuristic> heuristics = List.of(
-        new CuttingSmallerAngle(GREEN),
-        new CuttingSmallerAngle2(BLUE),
-        new CuttingLargerAngle(YELLOW),
-        new CuttingLargerAngle2(ORANGE),
-        new DistanceFromG(DARK_GRAY),
-        new CuttingEdges(BLACK),
-        new LessArea(PINK),
-        new DistanceFromG2(CYAN));
+        new GreedyPolymake(GREEN));
+        //new CuttingSmallerAngle(GREEN),
+        //new CuttingSmallerAngle2(BLUE),
+        //new CuttingLargerAngle(YELLOW),
+        //new CuttingLargerAngle2(ORANGE),
+        //new DistanceFromG(DARK_GRAY),
+        //new CuttingEdges(BLACK),
+        //new LessArea(PINK),
+        //new DistanceFromG2(CYAN));
 
     //displayHeurisitc(heuristics,
     //    new PolygonGenerator().generateRegularPolygon(5), 3);
