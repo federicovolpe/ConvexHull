@@ -1,5 +1,6 @@
 package heuristics.fromConvexHull.cuttingNodes;
 
+import basic.CircularList;
 import basic.Edge;
 import basic.Point2D;
 import java.awt.*;
@@ -20,20 +21,21 @@ public abstract class EdgeExtension extends CuttingNodes {
    * select a set of vertices one by one and for each applies the traslation of the resulting edge
    */
   protected void applyCut(){
+    CircularList<Edge> edges = poly.getEdges();
     //------------------------------------    selecting the correct vertex      -----------------------------------
     int selected = selectAngle();
-    Edge lowestA  = convexHull.get(selected);
+    Edge lowestA  = edges.get(selected);
     Point2D cuttedNode = lowestA.n2();
-    Edge lowestB = convexHull.get(selected+1);
+    Edge lowestB = edges.get(selected+1);
 
     //------------------------------------    cutting the node      -----------------------------------
     //System.out.println("selected node: " + convexHull.get(selected).n2());
-    convexHull.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
-    Edge selectedEdge = convexHull.get(selected);
+    edges.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
+    Edge selectedEdge = edges.get(selected);
     //System.out.println("new edge : "+ selectedEdge);
 
-    convexHull.remove(lowestB);
-    int selectedEdgeIndex = convexHull.indexOf(selectedEdge);
+    edges.remove(lowestB);
+    int selectedEdgeIndex = edges.indexOf(selectedEdge);
 
     //------------------------------------    traslating the resulting edge      -----------------------------------
     //System.out.println("traslating "+ selectedEdge);
@@ -41,7 +43,7 @@ public abstract class EdgeExtension extends CuttingNodes {
 
     //------------------------------------    extending the adjacent edges      -----------------------------------
     //System.out.println("extending edges: "+ convexHull.get(selectedEdgeIndex-1) +" "+convexHull.get(selectedEdgeIndex+1));
-    extendEdges(convexHull.get(selectedEdgeIndex-1), convexHull.get(selectedEdgeIndex), convexHull.get(selectedEdgeIndex+1));
+    extendEdges(edges.get(selectedEdgeIndex-1), edges.get(selectedEdgeIndex), edges.get(selectedEdgeIndex+1));
   }
 
   /**

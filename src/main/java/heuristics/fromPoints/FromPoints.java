@@ -2,6 +2,7 @@ package heuristics.fromPoints;
 
 import basic.Point2D;
 import heuristics.Heuristic;
+import shapes.Polygon;
 
 import java.awt.*;
 import java.util.List;
@@ -20,11 +21,12 @@ public abstract class FromPoints extends Heuristic {
 
   /**
    * resets the current algorithm and initializes it with new set of dat
-   * @param allNodes all of the points for the ch calcuation
+   * @param p starting convex hull polygon
    */
-  public void newData(List<Point2D> allNodes) {
-    this.centerOfMass = getG(allNodes);
-    this.allNodes = allNodes;
+  @Override
+  public void newData(Polygon p) {
+    this.centerOfMass = getG(p.getVertices());
+    this.allNodes = p.getVertices();
   }
 
   public void draw(Graphics g) {

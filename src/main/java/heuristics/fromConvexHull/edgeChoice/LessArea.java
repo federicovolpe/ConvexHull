@@ -21,33 +21,27 @@ public class LessArea extends FromCH implements SelectEdges{
 
   @Override
   public void calcConvexHull(int n) {
-
+    CircularList<Edge> edges = poly.getEdges();
     //connectEdges(
     CircularList<Edge> selected = new CircularList<>();
     selected.addAll(selectEdges(n));
 
-    //System.out.println("\nbest edges: ");
-    //for(Edge e : selected) System.out.println(e);
-    sortBByA(convexHull, selected);
-    //System.out.println("\nsorted: ");
-    //for(Edge e : selected) System.out.println(e);
+    sortBByA(edges, selected);
 
     connectEdges(selected);
-    convexHull = selected;
-    //System.out.println( "resulting convex hull: " + convexHull);
+    edges = selected;
   }
 
   @Override
   public List<Edge> selectEdges(int n) {
-    List<Edge> sortedEdges = new ArrayList<>(convexHull);
+    List<Edge> sortedEdges = new ArrayList<>(poly.getEdges());
 
     sortedEdges.sort((e1, e2) -> {
       double area1 = calcProjectedArea(e1);
       double area2 = calcProjectedArea(e2);
       return Double.compare(area1, area2);
     });
-    //System.out.println("sorted edges > " + sortedEdges.size());
-    //System.out.println("total edges > " + convexHull.size());
+
     return sortedEdges.subList(0, n);
   }
 
@@ -57,7 +51,7 @@ public class LessArea extends FromCH implements SelectEdges{
    * @return the area in between
    */
   private double calcProjectedArea(Edge e){
-    List<Edge> estremi = findFurthestProjectionNodes(e, convexHull);
+    List<Edge> estremi = findFurthestProjectionNodes(e, poly.getEdges());
     Edge extremeL = estremi.get(0);
     Edge extremeR = estremi.get(1);
 
@@ -103,7 +97,7 @@ public class LessArea extends FromCH implements SelectEdges{
     Edge curr = A;
     while(! curr.equals(B)){
       edges.add(curr);
-      curr = convexHull.getNext(curr);
+      curr = poly.getEdges().getNext(curr);
     }
 
     return edges;

@@ -3,6 +3,7 @@ package heuristics.fromPoints;
 import basic.CircularList;
 import basic.Point2D;
 import main.JarvisMarch;
+import shapes.Polygon;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class DistanceFromG2 extends DistanceFromG {
     //for(Point2D p : enlarged){
       //System.out.println(p);
     //}
-    this.convexHull = new CircularList<>(new JarvisMarch(enlarged).getHullEdges());
+    poly = new Polygon(new JarvisMarch(enlarged).getHullNodes());
   }
 
   private List<Point2D> enlargeArea(List<Point2D> vertices) {

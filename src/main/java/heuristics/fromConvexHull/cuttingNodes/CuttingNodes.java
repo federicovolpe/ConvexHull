@@ -1,5 +1,6 @@
 package heuristics.fromConvexHull.cuttingNodes;
 
+import basic.CircularList;
 import basic.Edge;
 import heuristics.fromConvexHull.FromCH;
 import java.awt.*;
@@ -17,7 +18,7 @@ public abstract class CuttingNodes extends FromCH {
 
   public void calcConvexHull(int n){
     if(n < 3) throw new IllegalArgumentException("number of edges must be greater than 3: "+ n);
-    while(this.convexHull.size() > n) applyCut();
+    while(poly.getEdgeNumber() > n) applyCut();
   }
 
   /**
@@ -25,12 +26,13 @@ public abstract class CuttingNodes extends FromCH {
    * edges that cuts out the selected v.
    */
   protected void applyCut(){
+    CircularList<Edge> edges = poly.getEdges();
     int selected = selectAngle();
-    Edge lowestA  = convexHull.get(selected);
-    Edge lowestB = convexHull.get(selected+1);
+    Edge lowestA  = edges.get(selected);
+    Edge lowestB = edges.get(selected+1);
 
-    convexHull.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
-    convexHull.remove(lowestB);
+    edges.set(selected, new Edge(lowestA.n1(), lowestB.n2()));
+    edges.remove(lowestB);
   }
 
   /**

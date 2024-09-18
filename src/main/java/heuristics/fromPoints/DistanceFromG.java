@@ -3,6 +3,8 @@ package heuristics.fromPoints;
 import basic.CircularList;
 import basic.Point2D;
 import main.JarvisMarch;
+import shapes.Polygon;
+
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -18,7 +20,7 @@ public class DistanceFromG extends FromPoints {
     @Override
     public void calcConvexHull(int n) {
         List<Point2D> chosenNodes = selectNodes(n);
-        convexHull = new CircularList<>(new JarvisMarch(chosenNodes).getHullEdges());
+        poly = new Polygon(new JarvisMarch(chosenNodes).getHullNodes());
     }
 
     /**

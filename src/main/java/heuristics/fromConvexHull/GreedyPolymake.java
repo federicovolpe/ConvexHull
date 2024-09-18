@@ -20,7 +20,6 @@ public class GreedyPolymake extends FromPoints {
 
   public GreedyPolymake(Color c) {
     super(c);
-    this.convexHull = new CircularList<>();
   }
 
   public void calcConvexHull(int n) {
@@ -122,8 +121,8 @@ public class GreedyPolymake extends FromPoints {
   }
 
   @Override
-  public void newData(List<Point2D> allNodes) {
-    this.polygon = new Polygon(allNodes);
+  public void newData(Polygon p) {
+    this.polygon = p;
 
     // calcolo del baricentro per poter calcolare il centro geometrico
     this.centerOfMass = getG(allNodes);
@@ -135,7 +134,7 @@ public class GreedyPolymake extends FromPoints {
     this.centerOfMass = getG(insidePoints);
 
     this.sample = calcSample().stream()
-        .filter(p -> !isPointInPolygon(p)).toList();
+        .filter(point -> !isPointInPolygon(point)).toList();
   }
 
 }

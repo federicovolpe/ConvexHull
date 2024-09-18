@@ -131,10 +131,7 @@ public class Statistics {
    */
   private static ReportData singleHeuristicApplication(Heuristic heuristic, TestCase testCase) {
     // initialize the heuristic with the new data
-    if (heuristic instanceof FromCH)
-      ((FromCH) heuristic).newData(new CircularList<>(testCase.hullEdges()));
-    if (heuristic instanceof FromPoints)
-      ((FromPoints) heuristic).newData(new CircularList<>(testCase.hullNodes()));
+    heuristic.newData(new Polygon(testCase.p()));
 
     try {
 
@@ -174,8 +171,7 @@ public class Statistics {
    */
   public static void displayHeurisitc(List<Heuristic> heuristics, Polygon p, int desiredEdges) {
     for (Heuristic h : heuristics) {
-      if (h instanceof FromCH fromCH) fromCH.newData(p.getEdges());
-      if (h instanceof FromPoints fromPoints) fromPoints.newData(p.getVertices());
+      h.newData(new Polygon(p));  // passing a copy of the polygon
       h.calcConvexHull(desiredEdges);
     }
 

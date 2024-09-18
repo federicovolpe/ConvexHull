@@ -7,6 +7,7 @@ import java.util.List;
 import basic.CircularList;
 import basic.Edge;
 import basic.Point2D;
+import shapes.Polygon;
 
 /**
  * a heuristical algorithm can be executed , drawn or recalculated
@@ -17,8 +18,7 @@ import basic.Point2D;
  * a convex hull (for cutting algoritms)
  */
 public abstract class Heuristic {
-
-    protected CircularList<Edge> convexHull;
+    protected Polygon poly;
     protected Color c;
 
     public Heuristic(Color c){
@@ -46,7 +46,7 @@ public abstract class Heuristic {
      */
     public void drawEdges(Graphics2D g){
         g.setStroke(new BasicStroke(2));
-        for (Edge e : convexHull) e.draw(g);
+        for (Edge e : poly.getEdges()) e.draw(g);
         g.setStroke(new BasicStroke(1));
     }
 
@@ -55,7 +55,7 @@ public abstract class Heuristic {
      * @param g graphics to use
      */
     public void drawNodes(Graphics g) {
-        for (Edge e : convexHull)
+        for (Edge e : poly.getEdges())
             e.n1().draw(g, false);
     }
 
@@ -64,7 +64,7 @@ public abstract class Heuristic {
      */
     public CircularList<Point2D> getHullNodes(){
         CircularList<Point2D> nodes = new CircularList<>();
-        for (Edge e : convexHull)
+        for (Edge e : poly.getEdges())
             nodes.add(e.n1());
         return nodes;
     }
@@ -79,5 +79,9 @@ public abstract class Heuristic {
         for (Edge e : hull)
             nodes.add(e.n1());
         return nodes;
+    }
+
+    public void newData(Polygon p){
+        this.poly = new Polygon(p);
     }
 }

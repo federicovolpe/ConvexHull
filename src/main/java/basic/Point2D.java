@@ -17,8 +17,8 @@ public class Point2D extends Point {
   }
 
   // Copy constructor
-  public Point2D(Point2D node) {
-    super(List.of(node.getX(), node.getY()), node.getIndex());
+  public Point2D(Point2D point) {
+    super(List.of(point.getX(), point.getY()), point.getIndex());
   }
 
   /**

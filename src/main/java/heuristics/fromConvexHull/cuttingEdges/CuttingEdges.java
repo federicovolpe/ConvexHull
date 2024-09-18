@@ -3,16 +3,15 @@ package heuristics.fromConvexHull.cuttingEdges;
 import basic.CircularList;
 import basic.Edge;
 import heuristics.fromConvexHull.FromCH;
+import shapes.Polygon;
+
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CuttingEdges extends FromCH {
 
   private Map<Edge, Double> edge_area = new HashMap<>();
-  private List<CircularList<Edge>> procedure = new ArrayList<>();
 
   public CuttingEdges(Color c) {
     super(c);
@@ -22,42 +21,41 @@ public class CuttingEdges extends FromCH {
    * initializes the edge to area map for the future cutting procedure
    */
   private void initMap(){
-    for(Edge e : convexHull)
+    for(Edge e : poly.getEdges())
       edge_area.put(e, getArea(e));
   }
 
   @Override
-  public void newData(List<Edge> convexHull){
-    super.newData(convexHull);
-    procedure = new ArrayList<>();
+  public void newData(Polygon p){
+    super.newData(p);
     edge_area = new HashMap<>();
     initMap();
   }
 
   @Override
   public void calcConvexHull(int n) {
-    while(convexHull.size() > n) {
+    while(poly.getEdgeNumber() > n) {
       applyCut();
-      procedure.add(new CircularList<>(convexHull));
     }
   }
 
   private void applyCut(){
+    CircularList<Edge> edges = poly.getEdges();
     Edge selected = selectEdge();
 
-    Edge prev = convexHull.getPrev(selected);
-    Edge next = convexHull.getNext(selected);
+    Edge prev = edges.getPrev(selected);
+    Edge next = edges.getNext(selected);
     prev.extendEdgeN2(next);
     next.extendEdgeN1(prev);
 
-    convexHull.remove(selected);
+    edges.remove(selected);
     edge_area.remove(selected);
 
     // ricalcolo delle nuove areee per i due lati modificati
     edge_area.put(prev, getArea(prev));
     edge_area.put(next, getArea(next));
-    edge_area.put(convexHull.getNext(next), getArea(convexHull.getNext(next)));
-    edge_area.put(convexHull.getPrev(prev), getArea(convexHull.getPrev(prev)));
+    edge_area.put(edges.getNext(next), getArea(edges.getNext(next)));
+    edge_area.put(edges.getPrev(prev), getArea(edges.getPrev(prev)));
   }
 
   /**
@@ -87,8 +85,8 @@ public class CuttingEdges extends FromCH {
    */
   private double getArea(Edge e){
     double c = e.getLength();
-    double alpha = Math.PI - convexHull.getPrev(e).calcAngle(e);
-    double beta = Math.PI - e.calcAngle(convexHull.getNext(e));
+    double alpha = Math.PI - poly.getEdges().getPrev(e).calcAngle(e);
+    double beta = Math.PI - e.calcAngle(poly.getEdges().getNext(e));
 
     // se i due angoli interni al triangolo esterno sono maggiori di 180 allora non può essere selezionato il lato
     if(alpha + beta > Math.PI) return Double.MAX_VALUE;

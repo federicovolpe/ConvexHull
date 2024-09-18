@@ -17,7 +17,9 @@ public class CircularList<E> extends LinkedList<E> {
     for (E element : list) {
       if (element instanceof Edge) {
         this.add((E) new Edge((Edge) element));
-      } else {
+      } else if (element instanceof Point2D) {
+        this.add((E) new Point2D((Point2D) element));
+      }else{
         this.add(element);
       }
     }
@@ -43,7 +45,7 @@ public class CircularList<E> extends LinkedList<E> {
    */
   public E getPrev(E current) {
     int index = this.indexOf(current);
-    if (index == -1) throw new IllegalArgumentException("Element not found in the list.");
+    if (index == -1) throw new IllegalArgumentException("Element"+current.toString()+" not found in the list.");
 
     int nextIndex = (index - 1) % this.size();
     return this.get(nextIndex);

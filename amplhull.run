@@ -1,0 +1,7 @@
+reset;
+model amplhull.mod;
+data amplhull.dat;
+option solver knitro;
+solve;
+display a,b,c;
+display {r in R} sum{p in P}assign[p, r];
