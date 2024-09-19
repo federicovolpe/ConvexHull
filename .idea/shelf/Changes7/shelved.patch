@@ -1,0 +1,14 @@
+Index: src/main/java/heuristics/LessArea.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/heuristics/LessArea.java b/src/main/java/heuristics/LessArea.java
+new file mode 100644
+--- /dev/null	(date 1722763279488)
++++ b/src/main/java/heuristics/LessArea.java	(date 1722763279488)
+@@ -0,0 +1,4 @@
++package heuristics;
++
++public class LessArea {
++}

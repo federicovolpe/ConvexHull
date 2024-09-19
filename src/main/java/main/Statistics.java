@@ -66,9 +66,9 @@ public class Statistics {
    *    if a case generates an exception, a window with a graphical visualization of the error is shown
    * @param heuristics
    */
-  public static void fileReportStatistics(List<Heuristic> heuristics){
+  public static void fileReportStatistics(List<Heuristic> heuristics, String filename){
 
-    File file = new File("reportREG.csv");
+    File file = new File(filename);
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
       writer.write("heuristic,points,hyperplane_budget,jaccard_index,time,exceptions,regularity\n");
     } catch (IOException e) {

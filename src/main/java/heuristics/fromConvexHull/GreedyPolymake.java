@@ -85,8 +85,8 @@ public class GreedyPolymake extends FromPoints {
       List<Point2D> punti = new ArrayList<>();
       int R = (int) r;
 
-      for (int x = -R + X; x <= R + X; x += 20) {
-        for (int y = -R + Y; y <= R + Y; y += 20) {
+      for (int x = -R + X; x <= R + X; x += 15) {
+        for (int y = -R + Y; y <= R + Y; y += 15) {
           // Controlla se il punto (x, y) si trova all'interno del cerchio
           if ((x - X) * (x - X) + (y - Y) * (y - Y) <= R * R) {
               punti.add(new Point2D(0,x, y));  // Aggiungi il punto alla lista
@@ -115,7 +115,7 @@ public class GreedyPolymake extends FromPoints {
 
   @Override
   public void draw(Graphics g) {
-    super.draw(g);
+    g.setColor(Color.black);
     for(Point2D p : sample)
       p.draw(g,false);
   }
@@ -125,7 +125,7 @@ public class GreedyPolymake extends FromPoints {
     this.polygon = p;
 
     // calcolo del baricentro per poter calcolare il centro geometrico
-    this.centerOfMass = getG(allNodes);
+    this.centerOfMass = getG(p.getVertices());
     List<Point2D> insidePoints = calcSample().stream()
         .filter(this::isPointInPolygon).toList();
 

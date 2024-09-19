@@ -1,6 +1,7 @@
 package heuristics.fromConvexHull;
 
 
+import basic.CircularList;
 import basic.Edge;
 import basic.Point2D;
 import shapes.Polygon;
@@ -38,7 +39,6 @@ public class BoxCutting extends FromCH{
     while(box.getEdgeNumber() < n) {
       // seleziona il lato che separa un'area maggiore del box
       Edge selected = selectEdge();
-      System.out.println("selected edge: " + selected);
       // taglia via l-area dalla box
       box = box.cutIn(selected);
 
@@ -57,9 +57,7 @@ public class BoxCutting extends FromCH{
     Edge bestEdge = convexHull.get(0);
 
     for(Edge e : convexHull){
-      System.out.println("analyzing "+ e + "-----------------------------");
       double areaCompresa = calcArea(e);
-      System.out.println("area: "+areaCompresa);
       if(areaCompresa > bestArea){
         bestArea = areaCompresa;
         bestEdge = e;
@@ -75,6 +73,14 @@ public class BoxCutting extends FromCH{
    */
   private double calcArea(Edge edge){
     return box.cutOut(edge).calcArea();
+  }
+
+  @Override
+  public CircularList<Point2D> getHullNodes(){
+    CircularList<Point2D> nodes = new CircularList<>();
+    for (Edge e : box.getEdges())
+      nodes.add(e.n1());
+    return nodes;
   }
 
   @Override

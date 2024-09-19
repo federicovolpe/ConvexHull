@@ -9,6 +9,7 @@ import java.util.List;
 import basic.Point2D;
 import heuristics.Heuristic;
 import heuristics.fromConvexHull.BoxCutting;
+import heuristics.fromConvexHull.GreedyPolymake;
 import heuristics.fromConvexHull.cuttingEdges.CuttingEdges;
 import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle;
 import heuristics.fromConvexHull.cuttingNodes.CuttingLargerAngle2;
@@ -30,13 +31,14 @@ public class Main {
         new DistanceFromG(DARK_GRAY),
         new CuttingEdges(BLACK),
         new LessArea(PINK),*/
-        new BoxCutting(MAGENTA),
-        new DistanceFromG2(CYAN));
+        new GreedyPolymake(BLACK));
+        //new BoxCutting(MAGENTA),
+        //new DistanceFromG2(CYAN));
 
     //displayHeurisitc(heuristics,
     //    new PolygonGenerator().generateRegularPolygon(5), 3);
-    //displayHeurisitc(heuristics,
-    //  new PolygonGenerator().generateRandomRegularPolygon(7), 5);
+    displayHeurisitc(heuristics,
+      new PolygonGenerator().generateRandomRegularPolygon(7), 5);
     //displayHeurisitc(heuristics,
        // new PolygonGenerator().generateRandomRegularPolygon(10), 5);
 
@@ -48,7 +50,7 @@ public class Main {
     p = pg.generateRandomRegularPolygon(10);
     TestCase t2 = new TestCase(null,7, p.getEdges(), p.getVertices());
     generateDemoImages(heuristics, List.of(t0, t1, t2));*/
-    //fileReportStatistics(heuristics);
+    //fileReportStatistics(heuristics, "boxcutting.csv");
 
   }
 

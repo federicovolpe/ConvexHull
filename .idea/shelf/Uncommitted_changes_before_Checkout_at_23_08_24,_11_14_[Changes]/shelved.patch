@@ -1,0 +1,52 @@
+Index: src/main/java/main/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/main/Main.java b/src/main/java/main/Main.java
+--- a/src/main/java/main/Main.java	
++++ b/src/main/java/main/Main.java	
+@@ -3,6 +3,8 @@
+ import java.util.ArrayList;
+ import java.util.List;
+ import heuristics.fromConvexHull.cuttingEdges.CuttingEdges;
++import heuristics.fromConvexHull.cuttingNodes.CuttingSmallerAngle2;
++import heuristics.fromConvexHull.edgeChoice.LessArea;
+ import heuristics.fromPoints.DistanceFromG2;
+ import basic.Point2D;
+ import heuristics.Heuristic;
+@@ -17,12 +19,12 @@
+   public static void main(String[] args) throws InterruptedException {
+     List<Heuristic> heuristics = List.of(
+         new CuttingSmallerAngle(new ArrayList<>(), GREEN),
+-        //new CuttingSmallerAngle2(new ArrayList<>(), BLUE),
++        new CuttingSmallerAngle2(new ArrayList<>(), BLUE),
+         new CuttingLargerAngle(new ArrayList<>(), RED),
+         new CuttingLargerAngle2(new ArrayList<>(), YELLOW),
+         new DistanceFromG(null, new ArrayList<>(), ORANGE),
+         new CuttingEdges(new ArrayList<>(), BLACK),
+-        //new LessArea(new ArrayList<>(), GREEN),
++        new LessArea(new ArrayList<>(), GREEN),
+         new DistanceFromG2(null, new ArrayList<>(), GREEN));
+ 
+     //displayHeurisitc(heuristics, Shapes.SQUARE.getPolygon().getSample(20), Shapes.SQUARE.getPolygon().getEdgeNumber());
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,11 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="reorganized statistic in Statistic class">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG2.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Statistics.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -136,13 +136,9 @@ public class Polygon {
     for(Pair<Edge, Point2D> i : inters) vert.add(i.getValue());
 
     // calcolo di tutti i punti a destra dell'edge
-    System.out.println("external nodes: ");
-    for(Point2D p : vertices) {
-      if (e.isPointRight(p)) {
+    for(Point2D p : vertices)
+      if (e.isPointRight(p))
         vert.add(p);
-
-      System.out.println(p);}
-    }
 
     // costruzione dei poligono
     return new Polygon(vert);
@@ -164,7 +160,6 @@ public class Polygon {
     for(Point2D p : vertices)
       if(!e.isPointRight(p)) vert.add(p);
 
-    System.out.println("internal nodes: "+ vert.size());
     // costruzione dei poligono
     return new Polygon(vert);
   }

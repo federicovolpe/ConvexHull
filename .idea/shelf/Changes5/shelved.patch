@@ -1,0 +1,167 @@
+Index: src/main/java/main/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main;\n\nimport static java.awt.Color.BLUE;\nimport static java.awt.Color.GREEN;\nimport static java.awt.Color.ORANGE;\nimport static java.awt.Color.RED;\nimport static java.awt.Color.YELLOW;\nimport java.util.ArrayList;\nimport java.util.List;\n\nimport javax.swing.JFrame;\n\nimport org.locationtech.jts.geom.Coordinate;\nimport org.locationtech.jts.geom.Geometry;\nimport org.locationtech.jts.geom.GeometryFactory;\nimport org.locationtech.jts.geom.Polygon;\n\nimport basic.Edge;\nimport basic.Node2D;\nimport heuristics.CuttingLargerAngle;\nimport heuristics.CuttingLargerAngle2;\nimport heuristics.CuttingSmallerAngle;\nimport heuristics.CuttingSmallerAngle2;\nimport heuristics.DistanceFromG;\nimport heuristics.Heuristic;\nimport paintGraph.GraphPanel;\nimport paintGraph.GraphWithPoints;\nimport utils.utilMethods;\n\npublic class Main {\n  public static void main(String[] args) {\n    /*List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);\n    JarvisMarch jm = new JarvisMarch(nodes);\n    List<Edge> convexHull = jm.getHullEdges();\n\n    List<Heuristic> heuristics = List.of(\n      // new CuttingSmallerAngle(5, convexHull, GREEN),\n      // new CuttingSmallerAngle2(5, convexHull, BLUE),\n      //new CuttingLargerAngle(5, convexHull, RED),\n      new CuttingLargerAngle2(5, convexHull, GREEN));\n      //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));\n\n    GraphPanel graph = new GraphPanel(nodes, convexHull, heuristics);\n    JFrame frame = new GraphWithPoints(graph);\n    frame.setVisible(true);\n\n    nodes = utilMethods.rndNodesGenerator2D(30);\n    jm = new JarvisMarch(nodes);\n    convexHull = jm.getHullEdges();\n\n    heuristics = List.of(\n      // new CuttingSmallerAngle(5, convexHull, GREEN),\n      // new CuttingSmallerAngle2(5, convexHull, BLUE),\n      //new CuttingLargerAngle(5, convexHull, RED),\n      new CuttingLargerAngle2(5, convexHull, GREEN));\n      //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));\n\n    graph = new GraphPanel(nodes, convexHull, heuristics);\n    frame = new GraphWithPoints(graph);\n    frame.setVisible(true);\n\n    nodes = utilMethods.rndNodesGenerator2D(50);\n    jm = new JarvisMarch(nodes);\n    convexHull = jm.getHullEdges();\n\n    heuristics = List.of(\n    // new CuttingSmallerAngle(5, convexHull, GREEN),\n    // new CuttingSmallerAngle2(5, convexHull, BLUE),\n    //new CuttingLargerAngle(5, convexHull, RED),\n    new CuttingLargerAngle2(5, convexHull, GREEN));\n    //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));\n\n    graph = new GraphPanel(nodes, convexHull, heuristics);\n    frame = new GraphWithPoints(graph);\n    frame.setVisible(true);*/\n\n    iterationStatistics();\n  }\n\n  public static void iterationStatistics(){\n    int iterations = 100;\n    double nodesAmount = 20;\n\n    double[] jaccardIndexes = new double[5]; // numero di euristiche\n\n    for (int i = 0; i < iterations; i++) {\n      System.out.println(\"-------------- iteration : \" + i);\n      List<Node2D> nodes = utilMethods.rndNodesGenerator2D(20);\n      JarvisMarch jm = new JarvisMarch(nodes);\n      List<Edge> convexHull = jm.getHullEdges();\n\n      List<Heuristic> heuristics = List.of(\n          new CuttingSmallerAngle(5, convexHull, GREEN),\n          new CuttingSmallerAngle2(5, convexHull, BLUE),\n          new CuttingLargerAngle(5, convexHull, RED),\n          new CuttingLargerAngle2(5, convexHull, YELLOW),\n          new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));\n\n      for (int h = 0; h < heuristics.size(); h++ ) {\n        try {\n          jaccardIndexes[h] += jaccardIndex(jm.getHullNodes(), heuristics.get(h).getHullNodes());\n\n        } catch (Exception e) {\n          GraphPanel problemGraph = new GraphPanel(nodes, convexHull, heuristics);\n          JFrame problemFrame = new GraphWithPoints(problemGraph);\n          problemFrame.setVisible(true);\n          e.printStackTrace();\n          break;\n        }\n      }\n    }\n    System.out.println(\"jaccardIndex over \" + iterations + \" iterations with \"+ nodesAmount +\" nodes: \");\n    for (int i = 0; i < jaccardIndexes.length; i++) {\n      System.out.println(i +\" \"+ jaccardIndexes[i]/ iterations);\n    }\n  }\n\n\n  public static double jaccardIndex(List<Node2D> hullA, List<Node2D> hullB) {\n    GeometryFactory geometryFactory = new GeometryFactory();\n\n    System.out.println(\"hullA: \" + hullA);\n    // Define coordinates for the first polygon\n    List<Coordinate> polygonACoords = new ArrayList<>();\n    for (Node2D n : hullA) polygonACoords.add(new Coordinate(n.getX(), n.getY()));\n    polygonACoords.add(new Coordinate(hullA.get(0).getX(), hullA.get(0).getY()));\n\n    // Define coordinates for the second polygon\n    List<Coordinate> polygonBCoords = new ArrayList<>();\n    for (Node2D n : hullB) polygonBCoords.add(new Coordinate(n.getX(), n.getY()));\n    polygonBCoords.add(new Coordinate(hullB.get(0).getX(), hullB.get(0).getY()));\n\n\n    // Create Polygon objects\n    Coordinate[] pa = polygonACoords.toArray(new Coordinate[0]);\n    Polygon polygonA = geometryFactory.createPolygon(pa);\n\n    Coordinate[] pb = polygonBCoords.toArray(new Coordinate[0]);\n    Polygon polygonB = geometryFactory.createPolygon(pb);\n\n    // Compute the symmetric difference\n    //Geometry symmetricDifference = polygonA.symDifference(polygonB);\n\n    Geometry intersection = polygonA.intersection(polygonB);\n    Geometry union = polygonA.union(polygonB);\n    double intersectionArea = intersection.getArea();\n    double unionArea = union.getArea();\n\n    // Calcola l'indice di Jaccard\n    return intersectionArea / unionArea;\n  }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/main/Main.java b/src/main/java/main/Main.java
+--- a/src/main/java/main/Main.java	(revision 7bf5d1b4ca21036c3a2749eee2378803c8b1cc23)
++++ b/src/main/java/main/Main.java	(date 1722189299652)
+@@ -29,7 +29,7 @@
+ 
+ public class Main {
+   public static void main(String[] args) {
+-    /*List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);
++    List<Node2D> nodes = utilMethods.rndNodesGenerator2D(10);
+     JarvisMarch jm = new JarvisMarch(nodes);
+     List<Edge> convexHull = jm.getHullEdges();
+ 
+@@ -37,14 +37,14 @@
+       // new CuttingSmallerAngle(5, convexHull, GREEN),
+       // new CuttingSmallerAngle2(5, convexHull, BLUE),
+       //new CuttingLargerAngle(5, convexHull, RED),
+-      new CuttingLargerAngle2(5, convexHull, GREEN));
+-      //new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
++      new CuttingLargerAngle2(5, convexHull, GREEN),
++      new DistanceFromG(5, jm.getHullNodes(), nodes, ORANGE));
+ 
+     GraphPanel graph = new GraphPanel(nodes, convexHull, heuristics);
+     JFrame frame = new GraphWithPoints(graph);
+     frame.setVisible(true);
+ 
+-    nodes = utilMethods.rndNodesGenerator2D(30);
++    /*nodes = utilMethods.rndNodesGenerator2D(30);
+     jm = new JarvisMarch(nodes);
+     convexHull = jm.getHullEdges();
+ 
+@@ -74,7 +74,7 @@
+     frame = new GraphWithPoints(graph);
+     frame.setVisible(true);*/
+ 
+-    iterationStatistics();
++    //iterationStatistics();
+   }
+ 
+   public static void iterationStatistics(){
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"aeba7314-39d6-4d5a-b9d0-99883d0d6670\" name=\"Changes\" comment=\"colored heuristics\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/main/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/main/Main.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/CuttingNodes/10-5.png\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/CuttingNodes/10-5.png\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/CuttingNodes/30-5.png\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/CuttingNodes/30-5.png\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/CuttingNodes/50-5.png\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/CuttingNodes/50-5.png\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"CodeStyleSettingsInfer\">\n    <option name=\"done\" value=\"true\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"JUnit5 Test Class\" />\n        <option value=\"Class\" />\n        <option value=\"Interface\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"useMavenConfig\" value=\"true\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"ProjectCodeStyleSettingsMigration\">\n    <option name=\"version\" value=\"2\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2jW3p0Nu96BRPpIxBWzJX7FumJ0\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,\n    &quot;last_directory_selection&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/test&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/Users/luigivolpe/Desktop/Federico_Volpe/active projects/ConvexHull/src/main/java&quot;,\n    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;shared-indexes&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/main/java\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/main/resources/CuttingNodes\" />\n      <recent name=\"$PROJECT_DIR$/src/main/resources/DistanceFromG\" />\n      <recent name=\"$PROJECT_DIR$/src/main/resources\" />\n      <recent name=\"$PROJECT_DIR$/src/main/resources/CuttingNodes3\" />\n      <recent name=\"$PROJECT_DIR$/src/main/resources/CuttingNodes2\" />\n    </key>\n    <key name=\"CreateTestDialog.Recents.Supers\">\n      <recent name=\"\" />\n    </key>\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\n      <recent name=\"\" />\n    </key>\n    <key name=\"CreateTestDialog.RecentsKey\">\n      <recent name=\"heuristics\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.Main\">\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"main.Main\" />\n      <module name=\"ConvexHull\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"main.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Node2DTest.isContained (1)\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ConvexHull\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"basic.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"basic\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"basic.Node2DTest\" />\n      <option name=\"METHOD_NAME\" value=\"isContained(boolean,int,int,int,int,int,int,int)\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Node2DTest.isContained\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ConvexHull\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"basic.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"basic\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"basic.Node2DTest\" />\n      <option name=\"METHOD_NAME\" value=\"isContained(boolean,int,int,int,int,int,int)\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"NodeTest.calcDistance_sameDimension (1)\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ConvexHull\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"NodeTest\" />\n      <option name=\"METHOD_NAME\" value=\"calcDistance_sameDimension(double,int,int,int)\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"NodeTest.samePos\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ConvexHull\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"NodeTest\" />\n      <option name=\"METHOD_NAME\" value=\"samePos(boolean,int,int,int)\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.Main\" />\n        <item itemvalue=\"JUnit.NodeTest.samePos\" />\n        <item itemvalue=\"JUnit.NodeTest.calcDistance_sameDimension (1)\" />\n        <item itemvalue=\"JUnit.Node2DTest.isContained (1)\" />\n        <item itemvalue=\"JUnit.Node2DTest.isContained\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"aeba7314-39d6-4d5a-b9d0-99883d0d6670\" name=\"Changes\" comment=\"\" />\n      <created>1721489184867</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1721489184867</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upgrading to a maven project\">\n      <created>1721493957888</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721493957888</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"updating images\">\n      <created>1721495610288</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721495610288</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"merging test\">\n      <created>1721598439013</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721598439013</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"updated info\">\n      <created>1721598900674</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721598900674</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"implemented inheritance\">\n      <created>1721637049262</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721637049262</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"updating readme\">\n      <created>1721637274600</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721637274600</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"detaching ceterOfMass from heuristic\">\n      <created>1721640693487</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721640693487</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"updating README.md\">\n      <created>1721675534072</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721675534072</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"heuristic as an abstract class\">\n      <created>1721720052867</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721720052867</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"main rearranged for statistics\">\n      <created>1721720319943</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721720319943</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"distancefromG working\">\n      <created>1721734142568</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721734142568</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"distancefromG working\">\n      <created>1721736005136</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721736005136</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"cuttingLargerAngle algorithm implemented\">\n      <created>1722002523220</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722002523220</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"cuttingLargerAngle2 readapted and tested\">\n      <created>1722003512644</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722003512644</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"15\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upgrading to a maven project\" />\n    <MESSAGE value=\"updating images\" />\n    <MESSAGE value=\"GREEN: node.calcDistance\" />\n    <MESSAGE value=\"merging test\" />\n    <MESSAGE value=\"updated info\" />\n    <MESSAGE value=\"implemented inheritance\" />\n    <MESSAGE value=\"updating readme\" />\n    <MESSAGE value=\"detaching ceterOfMass from heuristic\" />\n    <MESSAGE value=\"updating README.md\" />\n    <MESSAGE value=\"heuristic as an abstract class\" />\n    <MESSAGE value=\"main rearranged for statistics\" />\n    <MESSAGE value=\"distancefromG working\" />\n    <MESSAGE value=\"cuttingLargerAngle algorithm implemented\" />\n    <MESSAGE value=\"cuttingLargerAngle2 readapted and tested\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"cuttingLargerAngle2 readapted and tested\" />\n  </component>\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\n    <SUITE FILE_PATH=\"coverage/ConvexHull$NodeTest.ic\" NAME=\"NodeTest Coverage Results\" MODIFIED=\"1721499502503\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7bf5d1b4ca21036c3a2749eee2378803c8b1cc23)
++++ b/.idea/workspace.xml	(date 1722189984412)
+@@ -5,11 +5,16 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="colored heuristics">
++      <change afterPath="$PROJECT_DIR$/src/main/java/shapes/Shape.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/shapes/ShapeGenerator.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/shapes/Triangle.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Edge.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Node2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Node2D.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/CuttingNodes.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingNodes/10-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CuttingNodes/10-5.png" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingNodes/30-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CuttingNodes/30-5.png" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/CuttingNodes/50-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CuttingNodes/50-5.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/paintGraph/GraphPanel.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -23,15 +28,15 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="JUnit5 Test Class" />
+-        <option value="Class" />
+         <option value="Interface" />
++        <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
++        <entry key="$PROJECT_DIR$" value="shapeGenerator" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+Index: src/main/java/shapes/ShapeGenerator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/shapes/ShapeGenerator.java b/src/main/java/shapes/ShapeGenerator.java
+new file mode 100644
+--- /dev/null	(date 1722177882944)
++++ b/src/main/java/shapes/ShapeGenerator.java	(date 1722177882944)
+@@ -0,0 +1,5 @@
++package shapes;
++
++public interface ShapeGenerator {
++
++}
+Index: src/main/java/shapes/Triangle.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/shapes/Triangle.java b/src/main/java/shapes/Triangle.java
+new file mode 100644
+--- /dev/null	(date 1722180505981)
++++ b/src/main/java/shapes/Triangle.java	(date 1722180505981)
+@@ -0,0 +1,20 @@
++package shapes;
++
++import basic.Node2D;
++
++import java.util.List;
++
++public class Triangle implements Shape{
++  private Node2D A, B, C;
++
++  public Triangle (Node2D A, Node2D B, Node2D C){
++    this.A = A;
++    this.B = B;
++    this.C = C;
++  }
++
++  @Override
++  public List<Node2D> getPoints(int offset) {
++    return null;
++  }
++}
+Index: src/main/java/shapes/Shape.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/shapes/Shape.java b/src/main/java/shapes/Shape.java
+new file mode 100644
+--- /dev/null	(date 1722179678397)
++++ b/src/main/java/shapes/Shape.java	(date 1722179678397)
+@@ -0,0 +1,18 @@
++package shapes;
++
++import basic.Node2D;
++
++import java.util.List;
++
++public interface Shape {
++  List<Node2D> getPoints(int offset);
++
++  /*enum Shape {
++    TRIANGLE,
++    ELLIPSE,
++    SQUARE,
++    RECTANGLE,
++    CIRCLE;
++  }*/
++
++}
