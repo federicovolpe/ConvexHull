@@ -82,4 +82,15 @@ class EdgeTest {
     assertEquals(new Point2D(-1, expX, expY), Sut.projection(new Point2D(1, x, y)));
   }
 
+  @Test
+  void getLineParameters() {
+    int [] params = Sut.getLineParameters();
+    int [] unequals = new Edge(new Point2D(1, 1,1),
+        new Point2D(0,0,0)).getLineParameters();
+    int count = 0;
+    for(int i = 0; i < 3; i ++) {
+      if(params[i] != unequals[i]) count ++;
+    }
+    assertNotEquals(count, 0);
+  }
 }

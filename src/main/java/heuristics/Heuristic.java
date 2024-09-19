@@ -36,27 +36,7 @@ public abstract class Heuristic {
      */
     public void draw(Graphics g) {
         g.setColor(c);
-        drawEdges((Graphics2D) g);
-        drawNodes(g);
-    }
-
-    /**
-     * draws all the edges of the convex hull
-     * @param g graphics to use
-     */
-    public void drawEdges(Graphics2D g){
-        g.setStroke(new BasicStroke(2));
-        for (Edge e : poly.getEdges()) e.draw(g);
-        g.setStroke(new BasicStroke(1));
-    }
-
-    /**
-     * draws all the points interested in the calculation of the convex hull
-     * @param g graphics to use
-     */
-    public void drawNodes(Graphics g) {
-        for (Edge e : poly.getEdges())
-            e.n1().draw(g, false);
+        poly.draw(g);
     }
 
     /**

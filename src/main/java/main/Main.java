@@ -23,20 +23,20 @@ import shapes.PolygonGenerator;
 public class Main {
   public static void main(String[] args) throws InterruptedException {
     List<Heuristic> heuristics = List.of(
-        new BoxCutting(MAGENTA),
-        new CuttingSmallerAngle(GREEN),
+        /*new CuttingSmallerAngle(GREEN),
         new CuttingSmallerAngle2(BLUE),
         new CuttingLargerAngle(YELLOW),
         new CuttingLargerAngle2(ORANGE),
         new DistanceFromG(DARK_GRAY),
         new CuttingEdges(BLACK),
-        new LessArea(PINK),
+        new LessArea(PINK),*/
+        new BoxCutting(MAGENTA),
         new DistanceFromG2(CYAN));
 
     //displayHeurisitc(heuristics,
     //    new PolygonGenerator().generateRegularPolygon(5), 3);
-    displayHeurisitc(heuristics,
-      new PolygonGenerator().generateRandomRegularPolygon(7), 5);
+    //displayHeurisitc(heuristics,
+    //  new PolygonGenerator().generateRandomRegularPolygon(7), 5);
     //displayHeurisitc(heuristics,
        // new PolygonGenerator().generateRandomRegularPolygon(10), 5);
 
@@ -48,7 +48,6 @@ public class Main {
     p = pg.generateRandomRegularPolygon(10);
     TestCase t2 = new TestCase(null,7, p.getEdges(), p.getVertices());
     generateDemoImages(heuristics, List.of(t0, t1, t2));*/
-    //iterationStatistics(heuristics);
     //fileReportStatistics(heuristics);
 
   }

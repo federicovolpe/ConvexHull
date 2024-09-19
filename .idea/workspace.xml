@@ -4,31 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="initialized boxCutting algorithm">
-      <change afterPath="$PROJECT_DIR$/amplhull.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplhull.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplhull.run" afterDir="false" />
+    <list default="true" id="aeba7314-39d6-4d5a-b9d0-99883d0d6670" name="Changes" comment="all algorithm are using polygons now">
       <change afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/BoxCutting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utils/Pair.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/basic/CircularList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/CircularList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Point2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Point2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/basic/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Edge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/Heuristic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/FromCH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/FromCH.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/GreedyPolymake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/GreedyPolymake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingEdges/CuttingEdges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingLargerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingNodes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/CuttingSmallerAngle2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/EdgeExtension.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/cuttingNodes/EdgeExtension.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/edgeChoice/LessArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromConvexHull/edgeChoice/LessArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/DistanceFromG2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/FromPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/heuristics/fromPoints/FromPoints.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Statistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/basic/EdgeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,6 +113,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="EdgeTest.getLineParameters" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConvexHull" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="basic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="basic" />
+      <option name="MAIN_CLASS_NAME" value="basic.EdgeTest" />
+      <option name="METHOD_NAME" value="getLineParameters" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EdgeTest.projection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConvexHull" />
       <extension name="coverage">
@@ -189,10 +190,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.EdgeTest.getLineParameters" />
         <item itemvalue="JUnit.PointTest.toPolymake" />
         <item itemvalue="JUnit.NodeTest.samePos" />
         <item itemvalue="JUnit.EdgeTest.projection" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -506,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726669702025</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="all algorithm are using polygons now">
+      <created>1726691584832</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1726691584832</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +530,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="heuristics are now reusable" />
     <MESSAGE value="refactoring: renming node to point" />
     <MESSAGE value="extracted common class ExtendEdges" />
     <MESSAGE value="reorganizing heuristics" />
@@ -547,7 +554,8 @@
     <MESSAGE value="using regularity as a parameter" />
     <MESSAGE value="initialized sampling" />
     <MESSAGE value="initialized boxCutting algorithm" />
-    <option name="LAST_COMMIT_MESSAGE" value="initialized boxCutting algorithm" />
+    <MESSAGE value="all algorithm are using polygons now" />
+    <option name="LAST_COMMIT_MESSAGE" value="all algorithm are using polygons now" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConvexHull$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1721499502503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

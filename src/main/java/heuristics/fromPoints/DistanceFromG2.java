@@ -27,20 +27,12 @@ public class DistanceFromG2 extends DistanceFromG {
 
     // allNodes list should already be ordered
     List<Point2D> enlarged = enlargeArea(vertices);
-    //System.out.println("modified vertices");
-    //for(Point2D p : enlarged){
-      //System.out.println(p);
-    //}
     poly = new Polygon(new JarvisMarch(enlarged).getHullNodes());
   }
 
   private List<Point2D> enlargeArea(List<Point2D> vertices) {
     List<Point2D> other = getOtherNodes(allNodes, vertices);
     double area = new JarvisMarch(vertices).calcArea();
-    //System.out.println("chosen:");
-    //for(Point2D v : vertices)
-      //System.out.println(v);
-    //System.out.println("og area: " + area);
 
     // Lista temporanea copia dei vertici
     List<Point2D> newVertex = new ArrayList<>(vertices);
